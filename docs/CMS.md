@@ -72,6 +72,23 @@ Menu **Guru & Tendik** mengelola direktori sumber daya manusia yang tampil di we
 
 Daftar dapat dicari dan difilter berdasarkan jenis serta status. Data yang dihapus masuk ke filter **Sampah** dan dapat dipulihkan. CMS tidak meminta alamat, nomor pribadi, atau data sensitif lainnya.
 
+## Mengelola pengumuman, agenda, dan prestasi
+
+- **Pengumuman** mengelola isi resmi, status penting, periode tampil, SEO, serta lampiran PDF/Word/Excel maksimal 5 MB.
+- **Agenda** mengelola kategori, tanggal, waktu, lokasi, deskripsi, gambar, dan status publikasi.
+- **Prestasi** mengelola peserta, kategori, tingkat, peringkat, penyelenggara, tanggal, foto, dan status publikasi. Tahun filter publik dibuat otomatis dari tanggal prestasi.
+
+Gunakan status **Published** agar konten tampil di website. Pengumuman hanya tampil selama periode mulai dan selesai yang ditentukan.
+
+## Mengelola alumni
+
+Menu **Kelola Alumni** memiliki dua bagian:
+
+- **Profil alumni** untuk membuat dan memperbarui profil publik, foto, tahun lulus, pendidikan, pekerjaan, testimoni, urutan, dan izin publikasi.
+- **Registrasi masuk** untuk menyetujui atau menolak data yang dikirim dari website.
+
+Tindakan **Setujui dan publikasikan** membuat profil alumni terverifikasi. Email, nomor telepon, dan alamat IP tetap berada pada data moderasi dan tidak disalin ke profil publik.
+
 ## Mengubah pengaturan website
 
 Menu **Pengaturan website** mengubah identitas dan konten global secara langsung.
@@ -97,4 +114,4 @@ CMS mencatat login, logout, pembuatan, pembaruan, penghapusan, perubahan akun, d
 
 ## Cakupan saat ini
 
-CMS operasional saat ini mencakup Dashboard, Berita, Artikel, Profil Madrasah, Guru & Tendik, Halaman, Pengaturan Website, dan Akun Saya. CRUD untuk Pengumuman, Agenda, Prestasi, Akademik lainnya, Galeri, Alumni, Download, Menu, Pengguna, Role, Redirect, serta Media Library tetap berada pada tahap berikutnya.
+CMS operasional saat ini mencakup Dashboard, Berita, Artikel, Pengumuman, Agenda, Prestasi, Profil Madrasah, Guru & Tendik, Alumni, Halaman, Pengaturan Website, dan Akun Saya. CRUD untuk Akademik lainnya, Galeri, Download, Pesan Masuk, Menu, Pengguna, Role, Redirect, serta Media Library tetap berada pada tahap berikutnya.

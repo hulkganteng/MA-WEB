@@ -17,14 +17,14 @@ Master prompt menetapkan 13 fase. Phase 2 sekarang memiliki halaman publik nyata
 | 0 — Audit website lama | Parsial | Analisis konten, URL, privasi, dan risiko awal tersedia di `PLAN.md` | Audit source, hosting, malware, akun, DNS, dan credential membutuhkan akses website lama |
 | 1 — Fondasi | Parsial | Laravel, schema, model, seeder, login, RBAC middleware, settings, layout, design system, dan penggantian kata sandi akun | Reset password via email, session timeout, dan pengelolaan pengguna belum tersedia |
 | 2 — Website publik inti | Selesai | Homepage, profil, sambutan, struktur, GTK, fasilitas, program, kurikulum, kalender, ekstrakurikuler, organisasi, dan kontak | Konten resmi dan foto masih perlu dimasukkan melalui CMS |
-| 3 — Content CMS | Parsial | Dashboard admin, CRUD Berita/Artikel/Halaman, CMS Profil, serta Guru & Tendik sudah terintegrasi dengan website publik | CRUD Pengumuman, Agenda, Prestasi, kategori, preview, sorting, dan bulk action belum tersedia |
+| 3 — Content CMS | Parsial | Dashboard admin serta CRUD Berita, Artikel, Halaman, Pengumuman, Agenda, Prestasi, Profil, dan Guru & Tendik sudah terintegrasi dengan website publik | CRUD kategori, preview, sorting, dan bulk action belum tersedia |
 | 4 — Media | Parsial | Galeri album, foto, lightbox, dan video eksternal tersedia | Media Library, upload admin, kompresi, thumbnail, WebP, metadata, dan reuse media belum tersedia |
-| 5 — Alumni | Parsial | Direktori publik, jejak alumni, dan registrasi pending tersedia | Moderasi admin, upload foto, dan Turnstile belum tersedia |
+| 5 — Alumni | Parsial | Direktori publik, registrasi, CRUD profil, upload foto, dan moderasi approve/reject tersedia | Turnstile belum tersedia |
 | 6 — Document Center | Parsial | Daftar, filter kategori, penghitungan, dan delivery file tersedia | CRUD admin dan upload tervalidasi belum tersedia |
 | 7 — SEO | Parsial | Meta, canonical, OpenGraph, Twitter Card, schema organisasi/artikel, sitemap awal, robots, dan middleware redirect tersedia | Sitemap semua entitas, schema Event/Breadcrumb/School, admin redirect, dan kebijakan 410 belum lengkap |
 | 8 — Security hardening | Parsial | CSRF, escaping, sanitasi konten, validation, throttle, password hashing, dan security headers dasar tersedia | Turnstile, policy lengkap, reset password, session timeout, login history UI, 2FA, dan hardening upload belum tersedia |
 | 9 — Performance | Parsial | Pagination, eager loading pada jalur utama, lazy loading, index database, dan production build tersedia | Responsive image, image pipeline, cache settings/menu terukur, bundle splitting, dan audit Core Web Vitals belum tersedia |
-| 10 — Testing | Parsial | Migration/seeder, render homepage, dan 17 halaman publik diuji | Auth, authorization, CMS, upload, form POST, redirect, rate limit, dan security regression test belum tersedia |
+| 10 — Testing | Parsial | 25 test dengan 163 assertion mencakup halaman publik, auth dasar, CMS inti, upload gambar, publikasi konten, moderasi alumni, dan permission dasar | Rate limit, seluruh role matrix, redirect, dan security regression menyeluruh belum tersedia |
 | 11 — Migrasi konten | Belum | Strategi dan aturan sanitasi sudah didokumentasikan | Export, sanitizer, importer, media mapping, dan QA belum dikerjakan |
 | 12 — Deployment | Belum | Target shared hosting dan VPS sudah ditentukan | Panduan deployment, backup/restore, production config, dan smoke test belum dikerjakan |
 
@@ -45,7 +45,7 @@ Tabel ini menunjukkan cakupan fitur yang dapat diakses pengunjung.
 | Kesiswaan | Selesai | Ekstrakurikuler, detail kegiatan, dan organisasi siswa tersedia |
 | Fasilitas | Selesai | Grid fasilitas dinamis dan empty state tersedia |
 | Galeri | Selesai | Album, foto, lazy loading, lightbox, dan video YouTube/external tersedia |
-| Alumni | Parsial | Direktori dan submission pending tersedia; Turnstile dan moderasi admin belum ada |
+| Alumni | Parsial | Direktori, submission pending, CMS profil, dan moderasi admin tersedia; Turnstile belum ada |
 | Download | Selesai | Filter kategori, ukuran, jumlah download, dan file guard tersedia |
 | Global search | Selesai | Hasil dikelompokkan untuk delapan jenis konten sesuai master prompt |
 | Kontak | Parsial | Informasi kontak, form, validation, dan rate limit tersedia; Turnstile dan tampilan peta belum ada |

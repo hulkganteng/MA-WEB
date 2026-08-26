@@ -1,7 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountController;
+use App\Http\Controllers\Admin\AchievementController;
+use App\Http\Controllers\Admin\AlumniController;
+use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\OrganizationMemberController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PostController;
@@ -54,6 +58,44 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
         Route::put('/guru-tendik/{teacher}', [TeacherController::class, 'update'])->middleware('permission:teachers.update')->name('teachers.update');
         Route::delete('/guru-tendik/{teacher}', [TeacherController::class, 'destroy'])->middleware('permission:teachers.delete')->name('teachers.destroy');
         Route::post('/guru-tendik/{teacher}/pulihkan', [TeacherController::class, 'restore'])->middleware('permission:teachers.delete')->name('teachers.restore');
+    });
+
+    Route::middleware('permission:announcements.view')->group(function () {
+        Route::get('/pengumuman', [AnnouncementController::class, 'index'])->name('announcements.index');
+        Route::get('/pengumuman/tambah', [AnnouncementController::class, 'create'])->middleware('permission:announcements.create')->name('announcements.create');
+        Route::post('/pengumuman', [AnnouncementController::class, 'store'])->middleware('permission:announcements.create')->name('announcements.store');
+        Route::get('/pengumuman/{announcement}/edit', [AnnouncementController::class, 'edit'])->middleware('permission:announcements.update')->name('announcements.edit');
+        Route::put('/pengumuman/{announcement}', [AnnouncementController::class, 'update'])->middleware('permission:announcements.update')->name('announcements.update');
+        Route::delete('/pengumuman/{announcement}', [AnnouncementController::class, 'destroy'])->middleware('permission:announcements.delete')->name('announcements.destroy');
+    });
+
+    Route::middleware('permission:events.view')->group(function () {
+        Route::get('/agenda', [EventController::class, 'index'])->name('events.index');
+        Route::get('/agenda/tambah', [EventController::class, 'create'])->middleware('permission:events.create')->name('events.create');
+        Route::post('/agenda', [EventController::class, 'store'])->middleware('permission:events.create')->name('events.store');
+        Route::get('/agenda/{event}/edit', [EventController::class, 'edit'])->middleware('permission:events.update')->name('events.edit');
+        Route::put('/agenda/{event}', [EventController::class, 'update'])->middleware('permission:events.update')->name('events.update');
+        Route::delete('/agenda/{event}', [EventController::class, 'destroy'])->middleware('permission:events.delete')->name('events.destroy');
+    });
+
+    Route::middleware('permission:achievements.view')->group(function () {
+        Route::get('/prestasi', [AchievementController::class, 'index'])->name('achievements.index');
+        Route::get('/prestasi/tambah', [AchievementController::class, 'create'])->middleware('permission:achievements.create')->name('achievements.create');
+        Route::post('/prestasi', [AchievementController::class, 'store'])->middleware('permission:achievements.create')->name('achievements.store');
+        Route::get('/prestasi/{achievement}/edit', [AchievementController::class, 'edit'])->middleware('permission:achievements.update')->name('achievements.edit');
+        Route::put('/prestasi/{achievement}', [AchievementController::class, 'update'])->middleware('permission:achievements.update')->name('achievements.update');
+        Route::delete('/prestasi/{achievement}', [AchievementController::class, 'destroy'])->middleware('permission:achievements.delete')->name('achievements.destroy');
+    });
+
+    Route::middleware('permission:alumni.view')->group(function () {
+        Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni.index');
+        Route::get('/alumni/tambah', [AlumniController::class, 'create'])->middleware('permission:alumni.create')->name('alumni.create');
+        Route::post('/alumni', [AlumniController::class, 'store'])->middleware('permission:alumni.create')->name('alumni.store');
+        Route::get('/alumni/{alumnus}/edit', [AlumniController::class, 'edit'])->middleware('permission:alumni.update')->name('alumni.edit');
+        Route::put('/alumni/{alumnus}', [AlumniController::class, 'update'])->middleware('permission:alumni.update')->name('alumni.update');
+        Route::delete('/alumni/{alumnus}', [AlumniController::class, 'destroy'])->middleware('permission:alumni.delete')->name('alumni.destroy');
+        Route::post('/alumni/registrasi/{submission}/setujui', [AlumniController::class, 'approve'])->middleware('permission:alumni.verify')->name('alumni.submissions.approve');
+        Route::post('/alumni/registrasi/{submission}/tolak', [AlumniController::class, 'reject'])->middleware('permission:alumni.verify')->name('alumni.submissions.reject');
     });
 
     Route::get('/pengaturan', [SettingController::class, 'edit'])->middleware('permission:settings.manage')->name('settings.edit');

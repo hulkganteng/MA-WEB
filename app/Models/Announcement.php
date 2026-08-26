@@ -41,8 +41,8 @@ class Announcement extends Model
 
     public function scopeActive(Builder $query): Builder
     {
-        return $query->where(function (Builder $q) {
-            $q->whereNull('end_date')->orWhere('end_date', '>=', now()->toDateString());
-        });
+        return $query
+            ->where(fn (Builder $q) => $q->whereNull('start_date')->orWhere('start_date', '<=', now()->toDateString()))
+            ->where(fn (Builder $q) => $q->whereNull('end_date')->orWhere('end_date', '>=', now()->toDateString()));
     }
 }

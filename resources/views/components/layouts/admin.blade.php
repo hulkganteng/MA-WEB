@@ -9,12 +9,16 @@
         'Konten' => [
             ['admin.posts.index','newspaper','Berita','posts.view',['type'=>'berita']],
             ['admin.posts.index','file-text','Artikel','articles.view',['type'=>'artikel']],
+            ['admin.announcements.index','megaphone','Pengumuman','announcements.view',[],'admin.announcements.*'],
+            ['admin.events.index','calendar-days','Agenda','events.view',[],'admin.events.*'],
             ['admin.pages.index','files','Halaman','pages.view',[]],
         ],
         'Profil' => [
             ['admin.profile.index','school','Profil Madrasah',['pages.view','structure.manage','settings.manage'],[]],
             ['admin.teachers.index','users','Guru & Tendik','teachers.view',[]],
         ],
+        'Akademik' => [['admin.achievements.index','trophy','Prestasi','achievements.view',[],'admin.achievements.*']],
+        'Alumni' => [['admin.alumni.index','graduation-cap','Kelola Alumni','alumni.view',[],'admin.alumni.*']],
         'Sistem' => [['admin.settings.edit','settings','Pengaturan website','settings.manage',[]]],
     ];
 @endphp
