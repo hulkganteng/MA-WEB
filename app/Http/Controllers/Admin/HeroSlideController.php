@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\HeroSlide;
+use App\Rules\SafeButtonUrl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -103,16 +104,16 @@ class HeroSlideController extends Controller
         $imageRules = $slide ? ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'] : ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'];
 
         return $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'subtitle' => ['nullable', 'string', 'max:500'],
-            'tagline' => ['nullable', 'string', 'max:100'],
-            'image' => $imageRules,
-            'button_text' => ['nullable', 'string', 'max:50'],
-            'button_url' => ['nullable', 'string', 'max:255'],
-            'secondary_button_text' => ['nullable', 'string', 'max:50'],
-            'secondary_button_url' => ['nullable', 'string', 'max:255'],
-            'order' => ['nullable', 'integer', 'min:0'],
-            'status' => ['required', Rule::in(HeroSlide::STATUSES)],
+            'title'                  => ['required', 'string', 'max:255'],
+            'subtitle'               => ['nullable', 'string', 'max:500'],
+            'tagline'                => ['nullable', 'string', 'max:100'],
+            'image'                  => $imageRules,
+            'button_text'            => ['nullable', 'string', 'max:50'],
+            'button_url'             => ['nullable', 'string', 'max:255', new SafeButtonUrl()],
+            'secondary_button_text'  => ['nullable', 'string', 'max:50'],
+            'secondary_button_url'   => ['nullable', 'string', 'max:255', new SafeButtonUrl()],
+            'order'                  => ['nullable', 'integer', 'min:0'],
+            'status'                 => ['required', Rule::in(HeroSlide::STATUSES)],
         ]);
     }
 }

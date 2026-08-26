@@ -7,16 +7,16 @@
             <img src="{{ asset('storage/'.$post->cover) }}" alt="{{ $post->title }}"
                  class="size-full object-cover transition-transform duration-500 group-hover:scale-105">
         @else
-            <div class="flex size-full flex-col justify-between bg-gradient-to-br from-primary-900 via-primary-950 to-slate-950 p-6">
+            <div class="flex size-full flex-col justify-between bg-gradient-to-br from-[#006437] via-[#007a34] to-[#00923F] p-6">
                 <div class="flex items-center justify-between">
-                    <span class="inline-flex size-10 items-center justify-center rounded-xl bg-gold-400/20 text-gold-300">
+                    <span class="inline-flex size-10 items-center justify-center rounded-xl bg-gold-400 text-[#1F1A17] font-bold">
                         <x-icon name="{{ $post->type === 'artikel' ? 'file-text' : 'newspaper' }}" class="size-5" />
                     </span>
-                    <span class="font-arabic text-xl text-white/20 select-none">العلم نور</span>
+                    <span class="font-arabic text-xl text-white/30 select-none">العلم نور</span>
                 </div>
                 <div class="space-y-1">
-                    <span class="text-xs font-semibold uppercase tracking-wider text-gold-300">MA Assa'adah Bungah</span>
-                    <p class="text-xs text-primary-200 line-clamp-1">{{ $post->title }}</p>
+                    <span class="text-xs font-bold uppercase tracking-wider text-gold-300">MA Assa'adah Bungah</span>
+                    <p class="text-xs text-white/90 line-clamp-1 font-medium">{{ $post->title }}</p>
                 </div>
             </div>
         @endif
@@ -24,11 +24,11 @@
         {{-- Type / Category Floating Badge --}}
         <div class="absolute top-3 left-3 flex items-center gap-1.5">
             @if ($post->category)
-                <span class="rounded-full bg-primary-950/80 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur border border-white/10">
+                <span class="rounded-full bg-[#006437]/90 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur border border-white/20">
                     {{ $post->category->name }}
                 </span>
             @endif
-            <span class="rounded-full {{ $post->type === 'artikel' ? 'bg-gold-500 text-gold-950' : 'bg-emerald-600 text-white' }} px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+            <span class="rounded-full {{ $post->type === 'artikel' ? 'bg-gold-400 text-[#1F1A17]' : 'bg-primary-600 text-white' }} px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider shadow">
                 {{ $post->type }}
             </span>
         </div>
@@ -48,7 +48,7 @@
                 </span>
             </div>
 
-            <h2 class="text-lg font-bold tracking-tight text-slate-950 group-hover:text-primary-700 transition line-clamp-2">
+            <h2 class="text-lg font-bold tracking-tight text-[#1F1A17] group-hover:text-primary-700 transition line-clamp-2">
                 <a href="{{ route($post->type === 'artikel' ? 'artikel.show' : 'berita.show', $post) }}">
                     {{ $post->title }}
                 </a>

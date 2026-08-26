@@ -8,8 +8,8 @@
             {{-- Contact Info Column (Span 5) --}}
             <div class="lg:col-span-5 space-y-6">
                 <div class="rounded-3xl border border-slate-200/80 bg-white p-6 sm:p-8 shadow-soft space-y-6">
-                    <h2 class="text-xl font-bold tracking-tight text-slate-950 flex items-center gap-2.5">
-                        <span class="flex size-9 items-center justify-center rounded-xl bg-primary-100 text-primary-700">
+                    <h2 class="text-xl font-bold tracking-tight text-[#1F1A17] flex items-center gap-2.5">
+                        <span class="flex size-9 items-center justify-center rounded-xl bg-primary-50 text-primary-700 font-bold">
                             <x-icon name="map-pin" class="size-5" />
                         </span>
                         <span>Informasi & Alamat Kantor</span>
@@ -17,7 +17,7 @@
 
                     <dl class="space-y-4 text-xs text-slate-600">
                         <div class="rounded-2xl bg-slate-50 p-4">
-                            <dt class="font-bold text-slate-900 flex items-center gap-1.5 mb-1">
+                            <dt class="font-bold text-[#1F1A17] flex items-center gap-1.5 mb-1">
                                 <x-icon name="building-2" class="size-3.5 text-primary-600" />
                                 <span>Alamat Kampus:</span>
                             </dt>
@@ -26,7 +26,7 @@
 
                         <div class="grid grid-cols-2 gap-3">
                             <div class="rounded-2xl bg-slate-50 p-4">
-                                <dt class="font-bold text-slate-900 flex items-center gap-1.5 mb-1">
+                                <dt class="font-bold text-[#1F1A17] flex items-center gap-1.5 mb-1">
                                     <x-icon name="phone" class="size-3.5 text-primary-600" />
                                     <span>Telepon Kantor:</span>
                                 </dt>
@@ -34,7 +34,7 @@
                             </div>
 
                             <div class="rounded-2xl bg-slate-50 p-4">
-                                <dt class="font-bold text-slate-900 flex items-center gap-1.5 mb-1">
+                                <dt class="font-bold text-[#1F1A17] flex items-center gap-1.5 mb-1">
                                     <x-icon name="mail" class="size-3.5 text-primary-600" />
                                     <span>Email Resmi:</span>
                                 </dt>
@@ -43,13 +43,22 @@
                         </div>
 
                         <div class="rounded-2xl bg-slate-50 p-4">
-                            <dt class="font-bold text-slate-900 flex items-center gap-1.5 mb-1">
+                            <dt class="font-bold text-[#1F1A17] flex items-center gap-1.5 mb-1">
                                 <x-icon name="clock" class="size-3.5 text-gold-600" />
                                 <span>Jam Pelayanan Tata Usaha:</span>
                             </dt>
                             <dd class="leading-relaxed">{{ setting('contact.hours', 'Senin - Kamis & Sabtu: 07.00 - 14.30 WIB | Jum\'at: 07.00 - 11.00 WIB') }}</dd>
                         </div>
                     </dl>
+
+                    {{-- Direct SPMB Online Registration Button --}}
+                    <a href="https://lynk.id/spmb-madah"
+                       target="_blank" rel="noopener noreferrer"
+                       class="flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-primary-600 via-primary-700 to-[#006437] px-5 py-3.5 text-xs font-bold text-white shadow-soft transition hover:scale-[1.02]">
+                        <x-icon name="sparkles" class="size-4 text-gold-300" />
+                        <span>Pendaftaran SPMB Online (Lynk.id)</span>
+                        <x-icon name="external-link" class="size-4 opacity-80" />
+                    </a>
 
                     {{-- Fast WhatsApp Hotline Button --}}
                     @if(setting('contact.whatsapp'))
@@ -63,7 +72,7 @@
                 </div>
 
                 {{-- Foundation Legacy Badge --}}
-                <div class="rounded-3xl border border-primary-500/20 bg-primary-950 p-6 text-white text-xs space-y-2">
+                <div class="rounded-3xl border border-primary-600/30 bg-[#006437] p-6 text-white text-xs space-y-2">
                     <div class="flex items-center gap-2 text-gold-300 font-bold">
                         <x-icon name="landmark" class="size-4" />
                         <span>Kompleks Pondok Pesantren Qomaruddin</span>
@@ -81,7 +90,7 @@
                     @csrf
 
                     <div>
-                        <h2 class="text-xl font-bold text-slate-950">Kirim Pesan atau Pertanyaan</h2>
+                        <h2 class="text-xl font-bold text-[#1F1A17]">Kirim Pesan atau Pertanyaan</h2>
                         <p class="mt-1 text-xs text-slate-500">Tim kami akan merespons pesan Anda via email atau WhatsApp.</p>
                     </div>
 

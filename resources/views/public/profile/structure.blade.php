@@ -8,24 +8,24 @@
             @if($members->isNotEmpty())
                 <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     @foreach($members as $member)
-                        <div class="interactive-card group flex flex-col justify-between p-6 sm:p-8">
+                        <div class="interactive-card group flex flex-col justify-between p-6 sm:p-8 bg-white border border-slate-200/90">
                             <div class="text-center">
                                 {{-- Leader Portrait --}}
-                                <div class="relative mx-auto size-28 overflow-hidden rounded-full border-2 border-gold-400/40 bg-primary-950 p-0.5 shadow-soft group-hover:scale-105 transition duration-300">
+                                <div class="relative mx-auto size-28 overflow-hidden rounded-full border-2 border-gold-400/40 bg-[#006437] p-0.5 shadow-soft group-hover:scale-105 transition duration-300">
                                     @if($member->photo)
                                         <img src="{{ asset('storage/'.$member->photo) }}" alt="{{ $member->name }}" class="size-full rounded-full object-cover">
                                     @else
-                                        <div class="flex size-full items-center justify-center rounded-full bg-gradient-to-br from-primary-800 to-primary-950 text-gold-300 font-bold text-2xl">
+                                        <div class="flex size-full items-center justify-center rounded-full bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] text-gold-300 font-bold text-2xl">
                                             {{ substr($member->name, 0, 1) }}
                                         </div>
                                     @endif
                                 </div>
 
-                                <span class="mt-4 inline-block rounded-full bg-gold-100 px-3 py-0.5 text-xs font-bold text-gold-900 ring-1 ring-gold-500/20">
+                                <span class="mt-4 inline-block rounded-full bg-gold-100 px-3 py-0.5 text-xs font-bold text-[#1F1A17] ring-1 ring-gold-500/30">
                                     {{ $member->position }}
                                 </span>
 
-                                <h2 class="mt-2 text-lg font-bold text-slate-950 group-hover:text-primary-800 transition">
+                                <h2 class="mt-2 text-lg font-bold text-[#1F1A17] group-hover:text-primary-700 transition">
                                     {{ $member->name }}
                                 </h2>
                             </div>
@@ -38,10 +38,10 @@
                                         @foreach($member->children as $child)
                                             <li class="flex items-center justify-between p-2 text-xs">
                                                 <div class="min-w-0">
-                                                    <p class="font-bold text-slate-900 truncate">{{ $child->name }}</p>
+                                                    <p class="font-bold text-[#1F1A17] truncate">{{ $child->name }}</p>
                                                     <p class="text-[11px] text-slate-500 truncate">{{ $child->position }}</p>
                                                 </div>
-                                                <span class="size-2 rounded-full bg-emerald-500 shrink-0 ml-2"></span>
+                                                <span class="size-2 rounded-full bg-primary-600 shrink-0 ml-2"></span>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -55,24 +55,24 @@
             @endif
 
             {{-- Institutional Leadership Hierarchy Info Banner --}}
-            <div class="rounded-3xl border border-primary-500/20 bg-primary-950 p-6 sm:p-8 text-white">
+            <div class="rounded-3xl border border-white/20 bg-[#006437] p-6 sm:p-8 text-white shadow-lift">
                 <div class="grid gap-6 sm:grid-cols-3 items-center text-center sm:text-left">
                     <div class="flex items-center gap-3 justify-center sm:justify-start">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gold-400 text-primary-950 font-bold">
+                        <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gold-400 text-[#1F1A17] font-bold">
                             <x-icon name="landmark" class="size-6" />
                         </div>
                         <div>
                             <h4 class="text-sm font-bold text-white">Pondok Pesantren Qomaruddin</h4>
-                            <p class="text-xs text-primary-200">Yayasan Pengasuh Utama (1775 M)</p>
+                            <p class="text-xs text-primary-100">Yayasan Pengasuh Utama (1775 M)</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3 justify-center sm:justify-start">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-emerald-500 text-white font-bold">
-                            <x-icon name="shield-check" class="size-6" />
+                        <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-white font-bold">
+                            <x-icon name="shield-check" class="size-6 text-gold-400" />
                         </div>
                         <div>
                             <h4 class="text-sm font-bold text-white">LP Ma'arif NU Gresik</h4>
-                            <p class="text-xs text-primary-200">Badan Pelaksana Pendidikan</p>
+                            <p class="text-xs text-primary-100">Badan Pelaksana Pendidikan</p>
                         </div>
                     </div>
                     <div class="flex items-center gap-3 justify-center sm:justify-start">

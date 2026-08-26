@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\Admin\AcademicCalendarController;
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AchievementController;
 use App\Http\Controllers\Admin\AlbumController;
-
 use App\Http\Controllers\Admin\AlumniController;
 use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\CurriculumController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\EducationProgramController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\ExtracurricularController;
+use App\Http\Controllers\Admin\FacilityController;
 use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\OrganizationMemberController;
 use App\Http\Controllers\Admin\PageController;
@@ -15,6 +19,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\PrincipalProfileController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\StudentOrganizationController;
 use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\VideoController;
 use Illuminate\Support\Facades\Route;
@@ -121,6 +126,60 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
         Route::delete('/galeri/video/{video}', [VideoController::class, 'destroy'])->middleware('permission:videos.delete')->name('gallery.videos.destroy');
     });
 
+
+    Route::middleware('permission:programs.view')->group(function () {
+        Route::get('/program', [EducationProgramController::class, 'index'])->name('programs.index');
+        Route::get('/program/tambah', [EducationProgramController::class, 'create'])->middleware('permission:programs.create')->name('programs.create');
+        Route::post('/program', [EducationProgramController::class, 'store'])->middleware('permission:programs.create')->name('programs.store');
+        Route::get('/program/{educationProgram}/edit', [EducationProgramController::class, 'edit'])->middleware('permission:programs.update')->name('programs.edit');
+        Route::put('/program/{educationProgram}', [EducationProgramController::class, 'update'])->middleware('permission:programs.update')->name('programs.update');
+        Route::delete('/program/{educationProgram}', [EducationProgramController::class, 'destroy'])->middleware('permission:programs.delete')->name('programs.destroy');
+    });
+
+    Route::middleware('permission:curriculums.view')->group(function () {
+        Route::get('/kurikulum', [CurriculumController::class, 'index'])->name('curriculums.index');
+        Route::get('/kurikulum/tambah', [CurriculumController::class, 'create'])->middleware('permission:curriculums.create')->name('curriculums.create');
+        Route::post('/kurikulum', [CurriculumController::class, 'store'])->middleware('permission:curriculums.create')->name('curriculums.store');
+        Route::get('/kurikulum/{curriculum}/edit', [CurriculumController::class, 'edit'])->middleware('permission:curriculums.update')->name('curriculums.edit');
+        Route::put('/kurikulum/{curriculum}', [CurriculumController::class, 'update'])->middleware('permission:curriculums.update')->name('curriculums.update');
+        Route::delete('/kurikulum/{curriculum}', [CurriculumController::class, 'destroy'])->middleware('permission:curriculums.delete')->name('curriculums.destroy');
+    });
+
+    Route::middleware('permission:calendars.view')->group(function () {
+        Route::get('/kalender-akademik', [AcademicCalendarController::class, 'index'])->name('calendars.index');
+        Route::get('/kalender-akademik/tambah', [AcademicCalendarController::class, 'create'])->middleware('permission:calendars.create')->name('calendars.create');
+        Route::post('/kalender-akademik', [AcademicCalendarController::class, 'store'])->middleware('permission:calendars.create')->name('calendars.store');
+        Route::get('/kalender-akademik/{academicCalendar}/edit', [AcademicCalendarController::class, 'edit'])->middleware('permission:calendars.update')->name('calendars.edit');
+        Route::put('/kalender-akademik/{academicCalendar}', [AcademicCalendarController::class, 'update'])->middleware('permission:calendars.update')->name('calendars.update');
+        Route::delete('/kalender-akademik/{academicCalendar}', [AcademicCalendarController::class, 'destroy'])->middleware('permission:calendars.delete')->name('calendars.destroy');
+    });
+
+    Route::middleware('permission:extracurriculars.view')->group(function () {
+        Route::get('/ekstrakurikuler', [ExtracurricularController::class, 'index'])->name('extracurriculars.index');
+        Route::get('/ekstrakurikuler/tambah', [ExtracurricularController::class, 'create'])->middleware('permission:extracurriculars.create')->name('extracurriculars.create');
+        Route::post('/ekstrakurikuler', [ExtracurricularController::class, 'store'])->middleware('permission:extracurriculars.create')->name('extracurriculars.store');
+        Route::get('/ekstrakurikuler/{extracurricular}/edit', [ExtracurricularController::class, 'edit'])->middleware('permission:extracurriculars.update')->name('extracurriculars.edit');
+        Route::put('/ekstrakurikuler/{extracurricular}', [ExtracurricularController::class, 'update'])->middleware('permission:extracurriculars.update')->name('extracurriculars.update');
+        Route::delete('/ekstrakurikuler/{extracurricular}', [ExtracurricularController::class, 'destroy'])->middleware('permission:extracurriculars.delete')->name('extracurriculars.destroy');
+    });
+
+    Route::middleware('permission:organizations.view')->group(function () {
+        Route::get('/organisasi-siswa', [StudentOrganizationController::class, 'index'])->name('organizations.index');
+        Route::get('/organisasi-siswa/tambah', [StudentOrganizationController::class, 'create'])->middleware('permission:organizations.create')->name('organizations.create');
+        Route::post('/organisasi-siswa', [StudentOrganizationController::class, 'store'])->middleware('permission:organizations.create')->name('organizations.store');
+        Route::get('/organisasi-siswa/{studentOrganization}/edit', [StudentOrganizationController::class, 'edit'])->middleware('permission:organizations.update')->name('organizations.edit');
+        Route::put('/organisasi-siswa/{studentOrganization}', [StudentOrganizationController::class, 'update'])->middleware('permission:organizations.update')->name('organizations.update');
+        Route::delete('/organisasi-siswa/{studentOrganization}', [StudentOrganizationController::class, 'destroy'])->middleware('permission:organizations.delete')->name('organizations.destroy');
+    });
+
+    Route::middleware('permission:facilities.view')->group(function () {
+        Route::get('/fasilitas-sarpras', [FacilityController::class, 'index'])->name('facilities.index');
+        Route::get('/fasilitas-sarpras/tambah', [FacilityController::class, 'create'])->middleware('permission:facilities.create')->name('facilities.create');
+        Route::post('/fasilitas-sarpras', [FacilityController::class, 'store'])->middleware('permission:facilities.create')->name('facilities.store');
+        Route::get('/fasilitas-sarpras/{facility}/edit', [FacilityController::class, 'edit'])->middleware('permission:facilities.update')->name('facilities.edit');
+        Route::put('/fasilitas-sarpras/{facility}', [FacilityController::class, 'update'])->middleware('permission:facilities.update')->name('facilities.update');
+        Route::delete('/fasilitas-sarpras/{facility}', [FacilityController::class, 'destroy'])->middleware('permission:facilities.delete')->name('facilities.destroy');
+    });
 
     Route::middleware('permission:alumni.view')->group(function () {
         Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni.index');

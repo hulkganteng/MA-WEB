@@ -28,63 +28,41 @@
         }">
 
     {{-- Top Utility Bar: Islamic Date & Live Prayer Times --}}
-    <div class="border-b border-emerald-800/40 bg-gradient-to-r from-primary-950 via-primary-900 to-primary-950 text-white text-xs py-1.5 px-4">
-        <div class="container-app flex flex-wrap items-center justify-between gap-3">
+    <div class="border-b border-[#00923F]/30 bg-[#006437] text-white text-[11px] py-1 px-4">
+        <div class="container-app flex flex-wrap items-center justify-between gap-2">
             {{-- Left: Live Hijri Date & Masehi Date --}}
-            <div class="flex items-center gap-3">
-                <span class="flex items-center gap-1.5 font-medium text-gold-300">
-                    <x-icon name="calendar" class="size-3.5 text-gold-400 shrink-0" />
+            <div class="flex items-center gap-2">
+                <span class="flex items-center gap-1.5 font-semibold text-gold-300">
+                    <x-icon name="calendar" class="size-3 text-gold-400 shrink-0" />
                     <span x-text="$store.prayer.hijri">{{ \Carbon\Carbon::now()->translatedFormat('l, d F Y') }}</span>
                 </span>
-                <span class="hidden md:inline text-primary-400">|</span>
-                <span class="hidden md:inline text-primary-200" x-text="$store.prayer.masehi">{{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</span>
+                <span class="hidden md:inline text-primary-300">·</span>
+                <span class="hidden md:inline text-primary-100" x-text="$store.prayer.masehi">{{ \Carbon\Carbon::now()->translatedFormat('d F Y') }}</span>
             </div>
 
-            {{-- Center/Right: Live Prayer Times Countdown Badge & Contact --}}
-            <div class="flex items-center gap-3">
+            {{-- Right: Live Prayer Times Countdown Badge --}}
+            <div class="flex items-center gap-2.5">
                 <button type="button"
                         @click="$store.prayer.openModal()"
-                        class="group flex items-center gap-2 rounded-full border border-gold-400/30 bg-gold-500/10 px-2.5 py-0.5 text-xs text-gold-200 transition hover:border-gold-400 hover:bg-gold-500/20 cursor-pointer"
+                        class="group flex items-center gap-1.5 rounded-full border border-gold-400/40 bg-gold-400/10 px-2 py-0.5 text-[11px] text-gold-200 transition hover:border-gold-400 hover:bg-gold-400/20 cursor-pointer"
                         title="Lihat Jadwal Sholat Lengkap">
-                    <span class="relative flex size-2">
-                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex size-2 rounded-full bg-emerald-400"></span>
+                    <span class="relative flex size-1.5">
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75"></span>
+                        <span class="relative inline-flex size-1.5 rounded-full bg-gold-400"></span>
                     </span>
-                    <span class="font-medium">
-                        Sholat <span class="font-bold text-white" x-text="$store.prayer.nextPrayerName">Dzuhur</span>:
-                        <span class="font-mono text-gold-300" x-text="$store.prayer.countdownText">--:--:--</span>
+                    <span>
+                        <span class="font-medium text-white/90" x-text="$store.prayer.nextPrayerName">Dzuhur</span>:
+                        <span class="font-mono font-bold text-gold-300" x-text="$store.prayer.countdownText">--:--:--</span>
                     </span>
-                    <x-icon name="chevron-right" class="size-3 transition group-hover:translate-x-0.5 text-gold-400 shrink-0" />
+                    <x-icon name="chevron-right" class="size-2.5 text-gold-400 shrink-0" />
                 </button>
 
-                <div class="hidden lg:flex items-center gap-3 pl-2 border-l border-primary-800/80">
-                    @if ($phone)
-                        <a href="tel:{{ preg_replace('/[^\+0-9]/', '', $phone) }}" class="flex items-center gap-1 text-primary-200 hover:text-white transition">
-                            <x-icon name="phone" class="size-3 text-gold-400 shrink-0" />
-                            <span>{{ $phone }}</span>
-                        </a>
-                    @endif
-
-                    @foreach ($social as $link)
-                        @if ($link->url)
-                            @php
-                                $p = strtolower($link->platform);
-                                $icon = match($p) {
-                                    'facebook' => 'facebook',
-                                    'instagram' => 'instagram',
-                                    'youtube' => 'youtube',
-                                    'twitter', 'x' => 'twitter',
-                                    'tiktok' => 'video',
-                                    default => 'globe'
-                                };
-                            @endphp
-                            <a href="{{ $link->url }}" target="_blank" rel="noopener" aria-label="{{ ucfirst($link->platform) }}"
-                               class="text-primary-300 hover:text-gold-300 transition">
-                                <x-icon :name="$icon" class="size-3.5" />
-                            </a>
-                        @endif
-                    @endforeach
-                </div>
+                @if ($phone)
+                    <a href="tel:{{ preg_replace('/[^\+0-9]/', '', $phone) }}" class="hidden lg:flex items-center gap-1 text-primary-100 hover:text-white transition pl-2 border-l border-primary-700">
+                        <x-icon name="phone" class="size-3 text-gold-400 shrink-0" />
+                        <span>{{ $phone }}</span>
+                    </a>
+                @endif
             </div>
         </div>
     </div>
@@ -95,37 +73,36 @@
             ? 'border-slate-200/90 bg-white/95 shadow-soft backdrop-blur-xl'
             : 'border-slate-200/60 bg-white/90 backdrop-blur-lg'">
 
-        <div class="container-app flex h-16 items-center justify-between gap-4 lg:h-20">
-            {{-- Brand Logo & Identity --}}
-            <a href="{{ route('home') }}" class="group flex items-center gap-3.5 shrink-0">
-                <div class="relative flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-700 via-primary-800 to-primary-950 p-0.5 text-white shadow-soft transition duration-300 group-hover:shadow-glow">
+        <div class="container-app flex h-16 items-center justify-between gap-3">
+            {{-- Brand Logo & Identity (Compact & Clean) --}}
+            <a href="{{ route('home') }}" class="group flex items-center gap-2.5 shrink-0">
+                <div class="relative flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] p-0.5 text-white shadow-soft transition duration-300 group-hover:scale-105">
                     @if ($logo)
-                        <img src="{{ asset('storage/'.$logo) }}" alt="{{ $siteName }}" class="size-full rounded-[14px] object-cover">
+                        <img src="{{ asset('storage/'.$logo) }}" alt="{{ $siteName }}" class="size-full rounded-[10px] object-cover">
                     @else
-                        <div class="flex size-full items-center justify-center rounded-[14px] bg-primary-900 border border-gold-400/30">
-                            <span class="font-extrabold text-gold-300 text-lg">MA</span>
+                        <div class="flex size-full items-center justify-center rounded-[10px] bg-[#006437] border border-gold-400/40">
+                            <span class="font-extrabold text-gold-300 text-sm">MA</span>
                         </div>
                     @endif
-                    <div class="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-gold-400 text-[9px] font-bold text-primary-950 shadow">
+                    <div class="absolute -bottom-0.5 -right-0.5 flex size-3.5 items-center justify-center rounded-full bg-gold-400 text-[8px] font-bold text-[#1F1A17] shadow">
                         ✓
                     </div>
                 </div>
 
                 <div class="min-w-0">
-                    <span class="block text-base font-extrabold tracking-tight text-primary-950 sm:text-lg group-hover:text-primary-700 transition">
+                    <span class="block text-sm sm:text-base font-extrabold tracking-tight text-[#1F1A17] group-hover:text-primary-700 transition leading-tight">
                         {{ $siteName }}
                     </span>
-                    <span class="hidden sm:flex items-center gap-1.5 text-[11px] font-medium text-slate-500">
-                        <span class="inline-block size-1.5 rounded-full bg-emerald-500"></span>
-                        <span>Bungah, Gresik · YPP. Qomaruddin</span>
-                        <span class="rounded bg-gold-100 px-1 py-0.2 text-[9px] font-bold text-gold-800 uppercase">Akreditasi A</span>
+                    <span class="hidden md:flex items-center gap-1.5 text-[11px] text-slate-500 leading-tight">
+                        <span>YPP. Qomaruddin · Bungah</span>
+                        <span class="rounded bg-gold-100 px-1 py-0.2 text-[9px] font-bold text-[#1F1A17] ring-1 ring-gold-400/40 uppercase">Akreditasi A</span>
                     </span>
                 </div>
             </a>
 
-            {{-- Desktop Navigation Menu --}}
-            <div class="hidden lg:flex items-center gap-1">
-                <ul class="flex items-center gap-1">
+            {{-- Desktop Navigation Menu (Streamlined spacing) --}}
+            <div class="hidden lg:flex items-center gap-0.5">
+                <ul class="flex items-center gap-0.5">
                     @foreach ($menus as $item)
                         @php
                             $hasChildren = $item->children && $item->children->count() > 0;
@@ -139,12 +116,12 @@
                             @click.outside="open = false">
 
                             <a href="{{ $menuUrl }}"
-                               target="{{ $item->target ?? '_self' }}"
-                               class="flex items-center gap-1.5 rounded-xl px-3 py-2 text-sm font-semibold transition {{ $isActive ? 'bg-primary-50 text-primary-800' : 'text-slate-700 hover:bg-slate-50 hover:text-primary-700' }}"
-                               :class="open ? 'bg-primary-50 text-primary-800' : ''">
+                                target="{{ $item->target ?? '_self' }}"
+                                class="flex items-center gap-1 rounded-lg px-2.5 py-1.5 text-xs xl:text-sm font-semibold transition {{ $isActive ? 'bg-primary-50 text-primary-700 font-bold' : 'text-[#1F1A17] hover:bg-primary-50/70 hover:text-primary-700' }}"
+                                :class="open ? 'bg-primary-50 text-primary-700' : ''">
                                 <span>{{ $item->name }}</span>
                                 @if ($hasChildren)
-                                    <x-icon name="chevron-down" class="size-3.5 transition-transform duration-200 text-slate-400"
+                                    <x-icon name="chevron-down" class="size-3 transition-transform duration-200 text-slate-400"
                                             x-bind:class="{ 'rotate-180 text-primary-600': open }" />
                                 @endif
                             </a>
@@ -158,9 +135,9 @@
                                      x-transition:leave="transition ease-in duration-150"
                                      x-transition:leave-start="opacity-100 translate-y-0"
                                      x-transition:leave-end="opacity-0 translate-y-2"
-                                     class="absolute left-0 top-full pt-2 w-64 z-50"
+                                     class="absolute left-0 top-full pt-2 w-60 z-50"
                                      x-cloak>
-                                    <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-2 shadow-lift backdrop-blur-xl">
+                                    <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-1.5 shadow-lift backdrop-blur-xl">
                                         @foreach ($item->children as $child)
                                             @php
                                                 $isSpmbCalc = ($child->url === '#spmb-simulasi' || str_contains($child->name, 'Simulasi'));
@@ -170,17 +147,17 @@
                                             @if ($isSpmbCalc)
                                                 <button type="button"
                                                         @click="$store.spmbCalc.open(); open = false"
-                                                        class="group flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm text-gold-700 hover:bg-gold-50 hover:text-gold-900 font-semibold cursor-pointer transition">
-                                                    <span class="flex items-center gap-2">
-                                                        <x-icon name="sparkles" class="size-4 text-gold-500" />
+                                                        class="group flex w-full items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-gold-700 hover:bg-gold-50 hover:text-gold-900 cursor-pointer transition">
+                                                    <span class="flex items-center gap-1.5">
+                                                        <x-icon name="sparkles" class="size-3.5 text-gold-500" />
                                                         <span>{{ $child->name }}</span>
                                                     </span>
-                                                    <span class="rounded-md bg-gold-100 px-1.5 py-0.5 text-[10px] font-bold text-gold-800 uppercase">Interaktif</span>
+                                                    <span class="rounded bg-gold-100 px-1 py-0.5 text-[9px] font-bold text-gold-800 uppercase">Kuis</span>
                                                 </button>
                                             @else
                                                 <a href="{{ $childUrl }}"
                                                    target="{{ $child->target ?? '_self' }}"
-                                                   class="group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm transition {{ $isChildActive ? 'bg-primary-50 text-primary-900 font-bold' : 'text-slate-700 hover:bg-primary-50 hover:text-primary-900 font-medium' }}">
+                                                   class="group flex items-center justify-between rounded-xl px-3 py-2 text-xs transition {{ $isChildActive ? 'bg-primary-50 text-primary-900 font-bold' : 'text-slate-700 hover:bg-primary-50 hover:text-primary-900 font-medium' }}">
                                                     <span>{{ $child->name }}</span>
                                                     <x-icon name="arrow-right" class="size-3 text-slate-300 opacity-0 transition group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:text-primary-600" />
                                                 </a>
@@ -194,24 +171,36 @@
                 </ul>
             </div>
 
-            {{-- Right Actions: Command Search & Mobile Hamburger --}}
-            <div class="flex items-center gap-2.5">
+            {{-- Right Actions: Command Search, SPMB Button & Mobile Hamburger --}}
+            <div class="flex items-center gap-2 sm:gap-2.5 shrink-0">
                 {{-- Quick Command Search Trigger --}}
                 <button type="button"
                         @click="$store.cmdPalette.open()"
-                        class="flex items-center gap-2 rounded-xl border border-slate-200 bg-slate-50/80 px-3 py-1.5 text-xs text-slate-500 transition hover:border-primary-500 hover:bg-white hover:text-primary-700 hover:shadow-soft cursor-pointer"
+                        class="flex items-center gap-1.5 rounded-xl border border-slate-200 bg-slate-50/90 px-2.5 py-2 sm:py-1.5 text-xs text-slate-600 transition hover:border-primary-500 hover:bg-white hover:text-primary-700 cursor-pointer"
+                        title="Pencarian Cepat (Ctrl+K)"
                         aria-label="Buka Pencarian Cepat">
-                    <x-icon name="search" class="size-4 text-slate-400" />
-                    <span class="hidden sm:inline">Cari...</span>
-                    <kbd class="hidden md:inline-flex items-center gap-0.5 rounded bg-white px-1.5 py-0.5 font-mono text-[10px] text-slate-400 border border-slate-200">
-                        <span>Ctrl</span><span>K</span>
+                    <x-icon name="search" class="size-4 text-slate-500" />
+                    <span class="hidden xl:inline text-xs">Cari...</span>
+                    <kbd class="hidden md:inline-flex items-center gap-0.5 rounded bg-white px-1.5 py-0.5 font-mono text-[9px] text-slate-400 border border-slate-200">
+                        <span>Ctrl K</span>
                     </kbd>
                 </button>
 
-                {{-- Mobile Menu Hamburger --}}
+                {{-- Direct SPMB Registration External Button (Tablet & Desktop) --}}
+                <a href="https://lynk.id/spmb-madah"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-primary hidden sm:inline-flex items-center gap-1.5 !px-3.5 !py-2 text-xs font-bold shadow-soft transition hover:scale-105 shrink-0">
+                    <x-icon name="sparkles" class="size-3.5 text-gold-300" />
+                    <span>Daftar SPMB</span>
+                    <x-icon name="external-link" class="size-3.5 opacity-80" />
+                </a>
+
+                {{-- Mobile Menu Hamburger (Prominent, High-Contrast & Safe Spaced) --}}
                 <button type="button"
                         @click="mobileOpen = !mobileOpen"
-                        class="flex size-10 items-center justify-center rounded-xl border border-slate-200 text-slate-700 hover:bg-slate-100 hover:text-primary-700 lg:hidden cursor-pointer"
+                        class="flex size-10 items-center justify-center rounded-xl bg-primary-50 border border-primary-200/90 text-primary-800 hover:bg-primary-100 active:scale-95 shadow-sm transition lg:hidden cursor-pointer shrink-0"
+                        :class="mobileOpen ? '!bg-primary-700 !text-white !border-primary-700' : ''"
                         aria-label="Menu Utama">
                     <x-icon name="menu" class="size-5" x-show="!mobileOpen" />
                     <x-icon name="x" class="size-5" x-show="mobileOpen" x-cloak />
@@ -296,14 +285,22 @@
                 </ul>
 
                 <div class="pt-3 border-t border-slate-100 flex flex-col gap-2">
+                    <a href="https://lynk.id/spmb-madah"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="btn-primary w-full flex items-center justify-center gap-2 font-bold shadow-soft">
+                        <x-icon name="sparkles" class="size-4 text-gold-300" />
+                        <span>Pendaftaran SPMB Online</span>
+                        <x-icon name="external-link" class="size-4 opacity-80" />
+                    </a>
                     <button type="button"
                             @click="$store.spmbCalc.open(); mobileOpen = false"
                             class="btn-gold w-full text-center font-bold cursor-pointer">
-                        <x-icon name="sparkles" class="size-4" />
+                        <x-icon name="compass" class="size-4" />
                         <span>Simulasi Peminatan Santri Baru</span>
                     </button>
                     <a href="{{ route('contact') }}"
-                       class="btn-primary w-full text-center">
+                       class="btn-outline w-full text-center">
                         Hubungi Madrasah
                     </a>
                 </div>

@@ -15,7 +15,7 @@
                 <div class="flex flex-col gap-5">
                     <div><label for="name" class="label">Nama kepala madrasah</label><input id="name" name="name" type="text" value="{{ old('name', $settings['principal.name']) }}" class="input" required>@error('name')<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror</div>
                     <div><label for="position" class="label">Jabatan</label><input id="position" name="position" type="text" value="{{ old('position', $settings['principal.position']) }}" class="input" required>@error('position')<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror</div>
-                    <div><label for="speech" class="label">Isi sambutan</label><textarea id="speech" name="speech" rows="16" class="input" required>{{ old('speech', $settings['principal.speech']) }}</textarea><p class="mt-1 text-sm text-slate-500">HTML dasar diperbolehkan dan dibersihkan sebelum ditampilkan.</p>@error('speech')<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror</div>
+                    <div><x-rich-editor name="speech" label="Isi Sambutan Kepala Madrasah" :value="$settings['principal.speech'] ?? ''" required minHeight="380px" placeholder="Tuliskan teks sambutan kepala madrasah secara lengkap..." /></div>
                 </div>
             </div>
         </section>

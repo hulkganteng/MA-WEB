@@ -37,7 +37,7 @@
                     <div><label for="hero_subtitle" class="label">Subjudul hero</label><textarea id="hero_subtitle" name="hero_subtitle" rows="3" class="input" required>{{ old('hero_subtitle', $settings['hero.subtitle'] ?? '') }}</textarea></div>
                     <div class="grid gap-5 sm:grid-cols-2"><div><label for="principal_name" class="label">Nama kepala madrasah</label><input id="principal_name" name="principal_name" type="text" value="{{ old('principal_name', $settings['principal.name'] ?? '') }}" class="input"></div><div><label for="principal_position" class="label">Jabatan</label><input id="principal_position" name="principal_position" type="text" value="{{ old('principal_position', $settings['principal.position'] ?? '') }}" class="input"></div></div>
                     <div><label for="principal_photo" class="label">Foto kepala madrasah</label><input id="principal_photo" name="principal_photo" type="file" class="input" accept="image/jpeg,image/png,image/webp"><p class="mt-1 text-sm text-slate-500">JPG, PNG, atau WebP. Maksimal 3 MB.</p>@error('principal_photo')<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror</div>
-                    <div><label for="principal_speech" class="label">Sambutan</label><textarea id="principal_speech" name="principal_speech" rows="7" class="input">{{ old('principal_speech', $settings['principal.speech'] ?? '') }}</textarea></div>
+                    <div><x-rich-editor name="principal_speech" label="Sambutan Kepala Madrasah" :value="$settings['principal.speech'] ?? ''" minHeight="300px" placeholder="Tuliskan sambutan kepala madrasah..." /></div>
                 </div>
             </section>
 

@@ -15,7 +15,7 @@
             <section class="rounded-2xl bg-white p-6 ring-1 ring-slate-900/10">
                 <div class="flex flex-col gap-5">
                     <div><label for="title" class="label">Judul halaman</label><input id="title" name="title" type="text" value="{{ old('title', $page->title) }}" class="input" required>@error('title')<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror</div>
-                    <div><label for="body" class="label">Isi profil</label><textarea id="body" name="body" rows="20" class="input font-mono" required>{{ old('body', $page->body) }}</textarea><p class="mt-1 text-sm text-slate-500">HTML dasar diperbolehkan dan dibersihkan sebelum ditampilkan.</p>@error('body')<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror</div>
+                    <div><x-rich-editor name="body" label="Isi Profil" :value="$page->body" required minHeight="450px" placeholder="Tulis uraian sejarah, visi misi, atau tentang madrasah di sini..." /></div>
                     <div><label for="cover" class="label">Gambar sampul</label><input id="cover" name="cover" type="file" accept="image/jpeg,image/png,image/webp" class="input"><p class="mt-1 text-sm text-slate-500">JPG, PNG, atau WebP. Maksimal 3 MB.</p>@error('cover')<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror</div>
                     @if($page->cover)<img src="{{ asset('storage/'.$page->cover) }}" alt="Sampul saat ini" class="aspect-[16/7] w-full rounded-xl object-cover outline outline-1 -outline-offset-1 outline-black/5">@endif
                 </div>

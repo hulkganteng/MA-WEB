@@ -15,21 +15,21 @@
                     @endif
 
                     <div class="prose-content max-w-none text-slate-700 leading-relaxed">
-                        <h2 class="text-2xl font-bold text-slate-950">Deskripsi & Visi Keilmuan</h2>
+                        <h2 class="text-2xl font-bold text-[#1F1A17]">Deskripsi & Visi Keilmuan</h2>
                         <p class="whitespace-pre-line text-sm leading-relaxed sm:text-base">{{ $program->description }}</p>
                     </div>
 
                     @if($program->highlights)
-                        <div class="mt-8 rounded-2xl border border-primary-500/20 bg-primary-50/60 p-6">
-                            <h3 class="text-base font-bold text-primary-950 flex items-center gap-2">
+                        <div class="mt-8 rounded-2xl border border-primary-200 bg-primary-50/70 p-6">
+                            <h3 class="text-base font-bold text-[#006437] flex items-center gap-2">
                                 <x-icon name="sparkles" class="size-5 text-gold-600" />
                                 <span>Fokus & Keunggulan Pembelajaran:</span>
                             </h3>
-                            <ul class="mt-4 grid gap-2 sm:grid-cols-2 text-xs font-semibold text-slate-700">
+                            <ul class="mt-4 grid gap-2 sm:grid-cols-2 text-xs font-semibold text-[#1F1A17]">
                                 @foreach(preg_split('/\r\n|\r|\n/', $program->highlights) as $hl)
                                     @if(trim($hl))
                                         <li class="flex items-center gap-2">
-                                            <x-icon name="check-circle-2" class="size-4 text-emerald-600 shrink-0" />
+                                            <x-icon name="check-circle-2" class="size-4 text-primary-600 shrink-0" />
                                             <span>{{ $hl }}</span>
                                         </li>
                                     @endif
@@ -69,12 +69,20 @@
                     </div>
 
                     <div class="pt-2 flex flex-col gap-2.5">
+                        <a href="https://lynk.id/spmb-madah"
+                           target="_blank"
+                           rel="noopener noreferrer"
+                           class="btn-primary w-full flex items-center justify-center gap-2 font-bold shadow-soft">
+                            <x-icon name="sparkles" class="size-4 text-gold-300" />
+                            <span>Pendaftaran SPMB Online</span>
+                            <x-icon name="external-link" class="size-3.5 opacity-80" />
+                        </a>
                         <button type="button" @click="$store.spmbCalc.open()"
                                 class="btn-gold w-full text-center font-bold">
                             <x-icon name="compass" class="size-4" /> Simulasi Peminatan
                         </button>
-                        <a href="{{ route('contact') }}" class="btn-primary w-full text-center">
-                            Hubungi Tim SPMB
+                        <a href="{{ route('contact') }}" class="btn-outline w-full text-center">
+                            Hubungi Tim Madrasah
                         </a>
                         <a href="{{ route('programs') }}" class="btn-ghost w-full text-center text-xs">
                             &larr; Kembali ke Semua Program

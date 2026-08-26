@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Video;
+use App\Rules\SafeVideoUrl;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -102,15 +103,15 @@ class VideoController extends Controller
     private function validateVideo(Request $request, ?Video $video = null): array
     {
         return $request->validate([
-            'title' => ['required', 'string', 'max:255'],
-            'slug' => ['nullable', 'string', 'max:255'],
-            'url' => ['required', 'string', 'max:500'],
-            'provider' => ['nullable', 'string', 'max:30'],
-            'category' => ['nullable', 'string', 'max:50'],
-            'description' => ['nullable', 'string', 'max:5000'],
+            'title'      => ['required', 'string', 'max:255'],
+            'slug'       => ['nullable', 'string', 'max:255'],
+            'url'        => ['required', 'string', 'max:500', 'url', new SafeVideoUrl()],
+            'provider'   => ['nullable', 'string', 'max:30'],
+            'category'   => ['nullable', 'string', 'max:50'],
+            'description'=> ['nullable', 'string', 'max:5000'],
             'video_date' => ['nullable', 'date'],
-            'status' => ['required', Rule::in(Video::STATUSES)],
-            'thumbnail' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3072'],
+            'status'     => ['required', Rule::in(Video::STATUSES)],
+            'thumbnail'  => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3072'],
         ]);
     }
 

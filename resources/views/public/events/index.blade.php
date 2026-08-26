@@ -7,23 +7,23 @@
         <div class="container-app max-w-4xl space-y-6">
             <div class="space-y-4">
                 @forelse ($events as $event)
-                    <article class="interactive-card group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 p-6">
+                    <article class="interactive-card group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 p-6 bg-white border border-slate-200/90">
                         <div class="flex items-start gap-4 min-w-0">
                             {{-- Date Block --}}
-                            <time class="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-800 to-primary-950 p-1.5 text-center text-white shadow-soft"
+                            <time class="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] p-1.5 text-center text-white shadow-soft"
                                   datetime="{{ $event->start_date->toDateString() }}">
                                 <span class="font-mono text-xl font-bold leading-none text-gold-300">{{ $event->start_date->format('d') }}</span>
-                                <span class="text-[10px] uppercase font-bold text-primary-200 mt-0.5">{{ $event->start_date->translatedFormat('M') }}</span>
+                                <span class="text-[10px] uppercase font-bold text-primary-100 mt-0.5">{{ $event->start_date->translatedFormat('M') }}</span>
                             </time>
 
                             <div class="space-y-1 min-w-0">
                                 <div class="flex items-center gap-2">
-                                    <span class="rounded-full bg-primary-100 px-2.5 py-0.5 text-[10px] font-bold text-primary-800 uppercase tracking-wider">
+                                    <span class="rounded-full bg-primary-50 px-2.5 py-0.5 text-[10px] font-bold text-primary-800 uppercase tracking-wider">
                                         {{ ucfirst($event->category) }}
                                     </span>
                                 </div>
 
-                                <h2 class="text-base font-bold tracking-tight text-slate-950 group-hover:text-primary-800 transition">
+                                <h2 class="text-base font-bold tracking-tight text-[#1F1A17] group-hover:text-primary-700 transition">
                                     <a href="{{ route('agenda.show', $event) }}">
                                         {{ $event->title }}
                                     </a>

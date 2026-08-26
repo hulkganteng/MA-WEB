@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <style>[x-cloak] { display: none !important; }</style>
 </head>
 <body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-dvh overflow-x-hidden"
       x-data="{
@@ -33,20 +34,27 @@
             ['admin.posts.index', 'newspaper', 'Berita', 'posts.view', ['type' => 'berita']],
             ['admin.posts.index', 'file-text', 'Artikel', 'articles.view', ['type' => 'artikel']],
             ['admin.announcements.index', 'megaphone', 'Pengumuman', 'announcements.view', [], 'admin.announcements.*'],
-            ['admin.events.index', 'calendar-days', 'Agenda', 'events.view', [], 'admin.events.*'],
-            ['admin.pages.index', 'files', 'Halaman', 'pages.view', []],
-        ],
-
-        'Galeri' => [
-            ['admin.gallery.albums.index', 'images', 'Galeri Foto', 'gallery.view', [], 'admin.gallery.albums.*'],
-            ['admin.gallery.videos.index', 'video', 'Galeri Video', 'videos.view', [], 'admin.gallery.videos.*'],
-        ],
-        'Profil' => [
-            ['admin.profile.index', 'school', 'Profil Madrasah', ['pages.view', 'structure.manage', 'settings.manage'], []],
-            ['admin.teachers.index', 'users', 'Guru & Tendik', 'teachers.view', []],
+            ['admin.events.index', 'calendar-days', 'Agenda Kegiatan', 'events.view', [], 'admin.events.*'],
+            ['admin.pages.index', 'files', 'Halaman Statis', 'pages.view', []],
         ],
         'Akademik' => [
-            ['admin.achievements.index', 'trophy', 'Prestasi', 'achievements.view', [], 'admin.achievements.*'],
+            ['admin.programs.index', 'book-marked', 'Program / Jurusan', 'programs.view', [], 'admin.programs.*'],
+            ['admin.curriculums.index', 'book-open', 'Kurikulum', 'curriculums.view', [], 'admin.curriculums.*'],
+            ['admin.calendars.index', 'calendar-range', 'Kalender Akademik', 'calendars.view', [], 'admin.calendars.*'],
+            ['admin.achievements.index', 'trophy', 'Prestasi Santri', 'achievements.view', [], 'admin.achievements.*'],
+        ],
+        'Kesiswaan' => [
+            ['admin.extracurriculars.index', 'activity', 'Ekstrakurikuler', 'extracurriculars.view', [], 'admin.extracurriculars.*'],
+            ['admin.organizations.index', 'flag', 'Organisasi Siswa', 'organizations.view', [], 'admin.organizations.*'],
+        ],
+        'Profil & Lembaga' => [
+            ['admin.profile.index', 'school', 'Profil & Struktur', ['pages.view', 'structure.manage', 'settings.manage'], []],
+            ['admin.teachers.index', 'users', 'Guru & Tendik', 'teachers.view', [], 'admin.teachers.*'],
+            ['admin.facilities.index', 'building', 'Sarana & Prasarana', 'facilities.view', [], 'admin.facilities.*'],
+        ],
+        'Galeri & Media' => [
+            ['admin.gallery.albums.index', 'images', 'Galeri Foto', 'gallery.view', [], 'admin.gallery.albums.*'],
+            ['admin.gallery.videos.index', 'video', 'Galeri Video', 'videos.view', [], 'admin.gallery.videos.*'],
         ],
         'Alumni' => [
             ['admin.alumni.index', 'graduation-cap', 'Kelola Alumni', 'alumni.view', [], 'admin.alumni.*'],

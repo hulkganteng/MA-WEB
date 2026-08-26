@@ -315,13 +315,13 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
             this.result = this.programDetails[maxProg];
             if (createIcons && icons) setTimeout(() => createIcons({ icons }), 50);
 
-            // Celebration Particle Physics (Overpowered interaction)
+            // Celebration Particle Physics
             if (typeof confetti === 'function' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
                 confetti({
                     particleCount: 90,
                     spread: 75,
                     origin: { y: 0.6 },
-                    colors: ['#10b981', '#f59e0b', '#059669', '#d4af37', '#ffffff']
+                    colors: ['#00923F', '#006437', '#FFF500', '#75C5F0', '#ffffff']
                 });
             }
         },
@@ -355,6 +355,7 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
             { title: 'Ekstrakurikuler Santri', url: '/kesiswaan/ekstrakurikuler', category: 'Kesiswaan', icon: 'activity' },
             { title: 'Organisasi Siswa (OSIM, IPNU, IPPNU, MPK)', url: '/kesiswaan/organisasi', category: 'Kesiswaan', icon: 'flag' },
             { title: 'Berita Terbaru Madrasah', url: '/berita', category: 'Informasi', icon: 'newspaper' },
+            { title: 'Pendaftaran SPMB Online (Lynk.id)', url: 'https://lynk.id/spmb-madah', category: 'SPMB', icon: 'sparkles' },
             { title: 'Pengumuman Resmi SPMB', url: '/pengumuman', category: 'Informasi', icon: 'megaphone' },
             { title: 'Agenda & Kegiatan Mendatang', url: '/agenda', category: 'Informasi', icon: 'clock' },
             { title: 'Artikel & Khazanah Islam', url: '/artikel', category: 'Literasi', icon: 'file-text' },

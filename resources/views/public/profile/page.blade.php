@@ -23,17 +23,17 @@
                 </div>
 
                 {{-- Interactive Accreditation Seal --}}
-                <div class="rounded-3xl border border-primary-500/20 bg-gradient-to-r from-primary-950 to-primary-900 p-6 text-white shadow-soft flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="rounded-3xl border border-white/20 bg-[#006437] p-6 text-white shadow-lift flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="flex items-center gap-4">
-                        <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gold-400 text-primary-950 font-bold">
+                        <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gold-400 text-[#1F1A17] font-bold">
                             <x-icon name="shield-check" class="size-6" />
                         </div>
                         <div>
                             <h4 class="text-base font-bold text-white">Akreditasi A BAN-S/M Unggul</h4>
-                            <p class="text-xs text-primary-200">MA Ma'arif NU Assa'adah Bungah Gresik · NPSN: 20580225</p>
+                            <p class="text-xs text-primary-100">MA Ma'arif NU Assa'adah Bungah Gresik · NPSN: 20580225</p>
                         </div>
                     </div>
-                    <button type="button" @click="$store.spmbCalc.open()" class="btn-gold !bg-gold-500 hover:!bg-gold-400 text-gold-950 font-bold shrink-0">
+                    <button type="button" @click="$store.spmbCalc.open()" class="btn-gold font-bold shrink-0 shadow-soft">
                         <x-icon name="sparkles" class="size-4" /> Simulasi SPMB
                     </button>
                 </div>
