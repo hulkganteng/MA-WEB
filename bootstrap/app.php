@@ -16,6 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
+        // VS Code Dev Tunnels terminates HTTPS locally and forwards the
+        // original host/protocol through X-Forwarded-* headers.
+        $middleware->trustProxies(at: ['127.0.0.1', '::1']);
+
         $middleware->redirectGuestsTo(fn () => route('admin.login'));
 
         $middleware->alias([

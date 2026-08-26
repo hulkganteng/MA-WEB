@@ -55,9 +55,9 @@ function calculatePrayerTimes(date = new Date()) {
     function asrTime() {
         const radLat = deg2rad(lat);
         const radDec = deg2rad(dec);
-        const noonAngle = Math.abs(lat - dec);
-        const asrAngle = -rad2deg(Math.atan(1 + Math.tan(deg2rad(noonAngle))));
-        const cosH = (Math.sin(deg2rad(asrAngle)) - Math.sin(radLat) * Math.sin(radDec)) / (Math.cos(radLat) * Math.cos(radDec));
+        const shadowAngle = Math.abs(lat - dec);
+        const asrAltitude = rad2deg(Math.atan(1 / (1 + Math.tan(deg2rad(shadowAngle)))));
+        const cosH = (Math.sin(deg2rad(asrAltitude)) - Math.sin(radLat) * Math.sin(radDec)) / (Math.cos(radLat) * Math.cos(radDec));
         if (cosH > 1 || cosH < -1) return noon + 3.2; // fallback
         const H = rad2deg(Math.acos(cosH)) / 15;
         return noon + H;
@@ -148,10 +148,55 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
         nextPrayerName: 'Ashar',
         countdownText: '00:00:00',
         modalOpen: false,
+        scheduleSource: 'local',
 
         init() {
             this.updateSchedule();
+            this.loadRemoteSchedule();
             setInterval(() => this.updateSchedule(), 1000);
+            setInterval(() => this.loadRemoteSchedule(), 30 * 60 * 1000);
+        },
+
+        async loadRemoteSchedule() {
+            const date = new Date();
+            const dateParam = `${String(date.getDate()).padStart(2, '0')}-${String(date.getMonth() + 1).padStart(2, '0')}-${date.getFullYear()}`;
+
+            try {
+                const response = await fetch(`/api/prayer-times?date=${dateParam}`, {
+                    headers: { Accept: 'application/json' }
+                });
+                if (!response.ok) throw new Error(`Prayer API returned ${response.status}`);
+
+                const payload = await response.json();
+                const timings = payload?.timings;
+                if (!timings) throw new Error('Prayer API returned no timings');
+
+                const parseTime = (value) => {
+                    const match = String(value).match(/(\d{1,2}):(\d{2})/);
+                    return match ? Number(match[1]) + Number(match[2]) / 60 : null;
+                };
+                const raw = {
+                    subuh: parseTime(timings.Fajr),
+                    terbit: parseTime(timings.Sunrise),
+                    dzuhur: parseTime(timings.Dhuhr),
+                    ashar: parseTime(timings.Asr),
+                    maghrib: parseTime(timings.Maghrib),
+                    isya: parseTime(timings.Isha),
+                };
+                if (Object.values(raw).some(value => value === null)) throw new Error('Prayer API returned invalid timings');
+
+                const formatTime = (hours) => {
+                    const totalMinutes = Math.round(hours * 60);
+                    return `${String(Math.floor(totalMinutes / 60) % 24).padStart(2, '0')}:${String(totalMinutes % 60).padStart(2, '0')}`;
+                };
+                this.times = Object.fromEntries(Object.entries(raw).map(([name, value]) => [name, formatTime(value)]));
+                this.times.raw = raw;
+                this.scheduleSource = 'api';
+                this.updateSchedule();
+            } catch (error) {
+                this.scheduleSource = 'local';
+                console.warn('Using local prayer-time calculation:', error.message);
+            }
         },
 
         openModal() {
@@ -184,6 +229,7 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
             }
 
             this.nextPrayerName = next.name;
+            this.currentPrayer = [...prayers].reverse().find(p => p.timeFloat <= currentFloat)?.name || 'Belum masuk waktu';
 
             const diffHours = next.timeFloat - currentFloat;
             const totalSeconds = Math.max(0, Math.floor(diffHours * 3600));

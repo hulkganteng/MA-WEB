@@ -175,6 +175,25 @@ npm run dev
 > composer dev
 > ```
 
+### Preview Publik melalui Port Forwarding VS Code
+
+Untuk membagikan preview sementara tanpa membuka port Vite terpisah, jalankan:
+
+```bash
+npm run preview:public
+```
+
+Perintah tersebut membangun CSS/JavaScript terlebih dahulu, lalu menjalankan Laravel pada `0.0.0.0:8000`. Di VS Code:
+
+1. Buka panel **Ports** lewat **View → Open View → Ports**.
+2. Pilih **Forward a Port**, lalu masukkan `8000`.
+3. Klik kanan port `8000`, pilih **Port Visibility → Public**.
+4. Buka atau salin URL pada kolom **Forwarded Address**.
+
+Perintah yang sama juga tersedia dari **Terminal → Run Task → Laravel: Public Preview (port 8000)**. Mode ini menggunakan aset hasil build sehingga halaman publik cukup memakai satu tunnel. Setelah selesai, hentikan server dengan `Ctrl+C` dan ubah visibilitas port menjadi **Private** atau hapus forwarding.
+
+> **Peringatan:** URL publik dapat diakses siapa pun yang memilikinya. Jangan membagikan preview dengan `APP_DEBUG=true`, data pribadi, atau akun admin produksi.
+
 ### 6. Build Aset untuk Production
 Saat siap di-deploy ke server live / hosting:
 ```bash

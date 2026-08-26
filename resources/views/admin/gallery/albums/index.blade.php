@@ -28,8 +28,8 @@
         <button type="submit" class="btn-outline !py-2">Terapkan filter</button>
     </form>
 
-    <div class="-mx-4 -my-2 mt-7 overflow-x-auto whitespace-nowrap sm:-mx-6 lg:-mx-8">
-        <div class="inline-block min-w-full px-4 py-2 align-middle sm:px-6 lg:px-8">
+    <div class="min-w-0 mt-7 overflow-x-auto whitespace-nowrap">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
             <table class="w-full">
                 <thead>
                     <tr class="border-b border-slate-900/10 text-left text-sm text-slate-500">

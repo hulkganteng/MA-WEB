@@ -12,7 +12,8 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     <style>[x-cloak] { display: none !important; }</style>
 </head>
-<body class="bg-slate-50 font-sans text-slate-800 antialiased min-h-dvh overflow-x-hidden"
+<body class="admin-shell bg-slate-50 font-sans text-slate-800 antialiased min-h-dvh overflow-x-hidden"
+    x-effect="document.body.style.overflow = mobileOpen ? 'hidden' : ''"
       x-data="{
           mobileOpen: false,
           desktopCollapsed: localStorage.getItem('admin_sidebar_collapsed') === 'true',
@@ -71,7 +72,9 @@
          x-cloak
          class="fixed inset-0 z-50 lg:hidden"
          role="dialog"
-         aria-modal="true">
+            aria-modal="true"
+            aria-label="Menu navigasi admin"
+            @keydown.escape.window="mobileOpen = false">
         <!-- Backdrop -->
         <div x-show="mobileOpen"
              x-transition:enter="transition-opacity ease-linear duration-300"
@@ -94,15 +97,6 @@
                  x-transition:leave-start="translate-x-0"
                  x-transition:leave-end="-translate-x-full"
                  class="relative flex h-full w-72 max-w-[85vw] flex-1 flex-col shadow-2xl">
-                <!-- Close Button -->
-                <div class="absolute right-3 top-3 z-10">
-                    <button type="button"
-                            @click="mobileOpen = false"
-                            class="flex size-8 items-center justify-center rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors"
-                            aria-label="Tutup menu">
-                        <x-icon name="x" class="size-4" />
-                    </button>
-                </div>
                 <aside class="h-full w-full bg-primary-950 text-white">
                     <x-admin-sidebar :groups="$groups" />
                 </aside>
@@ -162,7 +156,7 @@
         </header>
 
         <!-- Main Body Slot -->
-        <main class="isolate flex-1 p-4 sm:p-6 lg:p-8 min-w-0 w-full">
+        <main class="isolate min-w-0 flex-1 overflow-x-hidden p-4 sm:p-6 lg:p-8 w-full">
             {{ $slot }}
         </main>
     </div>

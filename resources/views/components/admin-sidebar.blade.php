@@ -35,7 +35,7 @@
     </div>
 
     <!-- Navigation List -->
-    <nav class="flex-1 overflow-y-auto px-3 py-3 custom-scrollbar space-y-5">
+    <nav class="min-h-0 flex-1 overflow-y-auto overscroll-contain px-3 py-3 custom-scrollbar space-y-5">
         @foreach($groups as $group => $items)
             @php
                 $visible = collect($items)->filter(fn ($item) => is_array($item[3]) ? auth()->user()->hasAnyPermission($item[3]) : auth()->user()->can($item[3]));
@@ -56,6 +56,7 @@
                             @endphp
                             <li>
                                 <a href="{{ route($route, $params) }}"
+                                              @if($active) aria-current="page" @endif
                                    class="group relative flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm font-medium transition-all duration-150 {{ $active ? 'bg-gradient-to-r from-primary-600 to-emerald-600 text-white font-semibold shadow-sm shadow-primary-950/40 ring-1 ring-white/20' : 'text-slate-300 hover:bg-white/[0.07] hover:text-white' }}">
                                     <div class="flex items-center gap-3 min-w-0">
                                         <x-icon :name="$icon" class="size-4 shrink-0 transition-colors {{ $active ? 'text-white' : 'text-emerald-400/80 group-hover:text-emerald-300' }}" />

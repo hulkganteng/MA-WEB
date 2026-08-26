@@ -22,7 +22,7 @@
         @endif
 
         {{-- Type / Category Floating Badge --}}
-        <div class="absolute top-3 left-3 flex items-center gap-1.5">
+        <div class="absolute top-3 right-3 flex max-w-[calc(100%-1.5rem)] items-center justify-end gap-1.5">
             @if ($post->category)
                 <span class="rounded-full bg-[#006437]/90 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur border border-white/20">
                     {{ $post->category->name }}

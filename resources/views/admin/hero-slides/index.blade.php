@@ -15,7 +15,7 @@
         <div>
             <p class="font-medium">Animasi Geser Otomatis di Halaman Utama</p>
             <p class="mt-0.5 text-xs text-emerald-800">
-                Slide dengan status <strong>Published</strong> akan berganti secara otomatis setiap beberapa detik di halaman depan dan dilengkapi tombol interaktif untuk memperbesar foto (*modal view*).
+                Slide dengan status <strong>Published</strong> akan berganti secara otomatis setiap beberapa detik di halaman depan.
             </p>
         </div>
     </div>

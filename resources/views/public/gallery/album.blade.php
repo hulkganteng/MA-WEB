@@ -34,13 +34,13 @@
                     {{-- Lightbox Modal --}}
                     <div x-show="lightbox" x-cloak
                          @keydown.escape.window="lightbox = null"
-                         class="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-slate-950/95 p-4 sm:p-8 backdrop-blur-sm"
+                         class="fixed inset-0 z-[70] flex flex-col items-center justify-start overflow-y-auto overscroll-contain bg-slate-950/95 p-4 sm:justify-center sm:p-8 backdrop-blur-sm"
                          role="dialog" aria-modal="true">
                         <button type="button" @click="lightbox = null" aria-label="Tutup foto"
                                 class="absolute right-5 top-5 flex size-11 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition">
                             <x-icon name="x" class="size-6" />
                         </button>
-                        <div class="relative max-h-[85vh] max-w-5xl overflow-hidden rounded-2xl">
+                        <div class="relative my-auto max-h-[calc(100dvh-2rem)] max-w-5xl overflow-y-auto overscroll-contain rounded-2xl">
                             <img :src="lightbox" alt="" class="max-h-[80vh] max-w-full rounded-2xl object-contain">
                             <p x-text="caption" class="mt-3 text-center text-xs text-slate-300"></p>
                         </div>

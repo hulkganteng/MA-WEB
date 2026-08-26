@@ -44,7 +44,7 @@
                         <img :src="slide.imageUrl"
                              :alt="slide.title"
                              class="size-full object-cover object-center">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#006437] via-[#006437]/80 to-[#006437]/40 lg:bg-gradient-to-r lg:from-[#006437] lg:via-[#006437]/85 lg:to-transparent"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-[#003d24] via-[#006437]/95 to-[#006437]/75 lg:bg-gradient-to-r lg:from-[#003d24] lg:via-[#006437]/90 lg:to-[#006437]/35"></div>
                     </div>
                 </template>
 
@@ -109,14 +109,6 @@
                                             </a>
                                         </template>
 
-                                        <!-- Lightbox Modal Button -->
-                                        <button type="button"
-                                                @click="openModal(slide)"
-                                                class="inline-flex items-center gap-2 rounded-xl bg-white/10 px-3.5 py-3 text-xs sm:text-sm font-semibold text-gold-300 hover:text-white hover:bg-white/20 border border-white/20 transition backdrop-blur cursor-pointer"
-                                                title="Lihat Foto Banner">
-                                            <x-icon name="maximize-2" class="size-4" />
-                                            <span>Foto</span>
-                                        </button>
                                     </div>
                                 </div>
                             </template>
@@ -171,15 +163,15 @@
                                     </button>
                                 </div>
 
-                                <div class="mt-4 flex items-center justify-between">
-                                    <div>
+                                <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                                    <div class="min-w-0">
                                         <span class="text-xs font-bold uppercase tracking-wider text-gold-300">Waktu Sholat Berikutnya</span>
                                         <div class="mt-1 flex items-baseline gap-2">
                                             <span class="text-xl font-extrabold text-white" x-text="$store.prayer.nextPrayerName"></span>
                                             <span class="font-mono text-2xl font-extrabold text-gold-300" x-text="$store.prayer.countdownText"></span>
                                         </div>
                                     </div>
-                                    <div class="text-right">
+                                    <div class="shrink-0 text-right">
                                         <span class="inline-block rounded-lg bg-white/15 px-3 py-1.5 font-mono text-sm font-bold text-white border border-white/20">
                                             {{ date('H:i') }} WIB
                                         </span>
@@ -188,30 +180,30 @@
                             </div>
 
                             <!-- Interactive Stats Bento Grid -->
-                            <div class="rounded-3xl border border-white/20 bg-white/10 p-6 shadow-lift backdrop-blur-xl">
+                            <div class="rounded-3xl border border-white/25 bg-[#004d2a]/80 p-6 shadow-lift backdrop-blur-xl">
                                 <div class="flex items-center justify-between pb-3 border-b border-white/15">
                                     <span class="text-xs font-bold uppercase tracking-wider text-gold-300">Pendidikan Terpadu & Berkelanjutan</span>
                                     <x-icon name="award" class="size-4 text-gold-300" />
                                 </div>
 
                                 <dl class="mt-4 grid grid-cols-2 gap-4">
-                                    <div class="rounded-2xl border border-white/10 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
-                                        <dt class="text-xs text-primary-100">Peserta Didik</dt>
+                                    <div class="rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
+                                        <dt class="text-xs font-semibold text-white/90">Peserta Didik</dt>
                                         <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ setting('stats.students', 850) }}+</dd>
                                         <span class="text-[10px] text-gold-300">Jenjang X, XI, XII</span>
                                     </div>
-                                    <div class="rounded-2xl border border-white/10 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
-                                        <dt class="text-xs text-primary-100">Guru & Tendik</dt>
+                                    <div class="rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
+                                        <dt class="text-xs font-semibold text-white/90">Guru & Tendik</dt>
                                         <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $teacherCount ?: setting('stats.teachers', 45) }}</dd>
                                         <span class="text-[10px] text-secondary-300">Pendidik Berlisensi</span>
                                     </div>
-                                    <div class="rounded-2xl border border-white/10 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
-                                        <dt class="text-xs text-primary-100">Alumni IKBAL</dt>
+                                    <div class="rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
+                                        <dt class="text-xs font-semibold text-white/90">Alumni IKBAL</dt>
                                         <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ setting('stats.alumni', 4200) }}+</dd>
                                         <span class="text-[10px] text-gold-300">Kiprah Nusantara</span>
                                     </div>
-                                    <div class="rounded-2xl border border-white/10 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
-                                        <dt class="text-xs text-primary-100">Prestasi Juara</dt>
+                                    <div class="rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
+                                        <dt class="text-xs font-semibold text-white/90">Prestasi Juara</dt>
                                         <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ setting('stats.achievements', 120) }}+</dd>
                                         <span class="text-[10px] text-secondary-300">Kab., Prov., & Nas.</span>
                                     </div>
@@ -222,30 +214,6 @@
                 </div>
             </div>
 
-            <!-- Modal Lightbox Preview -->
-            <template x-if="modalPhoto">
-                <div class="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
-                     @click.self="modalPhoto = null; resume();"
-                     @keydown.escape.window="modalPhoto = null; resume();">
-                    <div class="relative max-w-5xl w-full bg-[#006437] rounded-2xl overflow-hidden shadow-2xl border border-white/20 text-white">
-                        <div class="flex items-center justify-between p-4 border-b border-white/15 bg-[#004d2a]">
-                            <div>
-                                <h3 class="text-base font-bold text-white" x-text="modalPhoto.title"></h3>
-                                <p class="text-xs text-primary-100" x-text="modalPhoto.tagline"></p>
-                            </div>
-                            <button type="button" @click="modalPhoto = null; resume();" class="text-white/80 hover:text-white p-1 rounded-lg hover:bg-white/10 transition">
-                                <x-icon name="x" class="size-6" />
-                            </button>
-                        </div>
-                        <div class="p-2 max-h-[75vh] overflow-auto flex items-center justify-center bg-black">
-                            <img :src="modalPhoto.imageUrl" :alt="modalPhoto.title" class="max-h-[70vh] w-auto object-contain rounded-lg">
-                        </div>
-                        <template x-if="modalPhoto.subtitle">
-                            <div class="p-4 bg-[#004d2a] border-t border-white/15 text-sm text-primary-50" x-text="modalPhoto.subtitle"></div>
-                        </template>
-                    </div>
-                </div>
-            </template>
         </section>
     @else
         <!-- Fallback Default Hero Section when no slides exist -->
@@ -323,15 +291,15 @@
                             </button>
                         </div>
 
-                        <div class="mt-4 flex items-center justify-between">
-                            <div>
+                        <div class="mt-4 flex flex-wrap items-center justify-between gap-3">
+                            <div class="min-w-0">
                                 <span class="text-xs font-bold uppercase tracking-wider text-gold-300">Waktu Sholat Berikutnya</span>
                                 <div class="mt-1 flex items-baseline gap-2">
                                     <span class="text-xl font-extrabold text-white" x-text="$store.prayer.nextPrayerName"></span>
                                     <span class="font-mono text-2xl font-extrabold text-gold-300" x-text="$store.prayer.countdownText"></span>
                                 </div>
                             </div>
-                            <div class="text-right">
+                            <div class="shrink-0 text-right">
                                 <span class="inline-block rounded-lg bg-white/15 px-3 py-1.5 font-mono text-sm font-bold text-white border border-white/20">
                                     {{ date('H:i') }} WIB
                                 </span>
@@ -447,7 +415,7 @@
                             <div class="flex size-16 items-center justify-center rounded-2xl bg-gold-400/20 text-gold-300">
                                 <x-icon name="school" class="size-8" />
                             </div>
-                            <h4 class="mt-4 text-lg font-bold text-white">Kampus MA Ma'arif NU Assa'adah</h4>
+                            <h4 class="mt-4 text-lg font-bold text-white">MA Ma'arif NU Assa'adah</h4>
                             <p class="mt-1 text-xs text-primary-100">Sampurnan, Bungah, Gresik · Didirikan 1972</p>
                         </div>
                     @endif
@@ -497,12 +465,12 @@
                     </div>
                 </div>
 
-                <div class="flex items-center gap-4 pt-2">
-                    <a href="{{ route('about') }}" class="btn-primary">
+                <div class="flex flex-col items-stretch gap-3 pt-2 sm:flex-row sm:items-center sm:gap-4">
+                    <a href="{{ route('about') }}" class="btn-primary w-full sm:w-auto">
                         <span>Profil Lengkap & Sejarah</span>
                         <x-icon name="arrow-right" class="size-4" />
                     </a>
-                    <a href="{{ route('structure') }}" class="btn-ghost">
+                    <a href="{{ route('structure') }}" class="btn-ghost w-full sm:w-auto">
                         <span>Struktur Pimpinan</span>
                     </a>
                 </div>
@@ -541,8 +509,11 @@
                     <span>Sambutan Kepala Madrasah</span>
                 </div>
 
+                @php
+                    $speechText = preg_replace('/\s+/', ' ', strip_tags(str_replace(['</p>', '</div>', '<br>', '<br/>', '<br />'], ' ', clean(setting('principal.speech', 'Selamat datang di portal resmi MA Ma\'arif NU Assa\'adah Bungah Gresik. Kami berkomitmen menyelenggarakan pendidikan terpadu yang memadukan kedalaman ilmu agama dan ketajaman riset sains.')))));
+                @endphp
                 <blockquote class="text-pretty text-xl font-medium leading-relaxed text-white sm:text-2xl lg:text-3xl font-display">
-                    “{{ Str::limit(setting('principal.speech', 'Selamat datang di portal resmi MA Ma\'arif NU Assa\'adah Bungah Gresik. Kami berkomitmen menyelenggarakan pendidikan terpadu yang memadukan kedalaman ilmu agama dan ketajaman riset sains.'), 240) }}”
+                    “{{ Str::words(trim($speechText), 40, '') }}”
                 </blockquote>
 
                 <p class="text-sm text-primary-100 leading-relaxed max-w-3xl">
@@ -912,7 +883,7 @@
     {{-- ================================================================= --}}
     <section class="relative overflow-hidden bg-gradient-to-r from-[#006437] via-[#007a34] to-[#006437] py-16 text-white">
         <div class="pointer-events-none absolute inset-0 bg-islamic-stars opacity-35"></div>
-        <div class="container-app relative flex flex-col items-center justify-between gap-8 text-center sm:flex-row sm:text-left">
+        <div class="container-app relative flex flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">
             <div class="space-y-2 max-w-2xl">
                 <div class="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-xs font-bold text-gold-300">
                     <x-icon name="sparkles" class="size-3.5" />
@@ -935,12 +906,6 @@
                     <span>Pendaftaran SPMB Online</span>
                     <x-icon name="external-link" class="size-4 opacity-80" />
                 </a>
-                <button type="button"
-                        @click="$store.spmbCalc.open()"
-                        class="btn-gold font-bold shadow-soft">
-                    <x-icon name="compass" class="size-4" />
-                    <span>Simulasi Peminatan Santri</span>
-                </button>
                 <a href="{{ route('contact') }}"
                    class="btn-outline !border-white/30 !bg-white/10 !text-white hover:!bg-white/20">
                     <x-icon name="phone" class="size-4" />
@@ -957,7 +922,6 @@
                 slides: slides,
                 currentIndex: 0,
                 intervalId: null,
-                modalPhoto: null,
                 autoplayDelay: 6000,
                 init() {
                     if (this.slides.length > 1) {
@@ -985,7 +949,7 @@
                     this.stopAutoplay();
                 },
                 resume() {
-                    if (this.slides.length > 1 && !this.modalPhoto) {
+                    if (this.slides.length > 1) {
                         this.startAutoplay();
                     }
                 },
@@ -1010,13 +974,6 @@
                         if (window.lucide) window.lucide.createIcons();
                     });
                 },
-                openModal(slide) {
-                    this.pause();
-                    this.modalPhoto = slide;
-                    this.$nextTick(() => {
-                        if (window.lucide) window.lucide.createIcons();
-                    });
-                }
             }
         }
     </script>

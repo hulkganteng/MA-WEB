@@ -148,13 +148,119 @@
     .prose-content ol { @apply list-decimal pl-6 space-y-2; }
     .prose-content li + li { @apply mt-1.5; }
     .prose-content blockquote { @apply my-6 rounded-2xl border-l-4 border-gold-400 bg-gold-50/60 p-5 italic text-[#1F1A17] shadow-sm; }
-    .prose-content img { @apply rounded-2xl shadow-soft outline outline-1 -outline-offset-1 outline-black/5; }
+    .prose-content img { @apply h-auto max-w-full rounded-2xl shadow-soft outline outline-1 -outline-offset-1 outline-black/5; }
     .prose-content pre { @apply overflow-x-auto rounded-2xl bg-primary-950 p-5 text-slate-100 shadow-lift; }
     .prose-content code { @apply rounded-md bg-slate-100 px-1.5 py-0.5 text-sm font-mono text-[#1F1A17]; }
     .prose-content pre code { @apply bg-transparent p-0 text-inherit; }
 }
 
 @layer utilities {
+    .admin-shell main > div.overflow-x-auto {
+        contain: inline-size;
+        max-width: 100%;
+    }
+
+    .admin-shell select.input {
+        appearance: none;
+        min-height: 2.75rem;
+        padding-right: 2.75rem;
+        background-color: #fff;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23006437' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+        background-position: right 0.75rem center;
+        background-repeat: no-repeat;
+        background-size: 1rem;
+        cursor: pointer;
+    }
+
+    .admin-shell select.input:focus {
+        background-color: #fff;
+    }
+
+    @media (max-width: 639px) {
+        .admin-shell main > div.overflow-x-auto {
+            margin-left: 0;
+            margin-right: 0;
+            overflow-x: hidden;
+            white-space: normal;
+        }
+
+        .admin-shell main > div.overflow-x-auto > div {
+            display: block;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .admin-shell main > div.overflow-x-auto table {
+            display: block;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .admin-shell main > div.overflow-x-auto thead {
+            display: none;
+        }
+
+        .admin-shell main > div.overflow-x-auto tbody {
+            display: block;
+        }
+
+        .admin-shell main > div.overflow-x-auto tr {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 0.25rem 0.5rem;
+            width: 100%;
+            border-bottom: 1px solid rgb(15 23 42 / 0.1);
+            padding: 0.75rem 0;
+        }
+
+        .admin-shell main > div.overflow-x-auto td {
+            display: block;
+            white-space: normal;
+            overflow-wrap: anywhere;
+            min-width: 0;
+            padding: 0.25rem 0.375rem;
+        }
+
+        .admin-shell main > div.overflow-x-auto td:first-child {
+            grid-column: 1 / -1;
+            padding-top: 0.125rem;
+        }
+
+        .admin-shell main > div.overflow-x-auto td:nth-child(3),
+        .admin-shell main > div.overflow-x-auto td:nth-child(4) {
+            display: none;
+        }
+
+        .admin-shell main > div.overflow-x-auto td:nth-child(2) {
+            grid-column: 1;
+            align-self: center;
+        }
+
+        .admin-shell main > div.overflow-x-auto td:last-child {
+            grid-column: 2;
+            grid-row: 2;
+            width: auto;
+            padding-right: 0.375rem;
+        }
+
+        .admin-shell main > div.overflow-x-auto td:last-child > div {
+            flex-wrap: nowrap;
+        }
+
+        .admin-shell main > div.overflow-x-auto td:first-child .flex {
+            min-width: 0;
+        }
+
+        .admin-shell main > div.overflow-x-auto td:first-child .min-w-0 {
+            min-width: 0;
+        }
+
+        .admin-shell main > div.overflow-x-auto td:first-child p {
+            white-space: normal;
+            overflow-wrap: anywhere;
+        }
+    }
+
     .line-clamp-2 {
         display: -webkit-box;
         -webkit-line-clamp: 2;

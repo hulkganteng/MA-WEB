@@ -167,6 +167,7 @@
                                            multiple
                                            accept="image/jpeg,image/png,image/webp"
                                            class="sr-only"
+                                         x-ref="newPhotos"
                                            @change="handleNewFiles($event)">
                                 </label>
                             </div>
@@ -215,6 +216,7 @@
                                        multiple
                                        accept="image/jpeg,image/png,image/webp"
                                        class="sr-only"
+                                        x-ref="newPhotos"
                                        @change="handleNewFiles($event)">
                             </label>
                         </div>
@@ -326,7 +328,9 @@
                     }
                 },
                 clearFiles() {
+                    this.newFiles.forEach(fileItem => URL.revokeObjectURL(fileItem.previewUrl));
                     this.newFiles = [];
+                    this.$root.querySelectorAll('input[type="file"]').forEach(input => input.value = '');
                 },
                 formatBytes(bytes) {
                     if (bytes === 0) return '0 B';

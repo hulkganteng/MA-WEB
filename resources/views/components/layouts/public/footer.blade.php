@@ -40,12 +40,6 @@
                         <span>Daftar SPMB Online</span>
                         <x-icon name="external-link" class="size-4 opacity-80" />
                     </a>
-                    <button type="button"
-                            @click="$store.spmbCalc.open()"
-                            class="btn-gold font-bold shadow-soft">
-                        <x-icon name="compass" class="size-4" />
-                        <span>Simulasi Peminatan</span>
-                    </button>
                     <a href="{{ route('contact') }}"
                        class="btn-outline !border-white/30 !bg-white/10 !text-white hover:!bg-white/20">
                         <x-icon name="map-pin" class="size-4" />
@@ -98,9 +92,46 @@
             <div class="flex items-center gap-2.5 pt-2">
                 @foreach ($social as $link)
                     @if ($link->url)
-                        <a href="{{ $link->url }}" target="_blank" rel="noopener" aria-label="{{ ucfirst($link->platform) }}"
-                           class="flex size-9 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition hover:border-gold-400 hover:bg-gold-400 hover:text-[#1F1A17] hover:scale-105">
-                            <x-icon name="{{ $link->platform === 'youtube' ? 'youtube' : $link->platform }}" class="size-4" />
+                        @php
+                            $platform = strtolower($link->platform);
+                            $socialIcon = match ($platform) {
+                                'youtube' => 'video',
+                                'instagram' => 'camera',
+                                'facebook' => 'thumbs-up',
+                                'tiktok' => 'music-2',
+                                'whatsapp' => 'message-circle',
+                                default => 'globe',
+                            };
+                            $socialLabel = match ($platform) {
+                                'youtube' => 'YouTube',
+                                'instagram' => 'Instagram',
+                                'facebook' => 'Facebook',
+                                'tiktok' => 'TikTok',
+                                'whatsapp' => 'WhatsApp',
+                                default => ucfirst($link->platform),
+                            };
+                        @endphp
+                        <a href="{{ $link->url }}" target="_blank" rel="noopener" aria-label="{{ $socialLabel }}"
+                           class="group relative flex size-9 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition hover:scale-105 hover:border-gold-400 hover:bg-gold-400 hover:text-[#1F1A17] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#006437]">
+                            @switch($platform)
+                                @case('youtube')
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" class="size-4 fill-current"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.376.505A3.016 3.016 0 0 0 .502 6.186C0 8.064 0 12 0 12s0 3.936.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.376-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.936 24 12 24 12s0-3.936-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z" /></svg>
+                                    @break
+                                @case('instagram')
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" class="size-4 fill-current"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm5.25-3.25a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5Z" /></svg>
+                                    @break
+                                @case('facebook')
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" class="size-4 fill-current"><path d="M13.5 22v-8h2.75l.5-3h-3.25V9.05c0-.87.24-1.46 1.5-1.46h1.85V4.91c-.32-.04-1.42-.14-2.7-.14-2.67 0-4.5 1.63-4.5 4.62V11H6.6v3h3.05v8h3.85Z" /></svg>
+                                    @break
+                                @case('tiktok')
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" class="size-4 fill-current"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03C3.21 20.77 1.8 18.55 1.77 16.2c-.03-1.48.39-2.96 1.19-4.2 1.15-1.8 3.26-3.03 5.4-3.25 1.02-.11 2.04.04 3 .33.01 1.48-.04 2.96-.04 4.44-.68-.22-1.46-.39-2.13-.15-.5.17-.95.46-1.3.85-.59.6-.88 1.51-.73 2.33.14.83.68 1.56 1.41 1.95.73.39 1.62.43 2.38.13.69-.25 1.29-.78 1.57-1.46.18-.31.27-.68.27-1.04.02-5.39-.03-10.77.02-16.14Z" /></svg>
+                                    @break
+                                @default
+                                    <x-icon name="{{ $socialIcon }}" class="size-4" />
+                            @endswitch
+                            <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-2 max-w-[calc(100vw-2rem)] -translate-x-1/2 whitespace-nowrap rounded-md bg-[#1F1A17] px-2 py-1 text-[10px] font-semibold text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                                {{ $socialLabel }}
+                            </span>
                         </a>
                     @endif
                 @endforeach
@@ -172,9 +203,9 @@
 
     {{-- Bottom Bar: Copyright & Pesantren Heritage Acknowledgement --}}
     <div class="relative border-t border-white/15 bg-[#004d2a]">
-        <div class="container-app flex flex-col items-center justify-between gap-3 py-6 text-xs text-primary-100 sm:flex-row">
-            <p>&copy; {{ $year }} <strong>{{ $siteName }}</strong>. Terdaftar di Kemenag RI & LP Ma'arif NU. Hak cipta dilindungi.</p>
-            <div class="flex items-center gap-4 text-primary-100">
+        <div class="container-app flex flex-col items-center justify-between gap-3 py-6 text-center text-xs text-primary-100 md:flex-row md:text-left">
+            <p class="max-w-full">&copy; {{ $year }} <strong>{{ $siteName }}</strong>. Terdaftar di Kemenag RI & LP Ma'arif NU. Hak cipta dilindungi.</p>
+            <div class="flex w-full items-center justify-center gap-4 text-primary-100 md:w-auto">
                 <span class="flex items-center gap-1.5">
                     <x-icon name="shield-check" class="size-3.5 text-gold-400" />
                     <span>Madrasah Aliyah Assa'adah Bungah Gresik</span>

@@ -25,7 +25,8 @@
                     this.isScrolled = window.scrollY > 20;
                 }, { passive: true });
             }
-        }">
+        }"
+        x-effect="document.body.style.overflow = mobileOpen ? 'hidden' : ''">
 
     {{-- Top Utility Bar: Islamic Date & Live Prayer Times --}}
     <div class="border-b border-[#00923F]/30 bg-[#006437] text-white text-[11px] py-1 px-4">
@@ -76,12 +77,12 @@
         <div class="container-app flex h-16 items-center justify-between gap-3">
             {{-- Brand Logo & Identity (Compact & Clean) --}}
             <a href="{{ route('home') }}" class="group flex items-center gap-2.5 shrink-0">
-                <div class="relative flex size-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] p-0.5 text-white shadow-soft transition duration-300 group-hover:scale-105">
+                <div class="relative size-10 shrink-0 transition duration-300 group-hover:scale-105">
                     @if ($logo)
-                        <img src="{{ asset('storage/'.$logo) }}" alt="{{ $siteName }}" class="size-full rounded-[10px] object-cover">
+                        <img src="{{ asset('storage/'.$logo) }}" alt="{{ $siteName }}" class="size-full object-cover">
                     @else
-                        <div class="flex size-full items-center justify-center rounded-[10px] bg-[#006437] border border-gold-400/40">
-                            <span class="font-extrabold text-gold-300 text-sm">MA</span>
+                        <div class="flex size-full items-center justify-center">
+                            <span class="font-extrabold text-sm text-gold-300">MA</span>
                         </div>
                     @endif
                     <div class="absolute -bottom-0.5 -right-0.5 flex size-3.5 items-center justify-center rounded-full bg-gold-400 text-[8px] font-bold text-[#1F1A17] shadow">
@@ -101,7 +102,7 @@
             </a>
 
             {{-- Desktop Navigation Menu (Streamlined spacing) --}}
-            <div class="hidden lg:flex items-center gap-0.5">
+            <div class="hidden xl:flex min-w-0 items-center gap-0.5">
                 <ul class="flex items-center gap-0.5">
                     @foreach ($menus as $item)
                         @php
@@ -199,7 +200,7 @@
                 {{-- Mobile Menu Hamburger (Prominent, High-Contrast & Safe Spaced) --}}
                 <button type="button"
                         @click="mobileOpen = !mobileOpen"
-                        class="flex size-10 items-center justify-center rounded-xl bg-primary-50 border border-primary-200/90 text-primary-800 hover:bg-primary-100 active:scale-95 shadow-sm transition lg:hidden cursor-pointer shrink-0"
+                        class="flex size-10 items-center justify-center rounded-xl bg-primary-50 border border-primary-200/90 text-primary-800 hover:bg-primary-100 active:scale-95 shadow-sm transition xl:hidden cursor-pointer shrink-0"
                         :class="mobileOpen ? '!bg-primary-700 !text-white !border-primary-700' : ''"
                         aria-label="Menu Utama">
                     <x-icon name="menu" class="size-5" x-show="!mobileOpen" />
@@ -216,7 +217,7 @@
              x-transition:leave="transition ease-in duration-150"
              x-transition:leave-start="opacity-100 translate-y-0"
              x-transition:leave-end="opacity-0 -translate-y-2"
-             class="border-t border-slate-200 bg-white/95 backdrop-blur-xl lg:hidden max-h-[80vh] overflow-y-auto shadow-2xl"
+             class="max-h-[calc(100dvh-4rem)] overscroll-contain overflow-y-auto border-t border-slate-200 bg-white/95 shadow-2xl backdrop-blur-xl xl:hidden"
              x-cloak>
             <div class="container-app py-4 space-y-3">
                 {{-- Quick Mobile Info Banner --}}

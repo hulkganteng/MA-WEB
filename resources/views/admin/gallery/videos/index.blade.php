@@ -70,7 +70,7 @@
                             </td>
                             <td class="px-4 py-4 text-sm text-slate-600">
                                 <span class="inline-flex items-center gap-1.5 rounded-md bg-rose-50 px-2 py-1 text-xs font-medium text-rose-700">
-                                    <x-icon name="youtube" class="size-3.5" />
+                                    <x-icon name="video" class="size-3.5" />
                                     {{ ucfirst($video->provider ?: 'YouTube') }}
                                 </span>
                             </td>

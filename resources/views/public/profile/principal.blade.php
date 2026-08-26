@@ -59,7 +59,7 @@
 
                     <div class="mt-8 prose-content max-w-none text-slate-700 leading-relaxed">
                         @if(setting('principal.speech'))
-                            {!! nl2br(e(setting('principal.speech'))) !!}
+                            {!! clean(setting('principal.speech')) !!}
                         @else
                             <p>Assalamu’alaikum warahmatullahi wabarakatuh.</p>
                             <p>Alhamdulillahirabbil 'alamin, puji syukur ke hadirat Allah SWT yang senantiasa melimpahkan taufiq dan hidayah-Nya kepada keluarga besar MA Ma'arif NU Assa'adah Bungah Gresik.</p>

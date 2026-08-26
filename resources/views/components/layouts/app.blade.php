@@ -106,22 +106,22 @@
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-md"
+         class="fixed inset-0 z-50 flex w-full items-start justify-center overflow-x-hidden overflow-y-auto overscroll-contain p-4 sm:items-center bg-slate-950/70 backdrop-blur-md"
          @keydown.escape.window="$store.prayer.closeModal()"
          x-cloak>
-        <div class="relative w-full max-w-lg overflow-hidden rounded-3xl border border-white/20 bg-[#006437] text-white shadow-2xl"
+        <div class="relative my-auto box-border max-h-[calc(100dvh-2rem)] w-full max-w-[min(32rem,calc(100vw-2rem))] overflow-x-hidden overflow-y-auto overscroll-contain rounded-3xl border border-white/20 bg-[#006437] text-white shadow-2xl"
              @click.away="$store.prayer.closeModal()">
             <div class="absolute -right-16 -top-16 size-48 rounded-full bg-gold-400/20 blur-3xl"></div>
             <div class="absolute -left-16 -bottom-16 size-48 rounded-full bg-primary-500/20 blur-3xl"></div>
 
             <div class="relative p-6 sm:p-8">
                 <div class="flex items-center justify-between border-b border-white/15 pb-4">
-                    <div class="flex items-center gap-3">
+                    <div class="flex min-w-0 items-center gap-3">
                         <div class="flex size-10 items-center justify-center rounded-xl bg-gold-400 text-[#1F1A17] font-bold">
                             <x-icon name="clock" class="size-5" />
                         </div>
-                        <div>
-                            <h3 class="text-lg font-bold text-white">Jadwal Sholat Bungah Gresik</h3>
+                        <div class="min-w-0">
+                            <h3 class="text-lg font-bold leading-tight text-white">Jadwal Sholat Bungah Gresik</h3>
                             <p class="text-xs text-primary-100" x-text="$store.prayer.hijri"></p>
                         </div>
                     </div>
@@ -160,8 +160,8 @@
                     </template>
                 </div>
 
-                <div class="mt-6 flex items-center justify-between border-t border-white/15 pt-4 text-xs text-primary-100">
-                    <span>Yayasan Pondok Pesantren Qomaruddin</span>
+                <div class="mt-6 flex flex-wrap items-center justify-between gap-2 border-t border-white/15 pt-4 text-xs text-primary-100">
+                    <span class="min-w-0">Yayasan Pondok Pesantren Qomaruddin</span>
                     <button type="button" @click="$store.prayer.closeModal()" class="font-bold text-gold-300 hover:text-gold-200">Tutup</button>
                 </div>
             </div>
@@ -176,10 +176,10 @@
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"
-         class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/75 backdrop-blur-md"
+         class="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto overscroll-contain p-4 sm:items-center bg-slate-950/75 backdrop-blur-md"
          @keydown.escape.window="$store.spmbCalc.close()"
          x-cloak>
-        <div class="relative w-full max-w-2xl overflow-hidden rounded-3xl border border-slate-200 bg-white text-[#1F1A17] shadow-2xl"
+        <div class="relative my-auto max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-3xl border border-slate-200 bg-white text-[#1F1A17] shadow-2xl"
              @click.away="$store.spmbCalc.close()">
             <div class="bg-[#006437] p-6 text-white sm:p-7">
                 <div class="flex items-center justify-between">
@@ -294,10 +294,10 @@
          x-transition:leave="transition ease-in duration-150"
          x-transition:leave-start="opacity-100 scale-100"
          x-transition:leave-end="opacity-0 scale-95"
-         class="fixed inset-0 z-50 flex items-start justify-center p-4 pt-16 sm:pt-24 bg-slate-950/70 backdrop-blur-md"
+         class="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto overscroll-contain p-4 pt-8 sm:pt-24 bg-slate-950/70 backdrop-blur-md"
          @keydown.escape.window="$store.cmdPalette.close()"
          x-cloak>
-        <div class="relative w-full max-w-xl overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl"
+        <div class="relative my-auto max-h-[calc(100dvh-2rem)] w-full max-w-xl overflow-y-auto overscroll-contain rounded-3xl border border-slate-200 bg-white shadow-2xl"
              @click.away="$store.cmdPalette.close()">
             <div class="flex items-center gap-3 border-b border-slate-100 px-5 py-4">
                 <x-icon name="search" class="size-5 text-slate-400" />
@@ -367,16 +367,6 @@
                     <x-icon name="external-link" class="size-3 sm:size-3.5" />
                 </span>
             </a>
-
-            {{-- SPMB Calculator Trigger --}}
-            <button type="button"
-                    @click="$store.spmbCalc.open(); expanded = false"
-                    class="group flex items-center gap-2 rounded-full border border-gold-400/40 bg-[#006437] px-3.5 py-2 text-xs font-semibold text-white shadow-lift transition hover:bg-primary-700">
-                <span class="text-gold-300">Simulasi Jurusan SPMB</span>
-                <span class="flex size-6 sm:size-7 items-center justify-center rounded-full bg-gold-400 text-[#1F1A17] font-bold">
-                    <x-icon name="sparkles" class="size-3 sm:size-3.5" />
-                </span>
-            </button>
 
             {{-- Prayer Times Modal Trigger --}}
             <button type="button"

@@ -133,7 +133,7 @@
     @endif
 
     {{-- WYSIWYG Visual Editor Wrapper --}}
-    <div class="rich-editor-wrapper rounded-2xl border border-slate-300 bg-white overflow-hidden shadow-sm focus-within:border-primary-600 focus-within:ring-2 focus-within:ring-primary-600/20 transition"
+    <div class="rich-editor-wrapper rounded-2xl border border-slate-300 bg-white overflow-x-auto shadow-sm focus-within:border-primary-600 focus-within:ring-2 focus-within:ring-primary-600/20 transition"
          :class="isHtmlMode ? 'hidden' : 'block'">
         <div id="{{ $editorId }}-container"
              style="min-height: {{ $minHeight }};"
@@ -153,9 +153,7 @@
     {{-- Single Dedicated Hidden Textarea for Standard Form Submit --}}
     <textarea id="{{ $textareaId }}"
               name="{{ $name }}"
-              class="hidden"
-              tabindex="-1"
-              aria-hidden="true"
+              class="sr-only"
               x-model="content"
               @if($required) required @endif></textarea>
 
@@ -184,6 +182,8 @@
         border-bottom: 1px solid #e2e8f0 !important;
         background-color: #f8fafc !important;
         padding: 10px 14px !important;
+        overflow-x: auto !important;
+        white-space: nowrap !important;
         border-top-left-radius: 1rem !important;
         border-top-right-radius: 1rem !important;
         font-family: inherit !important;
