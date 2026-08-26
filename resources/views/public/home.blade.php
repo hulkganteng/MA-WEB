@@ -220,7 +220,7 @@
                                   description="MA Ma’arif NU Assa’adah Bungah memadukan keunggulan akademik sains terapan, hafalan Qur'an, pembiasaan akhlak mulia, dan kecakapan digital masa depan." />
 
                 <div class="grid gap-4 sm:grid-cols-2 pt-2">
-                    <div class="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-5 transition hover:border-primary-500/40 hover:bg-primary-50/50 hover:shadow-soft">
+                    <div data-tilt class="tilt-card rounded-2xl border border-slate-200/80 bg-slate-50/70 p-5 transition hover:border-primary-500/40 hover:bg-primary-50/50 hover:shadow-soft">
                         <div class="flex size-10 items-center justify-center rounded-xl bg-primary-100 text-primary-800">
                             <x-icon name="heart" class="size-5" />
                         </div>
@@ -228,7 +228,7 @@
                         <p class="mt-1 text-xs leading-relaxed text-slate-600">Keteladanan adab thalabul 'ilmi, sholat dhuha dan dhuhur berjamaah, serta kepatuhan santun kepada guru dan orang tua.</p>
                     </div>
 
-                    <div class="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-5 transition hover:border-primary-500/40 hover:bg-primary-50/50 hover:shadow-soft">
+                    <div data-tilt class="tilt-card rounded-2xl border border-slate-200/80 bg-slate-50/70 p-5 transition hover:border-primary-500/40 hover:bg-primary-50/50 hover:shadow-soft">
                         <div class="flex size-10 items-center justify-center rounded-xl bg-gold-100 text-gold-800">
                             <x-icon name="sparkles" class="size-5" />
                         </div>
@@ -236,7 +236,7 @@
                         <p class="mt-1 text-xs leading-relaxed text-slate-600">Penguasaan teknologi digital, robotika, coding, public speaking 3 bahasa, dan jiwa kepemimpinan organisasi.</p>
                     </div>
 
-                    <div class="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-5 transition hover:border-primary-500/40 hover:bg-primary-50/50 hover:shadow-soft">
+                    <div data-tilt class="tilt-card rounded-2xl border border-slate-200/80 bg-slate-50/70 p-5 transition hover:border-primary-500/40 hover:bg-primary-50/50 hover:shadow-soft">
                         <div class="flex size-10 items-center justify-center rounded-xl bg-blue-100 text-blue-800">
                             <x-icon name="brain" class="size-5" />
                         </div>
@@ -244,7 +244,7 @@
                         <p class="mt-1 text-xs leading-relaxed text-slate-600">Budaya literasi sains, riset MYRES, bimbingan olimpiade sains (KSM), dan tembus seleksi PTN favorit dan beasiswa Timur Tengah.</p>
                     </div>
 
-                    <div class="rounded-2xl border border-slate-200/80 bg-slate-50/70 p-5 transition hover:border-primary-500/40 hover:bg-primary-50/50 hover:shadow-soft">
+                    <div data-tilt class="tilt-card rounded-2xl border border-slate-200/80 bg-slate-50/70 p-5 transition hover:border-primary-500/40 hover:bg-primary-50/50 hover:shadow-soft">
                         <div class="flex size-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800">
                             <x-icon name="book-open" class="size-5" />
                         </div>
@@ -271,7 +271,7 @@
         <div class="pointer-events-none absolute inset-0 bg-islamic-stars opacity-40"></div>
         <div class="container-app relative grid items-center gap-10 lg:grid-cols-12">
             <div class="lg:col-span-4">
-                <div class="relative mx-auto max-w-sm overflow-hidden rounded-3xl border border-gold-400/30 bg-primary-950 shadow-lift p-2">
+                <div data-tilt class="tilt-card relative mx-auto max-w-sm overflow-hidden rounded-3xl border border-gold-400/30 bg-primary-950 shadow-lift p-2">
                     @if(setting('principal.photo'))
                         <img src="{{ asset('storage/'.setting('principal.photo')) }}"
                              alt="{{ setting('principal.name') }}"
@@ -330,7 +330,7 @@
 
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach ($programs as $program)
-                        <div class="interactive-card group flex flex-col justify-between p-6">
+                        <div class="interactive-card spotlight-card group flex flex-col justify-between p-6">
                             <div>
                                 <div class="flex size-12 items-center justify-center rounded-2xl bg-primary-100 text-primary-700 transition duration-300 group-hover:bg-primary-600 group-hover:text-white group-hover:scale-105">
                                     <x-icon name="graduation-cap" class="size-6" />
@@ -472,7 +472,7 @@
 
                 <div class="grid gap-6 md:grid-cols-3">
                     @foreach($achievements as $achievement)
-                        <article class="interactive-card flex flex-col justify-between p-6">
+                        <article data-tilt class="tilt-card interactive-card spotlight-card flex flex-col justify-between p-6">
                             <div>
                                 <div class="flex items-center justify-between gap-2">
                                     <span class="rounded-full bg-gold-100 px-3 py-1 text-xs font-bold text-gold-900 ring-1 ring-gold-500/20">

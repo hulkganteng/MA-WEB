@@ -365,6 +365,16 @@
                 </span>
             </button>
 
+            {{-- Mars & Murottal Audio Player Trigger --}}
+            <button type="button"
+                    @click="$store.audioPlayer.isOpen = !$store.audioPlayer.isOpen; expanded = false"
+                    class="group flex items-center gap-2.5 rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold text-slate-800 shadow-soft transition hover:border-primary-500 hover:text-primary-700">
+                <span>Mars & Tilawah Santri</span>
+                <span class="flex size-7 items-center justify-center rounded-full bg-gold-50 text-gold-700">
+                    <x-icon name="music" class="size-3.5" />
+                </span>
+            </button>
+
             {{-- Accessibility Font Toggle --}}
             <button type="button"
                     @click="$store.accessibility.toggleFontSize()"
@@ -421,9 +431,63 @@
                 </span>
                 <x-icon name="plus" class="size-6 transition-transform duration-300" x-show="expanded" />
                 <x-icon name="sparkles" class="size-6 transition-transform duration-300" x-show="!expanded" />
+    </aside>
+
+    {{-- Docked Islamic Audio Player (Bottom Left) --}}
+    <div x-show="$store.audioPlayer.isOpen"
+         x-transition:enter="transition ease-out duration-300"
+         x-transition:enter-start="opacity-0 -translate-x-6 scale-95"
+         x-transition:enter-end="opacity-100 translate-x-0 scale-100"
+         x-transition:leave="transition ease-in duration-200"
+         x-transition:leave-start="opacity-100 translate-x-0 scale-100"
+         x-transition:leave-end="opacity-0 -translate-x-6 scale-95"
+         class="fixed bottom-6 left-6 z-40 w-80 sm:w-96 rounded-3xl border border-gold-400/30 bg-slate-950/95 p-4 text-white shadow-2xl backdrop-blur-xl"
+         x-cloak>
+        <div class="flex items-center justify-between border-b border-white/10 pb-3">
+            <div class="flex items-center gap-2.5">
+                <span class="flex size-8 items-center justify-center rounded-xl bg-gold-500/20 text-gold-400">
+                    <x-icon name="radio" class="size-4" />
+                </span>
+                <div class="min-w-0">
+                    <h4 class="text-xs font-bold text-white leading-none truncate" x-text="$store.audioPlayer.currentTrack.title"></h4>
+                    <p class="text-[10px] text-slate-400 mt-0.5 truncate" x-text="$store.audioPlayer.currentTrack.subtitle"></p>
+                </div>
+            </div>
+            <button type="button" @click="$store.audioPlayer.isOpen = false"
+                    class="flex size-6 items-center justify-center rounded-full text-slate-400 hover:text-white transition">
+                <x-icon name="x" class="size-4" />
             </button>
         </div>
-    </aside>
+
+        <div class="mt-3 flex items-center justify-between gap-3">
+            {{-- Equalizer Visualizer --}}
+            <div class="flex items-end gap-1 h-5 px-1">
+                <span class="equalizer-bar bg-emerald-400" :style="$store.audioPlayer.isPlaying ? '' : 'animation: none; height: 4px'"></span>
+                <span class="equalizer-bar bg-gold-400" :style="$store.audioPlayer.isPlaying ? '' : 'animation: none; height: 4px'"></span>
+                <span class="equalizer-bar bg-emerald-300" :style="$store.audioPlayer.isPlaying ? '' : 'animation: none; height: 4px'"></span>
+                <span class="equalizer-bar bg-gold-300" :style="$store.audioPlayer.isPlaying ? '' : 'animation: none; height: 4px'"></span>
+            </div>
+
+            {{-- Playback Controls --}}
+            <div class="flex items-center gap-2">
+                <button type="button" @click="$store.audioPlayer.prevTrack()" class="p-1 text-slate-300 hover:text-white transition" title="Sebelumnya">
+                    <x-icon name="skip-back" class="size-4" />
+                </button>
+                <button type="button" @click="$store.audioPlayer.togglePlay()"
+                        class="flex size-8 items-center justify-center rounded-full bg-gold-500 text-slate-950 font-bold hover:bg-gold-400 transition"
+                        :title="$store.audioPlayer.isPlaying ? 'Jeda' : 'Putar'">
+                    <x-icon name="pause" class="size-4" x-show="$store.audioPlayer.isPlaying" />
+                    <x-icon name="play" class="size-4 ml-0.5" x-show="!$store.audioPlayer.isPlaying" />
+                </button>
+                <button type="button" @click="$store.audioPlayer.nextTrack()" class="p-1 text-slate-300 hover:text-white transition" title="Berikutnya">
+                    <x-icon name="skip-forward" class="size-4" />
+                </button>
+            </div>
+
+            <span class="rounded-full bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-300 border border-emerald-500/30 shrink-0"
+                  x-text="$store.audioPlayer.currentTrack.category"></span>
+        </div>
+    </div>
 
     @if (session('flash'))
         <x-toast type="{{ session('flash.type', 'success') }}" message="{{ session('flash.message') }}" />

@@ -138,7 +138,7 @@ function getHijriDate(date = new Date()) {
     return `${dayName}, ${hd} ${hMonthName} ${hy} H`;
 }
 
-export function initIslamicHub(Alpine, createIcons, icons) {
+export function initIslamicHub(Alpine, createIcons, icons, confetti) {
     // 1. Prayer Store
     Alpine.store('prayer', {
         times: calculatePrayerTimes(),
@@ -314,6 +314,16 @@ export function initIslamicHub(Alpine, createIcons, icons) {
             }
             this.result = this.programDetails[maxProg];
             if (createIcons && icons) setTimeout(() => createIcons({ icons }), 50);
+
+            // Celebration Particle Physics (Overpowered interaction)
+            if (typeof confetti === 'function' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                confetti({
+                    particleCount: 90,
+                    spread: 75,
+                    origin: { y: 0.6 },
+                    colors: ['#10b981', '#f59e0b', '#059669', '#d4af37', '#ffffff']
+                });
+            }
         },
 
         reset() {
@@ -448,4 +458,67 @@ export function initIslamicHub(Alpine, createIcons, icons) {
             }
         }
     });
+
+    // Overpowered Interaction 1: Dynamic Spotlight Border Cursor Tracker (Linear/Vercel Style)
+    if (typeof window !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.addEventListener('mousemove', (e) => {
+            const cards = document.querySelectorAll('.spotlight-card, .interactive-card');
+            cards.forEach((card) => {
+                const rect = card.getBoundingClientRect();
+                if (
+                    e.clientX >= rect.left - 40 &&
+                    e.clientX <= rect.right + 40 &&
+                    e.clientY >= rect.top - 40 &&
+                    e.clientY <= rect.bottom + 40
+                ) {
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                }
+            });
+        }, { passive: true });
+
+        // Overpowered Interaction 2: Naturalistic 3D Tilt Cards (Tim Quirino Style)
+        document.addEventListener('mouseover', (e) => {
+            const tiltTarget = e.target.closest('[data-tilt]');
+            if (!tiltTarget || tiltTarget._hasTiltListener) return;
+            tiltTarget._hasTiltListener = true;
+
+            tiltTarget.addEventListener('mousemove', (evt) => {
+                const rect = tiltTarget.getBoundingClientRect();
+                const x = evt.clientX - rect.left - rect.width / 2;
+                const y = evt.clientY - rect.top - rect.height / 2;
+                const rotX = -(y / (rect.height / 2)) * 6;
+                const rotY = (x / (rect.width / 2)) * 6;
+                tiltTarget.style.transform = `perspective(800px) rotateX(${rotX.toFixed(2)}deg) rotateY(${rotY.toFixed(2)}deg) scale3d(1.02, 1.02, 1.02)`;
+            }, { passive: true });
+
+            tiltTarget.addEventListener('mouseleave', () => {
+                tiltTarget.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)';
+            });
+        });
+
+        // Overpowered Interaction 3: Staggered Scroll Reveal (Tellet Style)
+        if ('IntersectionObserver' in window) {
+            const revealObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('reveal-active');
+                        revealObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.12 });
+
+            const observeReveals = () => {
+                document.querySelectorAll('.reveal-init:not(.reveal-active)').forEach((el) => {
+                    revealObserver.observe(el);
+                });
+            };
+
+            observeReveals();
+            window.addEventListener('load', observeReveals);
+        }
+    }
 }
+
