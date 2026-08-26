@@ -43,11 +43,11 @@
     }
 
     .btn-primary {
-        @apply btn bg-primary-600 text-white shadow-soft hover:bg-primary-700;
+        @apply btn bg-primary-600 text-white shadow-soft hover:bg-primary-800 focus-visible:ring-primary-600;
     }
 
     .btn-gold {
-        @apply btn bg-gold-500 text-gold-950 shadow-soft hover:bg-gold-400;
+        @apply btn bg-gold-400 text-primary-950 font-semibold shadow-soft hover:bg-gold-300 focus-visible:ring-gold-400;
     }
 
     .btn-outline {
@@ -120,4 +120,19 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.3);
+    }
 }
+

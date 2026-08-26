@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AchievementController;
+use App\Http\Controllers\Admin\AlbumController;
+
 use App\Http\Controllers\Admin\AlumniController;
 use App\Http\Controllers\Admin\AnnouncementController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EventController;
+use App\Http\Controllers\Admin\HeroSlideController;
 use App\Http\Controllers\Admin\OrganizationMemberController;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Admin\PostController;
@@ -13,12 +16,24 @@ use App\Http\Controllers\Admin\PrincipalProfileController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TeacherController;
+use App\Http\Controllers\Admin\VideoController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
     Route::get('/akun', [AccountController::class, 'edit'])->name('account.edit');
     Route::put('/akun', [AccountController::class, 'update'])->name('account.update');
+
+    Route::middleware('permission:pages.view|settings.manage')->group(function () {
+        Route::get('/hero-slider', [HeroSlideController::class, 'index'])->name('hero-slides.index');
+        Route::get('/hero-slider/tambah', [HeroSlideController::class, 'create'])->name('hero-slides.create');
+        Route::post('/hero-slider', [HeroSlideController::class, 'store'])->name('hero-slides.store');
+        Route::get('/hero-slider/{heroSlide}/edit', [HeroSlideController::class, 'edit'])->name('hero-slides.edit');
+        Route::put('/hero-slider/{heroSlide}', [HeroSlideController::class, 'update'])->name('hero-slides.update');
+        Route::delete('/hero-slider/{heroSlide}', [HeroSlideController::class, 'destroy'])->name('hero-slides.destroy');
+    });
+
 
     Route::middleware('permission:posts.view|articles.view')->group(function () {
         Route::get('/konten', [PostController::class, 'index'])->name('posts.index');
@@ -86,6 +101,26 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
         Route::put('/prestasi/{achievement}', [AchievementController::class, 'update'])->middleware('permission:achievements.update')->name('achievements.update');
         Route::delete('/prestasi/{achievement}', [AchievementController::class, 'destroy'])->middleware('permission:achievements.delete')->name('achievements.destroy');
     });
+
+    Route::middleware('permission:gallery.view')->group(function () {
+        Route::get('/galeri/foto', [AlbumController::class, 'index'])->name('gallery.albums.index');
+        Route::get('/galeri/foto/tambah', [AlbumController::class, 'create'])->middleware('permission:gallery.create')->name('gallery.albums.create');
+        Route::post('/galeri/foto', [AlbumController::class, 'store'])->middleware('permission:gallery.create')->name('gallery.albums.store');
+        Route::get('/galeri/foto/{album}/edit', [AlbumController::class, 'edit'])->middleware('permission:gallery.update')->name('gallery.albums.edit');
+        Route::put('/galeri/foto/{album}', [AlbumController::class, 'update'])->middleware('permission:gallery.update')->name('gallery.albums.update');
+        Route::delete('/galeri/foto/{album}', [AlbumController::class, 'destroy'])->middleware('permission:gallery.delete')->name('gallery.albums.destroy');
+        Route::delete('/galeri/foto/item/{photo}', [AlbumController::class, 'destroyPhoto'])->middleware('permission:gallery.update')->name('gallery.photos.destroy');
+    });
+
+    Route::middleware('permission:videos.view')->group(function () {
+        Route::get('/galeri/video', [VideoController::class, 'index'])->name('gallery.videos.index');
+        Route::get('/galeri/video/tambah', [VideoController::class, 'create'])->middleware('permission:videos.create')->name('gallery.videos.create');
+        Route::post('/galeri/video', [VideoController::class, 'store'])->middleware('permission:videos.create')->name('gallery.videos.store');
+        Route::get('/galeri/video/{video}/edit', [VideoController::class, 'edit'])->middleware('permission:videos.update')->name('gallery.videos.edit');
+        Route::put('/galeri/video/{video}', [VideoController::class, 'update'])->middleware('permission:videos.update')->name('gallery.videos.update');
+        Route::delete('/galeri/video/{video}', [VideoController::class, 'destroy'])->middleware('permission:videos.delete')->name('gallery.videos.destroy');
+    });
+
 
     Route::middleware('permission:alumni.view')->group(function () {
         Route::get('/alumni', [AlumniController::class, 'index'])->name('alumni.index');

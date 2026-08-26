@@ -4,21 +4,29 @@ namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
 use App\Models\Achievement;
+use App\Models\Album;
+use App\Models\Alumni;
 use App\Models\Announcement;
 use App\Models\Event;
 use App\Models\Extracurricular;
 use App\Models\FeaturedProgram;
-use App\Models\Album;
-use App\Models\Alumni;
+use App\Models\HeroSlide;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Teacher;
+use Illuminate\Support\Facades\Schema;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        $heroSlides = Schema::hasTable('hero_slides')
+            ? HeroSlide::published()->orderBy('order')->latest('id')->get()
+            : collect();
+
         return view('public.home', [
+            'heroSlides' => $heroSlides,
+
             'featuredPost' => Post::published()->ofType('berita')->where('is_featured', true)->latest('published_at')->first(),
             'posts' => Post::published()->ofType('berita')->with('category')->latest('published_at')->limit(6)->get(),
             'announcements' => Announcement::published()->active()->latest('is_important')->latest('publish_date')->limit(4)->get(),
@@ -33,3 +41,4 @@ class HomeController extends Controller
         ]);
     }
 }
+

@@ -30,4 +30,16 @@ class Album extends Model
     {
         return $query->where('status', 'published');
     }
+
+    public function getCoverUrlAttribute(): ?string
+    {
+        if (! $this->cover) {
+            return null;
+        }
+
+        return str_starts_with($this->cover, 'http://') || str_starts_with($this->cover, 'https://')
+            ? $this->cover
+            : asset('storage/'.$this->cover);
+    }
 }
+

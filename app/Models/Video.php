@@ -35,7 +35,7 @@ class Video extends Model
         return $this->url;
     }
 
-    private function extractYouTubeId(): ?string
+    public function extractYouTubeId(): ?string
     {
         if (preg_match('/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/', $this->url, $m)) {
             return $m[1];
@@ -46,7 +46,9 @@ class Video extends Model
     public function getThumbnailAttribute(?string $value): ?string
     {
         if ($value) {
-            return $value;
+            return str_starts_with($value, 'http://') || str_starts_with($value, 'https://')
+                ? $value
+                : asset('storage/'.$value);
         }
         if ($this->provider === 'youtube') {
             $id = $this->extractYouTubeId();
@@ -55,3 +57,4 @@ class Video extends Model
         return null;
     }
 }
+
