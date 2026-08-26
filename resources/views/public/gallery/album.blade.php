@@ -1,1 +1,54 @@
-<x-layouts.app :title="$album->name" :description="$album->description"><div x-data="{ lightbox: null }"><x-page-header eyebrow="Galeri foto" :title="$album->name" :description="$album->description" /><section class="bg-white py-14 sm:py-20"><div class="container-app">@if($album->photos->isNotEmpty())<ul role="list" class="columns-1 gap-4 sm:columns-2 lg:columns-3">@foreach($album->photos as $photo)<li class="mb-4 break-inside-avoid"><button type="button" class="group relative w-full overflow-hidden rounded-[min(2vw,1rem)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary-600" @click="lightbox = @js($photo->url)"><img src="{{ $photo->url }}" alt="{{ $photo->caption ?: $album->name }}" loading="lazy" class="w-full object-cover outline outline-1 -outline-offset-1 outline-black/5"><span class="absolute inset-0 flex items-end bg-primary-950/0 p-4 text-left opacity-0 group-hover:bg-primary-950/50 group-hover:opacity-100">@if($photo->caption)<span class="font-medium text-white">{{ $photo->caption }}</span>@endif</span></button></li>@endforeach</ul><div x-show="lightbox" x-cloak @keydown.escape.window="lightbox = null" class="fixed inset-0 z-[70] flex items-center justify-center bg-primary-950/90 p-4" role="dialog" aria-modal="true"><button type="button" @click="lightbox = null" aria-label="Tutup foto" class="absolute right-5 top-5 flex size-12 items-center justify-center rounded-full bg-white text-primary-950"><x-icon name="x" class="size-6" /></button><img :src="lightbox" alt="" class="max-h-[90vh] max-w-full rounded-[min(2vw,1rem)] object-contain"></div>@else<x-empty-state icon="image" title="Album ini belum memiliki foto" />@endif</div></section></div></x-layouts.app>
+<x-layouts.app :title="$album->name" :description="$album->description">
+    <div x-data="{ lightbox: null, caption: '' }">
+        <x-page-header eyebrow="Album Dokumentasi"
+                       :title="$album->name"
+                       :description="$album->description ?: 'Dokumentasi kegiatan keluarga besar MA Ma\'arif NU Assa\'adah.'" />
+
+        <section class="bg-slate-50/60 py-14 sm:py-20">
+            <div class="container-app space-y-8">
+                <a href="{{ route('gallery.photos') }}" class="inline-flex items-center gap-2 text-xs font-bold text-primary-700 hover:text-primary-800">
+                    <x-icon name="arrow-left" class="size-4" />
+                    <span>Kembali ke Semua Album</span>
+                </a>
+
+                @if($album->photos->isNotEmpty())
+                    <div class="columns-1 gap-4 sm:columns-2 lg:columns-3 space-y-4">
+                        @foreach($album->photos as $photo)
+                            <div class="break-inside-avoid">
+                                <button type="button"
+                                        class="group relative w-full overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-1.5 shadow-soft transition hover:shadow-lift focus:outline-none"
+                                        @click="lightbox = @js($photo->url); caption = @js($photo->caption ?: $album->name)">
+                                    <div class="overflow-hidden rounded-xl bg-slate-900">
+                                        <img src="{{ $photo->url }}" alt="{{ $photo->caption ?: $album->name }}" loading="lazy"
+                                             class="w-full object-cover transition duration-500 group-hover:scale-105">
+                                    </div>
+                                    <div class="absolute inset-x-3 bottom-3 flex items-center justify-between rounded-xl bg-slate-950/80 p-2.5 text-xs text-white backdrop-blur opacity-0 transition group-hover:opacity-100">
+                                        <span class="truncate font-medium">{{ $photo->caption ?: 'Lihat Foto' }}</span>
+                                        <x-icon name="maximize-2" class="size-3.5 shrink-0 text-gold-400" />
+                                    </div>
+                                </button>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    {{-- Lightbox Modal --}}
+                    <div x-show="lightbox" x-cloak
+                         @keydown.escape.window="lightbox = null"
+                         class="fixed inset-0 z-[70] flex flex-col items-center justify-center bg-slate-950/95 p-4 sm:p-8 backdrop-blur-sm"
+                         role="dialog" aria-modal="true">
+                        <button type="button" @click="lightbox = null" aria-label="Tutup foto"
+                                class="absolute right-5 top-5 flex size-11 items-center justify-center rounded-full bg-white/10 text-white hover:bg-white/20 transition">
+                            <x-icon name="x" class="size-6" />
+                        </button>
+                        <div class="relative max-h-[85vh] max-w-5xl overflow-hidden rounded-2xl">
+                            <img :src="lightbox" alt="" class="max-h-[80vh] max-w-full rounded-2xl object-contain">
+                            <p x-text="caption" class="mt-3 text-center text-xs text-slate-300"></p>
+                        </div>
+                    </div>
+                @else
+                    <x-empty-state icon="image" title="Album ini belum memiliki foto" description="Foto-foto kegiatan akan segera ditambahkan." />
+                @endif
+            </div>
+        </section>
+    </div>
+</x-layouts.app>
