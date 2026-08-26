@@ -1,0 +1,4 @@
+<x-layouts.app :title="$title" :description="$description">
+    <x-page-header :title="$title" :description="$description" />
+    <section class="py-14 sm:py-20"><div class="container-app"><div class="max-w-3xl rounded-2xl bg-white p-8 ring-1 ring-slate-900/10"><div class="flex size-12 items-center justify-center rounded-xl bg-primary-50 text-primary-700"><x-icon :name="$icon ?? 'school'" class="size-6" /></div><h2 class="mt-6 text-2xl font-semibold tracking-tight text-slate-950">Konten sedang disiapkan</h2><p class="mt-3 text-pretty text-base text-slate-600">Halaman ini sudah tersambung ke navigasi dan akan diisi melalui tahap CMS berikutnya.</p><a href="{{ route('home') }}" class="mt-7 inline-flex items-center gap-2 font-medium text-primary-700"><x-icon name="arrow-left" class="size-4" /> Kembali ke beranda</a></div></div></section>
+</x-layouts.app>

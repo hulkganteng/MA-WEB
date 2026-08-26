@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Redirect extends Model
+{
+    protected $fillable = ['source_url', 'destination_url', 'status_code', 'is_active', 'hits'];
+
+    protected function casts(): array
+    {
+        return ['is_active' => 'boolean'];
+    }
+}
