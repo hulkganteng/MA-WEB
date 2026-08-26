@@ -163,15 +163,28 @@
                                     <div class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-2 shadow-lift backdrop-blur-xl">
                                         @foreach ($item->children as $child)
                                             @php
+                                                $isSpmbCalc = ($child->url === '#spmb-simulasi' || str_contains($child->name, 'Simulasi'));
                                                 $childUrl = $child->url ? (str_starts_with($child->url, 'http') ? $child->url : url($child->url)) : '#';
                                                 $isChildActive = $child->url && request()->is(ltrim($child->url, '/') . '*');
                                             @endphp
-                                            <a href="{{ $childUrl }}"
-                                               target="{{ $child->target ?? '_self' }}"
-                                               class="group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm transition {{ $isChildActive ? 'bg-primary-50 text-primary-900 font-bold' : 'text-slate-700 hover:bg-primary-50 hover:text-primary-900 font-medium' }}">
-                                                <span>{{ $child->name }}</span>
-                                                <x-icon name="arrow-right" class="size-3 text-slate-300 opacity-0 transition group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:text-primary-600" />
-                                            </a>
+                                            @if ($isSpmbCalc)
+                                                <button type="button"
+                                                        @click="$store.spmbCalc.open(); open = false"
+                                                        class="group flex w-full items-center justify-between rounded-xl px-3.5 py-2.5 text-sm text-gold-700 hover:bg-gold-50 hover:text-gold-900 font-semibold cursor-pointer transition">
+                                                    <span class="flex items-center gap-2">
+                                                        <x-icon name="sparkles" class="size-4 text-gold-500" />
+                                                        <span>{{ $child->name }}</span>
+                                                    </span>
+                                                    <span class="rounded-md bg-gold-100 px-1.5 py-0.5 text-[10px] font-bold text-gold-800 uppercase">Interaktif</span>
+                                                </button>
+                                            @else
+                                                <a href="{{ $childUrl }}"
+                                                   target="{{ $child->target ?? '_self' }}"
+                                                   class="group flex items-center justify-between rounded-xl px-3.5 py-2.5 text-sm transition {{ $isChildActive ? 'bg-primary-50 text-primary-900 font-bold' : 'text-slate-700 hover:bg-primary-50 hover:text-primary-900 font-medium' }}">
+                                                    <span>{{ $child->name }}</span>
+                                                    <x-icon name="arrow-right" class="size-3 text-slate-300 opacity-0 transition group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:text-primary-600" />
+                                                </a>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>
@@ -181,7 +194,7 @@
                 </ul>
             </div>
 
-            {{-- Right Actions: Command Search & Quick CTA --}}
+            {{-- Right Actions: Command Search & Mobile Hamburger --}}
             <div class="flex items-center gap-2.5">
                 {{-- Quick Command Search Trigger --}}
                 <button type="button"
@@ -193,14 +206,6 @@
                     <kbd class="hidden md:inline-flex items-center gap-0.5 rounded bg-white px-1.5 py-0.5 font-mono text-[10px] text-slate-400 border border-slate-200">
                         <span>Ctrl</span><span>K</span>
                     </kbd>
-                </button>
-
-                {{-- Interactive SPMB Simulator Trigger --}}
-                <button type="button"
-                        @click="$store.spmbCalc.open()"
-                        class="hidden sm:inline-flex btn-gold !py-2 !px-4 text-xs font-bold shadow-soft hover:shadow-lift cursor-pointer">
-                    <x-icon name="sparkles" class="size-3.5" />
-                    <span>Simulasi SPMB</span>
                 </button>
 
                 {{-- Mobile Menu Hamburger --}}
@@ -254,14 +259,27 @@
                                     <div x-show="expanded" x-transition class="ml-4 mt-1 space-y-1 border-l-2 border-primary-100 pl-3">
                                         @foreach ($item->children as $child)
                                             @php
+                                                $isSpmbCalc = ($child->url === '#spmb-simulasi' || str_contains($child->name, 'Simulasi'));
                                                 $childUrl = $child->url ? (str_starts_with($child->url, 'http') ? $child->url : url($child->url)) : '#';
                                             @endphp
-                                            <a href="{{ $childUrl }}"
-                                               target="{{ $child->target ?? '_self' }}"
-                                               @click="mobileOpen = false"
-                                               class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-primary-50 hover:text-primary-700">
-                                                {{ $child->name }}
-                                            </a>
+                                            @if ($isSpmbCalc)
+                                                <button type="button"
+                                                        @click="$store.spmbCalc.open(); mobileOpen = false"
+                                                        class="flex w-full items-center justify-between rounded-lg px-3 py-2 text-sm font-semibold text-gold-700 hover:bg-gold-50 cursor-pointer">
+                                                    <span class="flex items-center gap-2">
+                                                        <x-icon name="sparkles" class="size-3.5 text-gold-500" />
+                                                        <span>{{ $child->name }}</span>
+                                                    </span>
+                                                    <span class="rounded bg-gold-100 px-1.5 py-0.5 text-[10px] font-bold text-gold-800">SPMB</span>
+                                                </button>
+                                            @else
+                                                <a href="{{ $childUrl }}"
+                                                   target="{{ $child->target ?? '_self' }}"
+                                                   @click="mobileOpen = false"
+                                                   class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-600 hover:bg-primary-50 hover:text-primary-700">
+                                                    {{ $child->name }}
+                                                </a>
+                                            @endif
                                         @endforeach
                                     </div>
                                 </div>

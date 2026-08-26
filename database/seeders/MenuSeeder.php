@@ -25,6 +25,7 @@ class MenuSeeder extends Seeder
             ['name' => 'Akademik', 'url' => null, 'order' => 3, 'children' => [
                 ['name' => 'Program Pendidikan', 'url' => '/program'],
                 ['name' => 'Program Unggulan', 'url' => '/program/unggulan'],
+                ['name' => 'Simulasi Peminatan SPMB', 'url' => '#spmb-simulasi'],
                 ['name' => 'Kurikulum', 'url' => '/akademik/kurikulum'],
                 ['name' => 'Kalender Akademik', 'url' => '/akademik/kalender'],
                 ['name' => 'Prestasi', 'url' => '/prestasi'],
