@@ -49,6 +49,18 @@ Slug tertentu digunakan oleh halaman profil:
 
 Gunakan status **Published** agar halaman dapat dibuka pengunjung.
 
+## Mengelola guru dan tenaga kependidikan
+
+Menu **Guru & Tendik** mengelola direktori sumber daya manusia yang tampil di website publik.
+
+1. Pilih **Tambah data**.
+2. Tentukan jenis Guru atau Tenaga Kependidikan.
+3. Isi nama, jabatan, mata pelajaran bila relevan, pendidikan terakhir, foto, dan urutan tampil.
+4. Aktifkan **Status aktif** dan **Tampilkan di direktori publik** agar data muncul di website.
+5. Pilih **Simpan data**.
+
+Daftar dapat dicari dan difilter berdasarkan jenis serta status. Data yang dihapus masuk ke filter **Sampah** dan dapat dipulihkan. CMS tidak meminta alamat, nomor pribadi, atau data sensitif lainnya.
+
 ## Mengubah pengaturan website
 
 Menu **Pengaturan website** mengubah identitas dan konten global secara langsung.
@@ -74,4 +86,4 @@ CMS mencatat login, logout, pembuatan, pembaruan, penghapusan, perubahan akun, d
 
 ## Cakupan saat ini
 
-CMS operasional saat ini mencakup Dashboard, Berita, Artikel, Profil Madrasah, Halaman, Pengaturan Website, dan Akun Saya. CRUD untuk Pengumuman, Agenda, Prestasi, Akademik, GTK, Galeri, Alumni, Download, Menu, Pengguna, Role, Redirect, serta Media Library tetap berada pada tahap berikutnya.
+CMS operasional saat ini mencakup Dashboard, Berita, Artikel, Profil Madrasah, Guru & Tendik, Halaman, Pengaturan Website, dan Akun Saya. CRUD untuk Pengumuman, Agenda, Prestasi, Akademik lainnya, Galeri, Alumni, Download, Menu, Pengguna, Role, Redirect, serta Media Library tetap berada pada tahap berikutnya.

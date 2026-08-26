@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\OrganizationMember;
 use App\Models\Post;
+use App\Models\Teacher;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
@@ -51,8 +52,54 @@ class CmsIntegrationTest extends TestCase
         $this->get(route('admin.profile.pages.edit', 'tentang'))->assertOk()->assertSee('Tentang Madrasah');
         $this->get(route('admin.profile.principal.edit'))->assertOk()->assertSee('Sambutan kepala madrasah');
         $this->get(route('admin.profile.structure.index'))->assertOk()->assertSee('Struktur organisasi');
+        $this->get(route('admin.teachers.index'))->assertOk()->assertSee('Kelola guru dan tenaga kependidikan');
+        $this->get(route('admin.teachers.create'))->assertOk()->assertSee('Tambah guru atau tendik');
         $this->get(route('admin.settings.edit'))->assertOk()->assertSee('Pengaturan website');
         $this->get(route('admin.account.edit'))->assertOk()->assertSee('Akun saya');
+    }
+
+    public function test_admin_can_create_and_update_teacher_used_by_public_directory(): void
+    {
+        $admin = User::where('email', 'admin@ma-assaadah.sch.id')->firstOrFail();
+
+        $this->actingAs($admin)->post(route('admin.teachers.store'), [
+            'name' => 'Guru dari CMS',
+            'type' => 'guru',
+            'position' => 'Wali Kelas',
+            'subject' => 'Matematika',
+            'education' => 'S1 Pendidikan Matematika',
+            'order' => 2,
+            'is_active' => 1,
+            'is_public' => 1,
+        ])->assertRedirect(route('admin.teachers.index', ['type' => 'guru']));
+
+        $teacher = Teacher::where('name', 'Guru dari CMS')->firstOrFail();
+        $this->get(route('guru.index'))->assertOk()->assertSee('Guru dari CMS')->assertSee('Matematika');
+
+        $this->put(route('admin.teachers.update', $teacher), [
+            'name' => 'Guru dari CMS',
+            'type' => 'guru',
+            'position' => 'Wali Kelas',
+            'subject' => 'Matematika',
+            'education' => 'S1 Pendidikan Matematika',
+            'order' => 2,
+            'is_active' => 1,
+        ])->assertRedirect(route('admin.teachers.index', ['type' => 'guru']));
+
+        $this->get(route('guru.index'))->assertOk()->assertDontSee('Guru dari CMS');
+    }
+
+    public function test_deleted_teacher_can_be_restored_from_trash(): void
+    {
+        $admin = User::where('email', 'admin@ma-assaadah.sch.id')->firstOrFail();
+        $teacher = Teacher::where('type', 'tendik')->firstOrFail();
+
+        $this->actingAs($admin)->delete(route('admin.teachers.destroy', $teacher))->assertRedirect();
+        $this->assertSoftDeleted($teacher);
+        $this->get(route('admin.teachers.index', ['status' => 'trash']))->assertOk()->assertSee($teacher->name);
+
+        $this->post(route('admin.teachers.restore', $teacher->id))->assertRedirect(route('admin.teachers.index', ['status' => 'trash']));
+        $this->assertNotSoftDeleted($teacher);
     }
 
     public function test_admin_can_update_profile_page_and_publish_it(): void

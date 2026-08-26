@@ -243,6 +243,7 @@ Last updated: 26 August 2026
 - [x] Admin login and authenticated dashboard overview
 - [x] Integrated CMS dashboard, RBAC middleware, Berita/Artikel CRUD, Page CRUD, website settings, account/password management, and activity logging
 - [x] Dedicated Profile CMS for about, history, vision/mission, principal speech, and organization structure
+- [x] Guru and Tendik CMS with public visibility controls, image upload, ordering, soft delete, and restore
 - [x] Profile, program, teacher, facility, gallery, alumni, and download presentation pages
 - [x] Global search grouped across posts, announcements, events, achievements, teachers, pages, documents, and extracurriculars
 - [ ] Admin CMS CRUD modules and authorization policies

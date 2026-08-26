@@ -17,7 +17,7 @@ Master prompt menetapkan 13 fase. Phase 2 sekarang memiliki halaman publik nyata
 | 0 — Audit website lama | Parsial | Analisis konten, URL, privasi, dan risiko awal tersedia di `PLAN.md` | Audit source, hosting, malware, akun, DNS, dan credential membutuhkan akses website lama |
 | 1 — Fondasi | Parsial | Laravel, schema, model, seeder, login, RBAC middleware, settings, layout, design system, dan penggantian kata sandi akun | Reset password via email, session timeout, dan pengelolaan pengguna belum tersedia |
 | 2 — Website publik inti | Selesai | Homepage, profil, sambutan, struktur, GTK, fasilitas, program, kurikulum, kalender, ekstrakurikuler, organisasi, dan kontak | Konten resmi dan foto masih perlu dimasukkan melalui CMS |
-| 3 — Content CMS | Parsial | Dashboard admin, CRUD Berita/Artikel/Halaman, serta CMS Profil (tentang, sejarah, visi-misi, sambutan, dan struktur) sudah terintegrasi dengan website publik | CRUD Pengumuman, Agenda, Prestasi, kategori, preview, sorting, dan bulk action belum tersedia |
+| 3 — Content CMS | Parsial | Dashboard admin, CRUD Berita/Artikel/Halaman, CMS Profil, serta Guru & Tendik sudah terintegrasi dengan website publik | CRUD Pengumuman, Agenda, Prestasi, kategori, preview, sorting, dan bulk action belum tersedia |
 | 4 — Media | Parsial | Galeri album, foto, lightbox, dan video eksternal tersedia | Media Library, upload admin, kompresi, thumbnail, WebP, metadata, dan reuse media belum tersedia |
 | 5 — Alumni | Parsial | Direktori publik, jejak alumni, dan registrasi pending tersedia | Moderasi admin, upload foto, dan Turnstile belum tersedia |
 | 6 — Document Center | Parsial | Daftar, filter kategori, penghitungan, dan delivery file tersedia | CRUD admin dan upload tervalidasi belum tersedia |
@@ -40,7 +40,7 @@ Tabel ini menunjukkan cakupan fitur yang dapat diakses pengunjung.
 | Agenda | Selesai | Listing, detail, tanggal, waktu, lokasi, kategori, dan agenda mendatang tersedia |
 | Prestasi | Selesai | Listing dan filter tahun, kategori, serta tingkat tersedia |
 | Profil | Selesai | Tentang, sejarah, visi-misi, sambutan, dan struktur tersedia dengan fallback konten kosong serta CMS khusus yang terhubung langsung |
-| GTK | Selesai | Guru dan tenaga kependidikan dipisahkan; hanya field publik yang ditampilkan |
+| GTK | Selesai | Guru dan tenaga kependidikan dipisahkan; CMS mendukung input, edit, filter, status publik, foto, urutan, sampah, dan pemulihan |
 | Program akademik | Selesai | Program pendidikan, program unggulan, kurikulum, dan kalender akademik tersedia |
 | Kesiswaan | Selesai | Ekstrakurikuler, detail kegiatan, dan organisasi siswa tersedia |
 | Fasilitas | Selesai | Grid fasilitas dinamis dan empty state tersedia |

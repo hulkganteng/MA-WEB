@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\PrincipalProfileController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\SettingController;
+use App\Http\Controllers\Admin\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name('admin.')->group(function () {
@@ -43,6 +44,16 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
         Route::post('/profil/struktur', [OrganizationMemberController::class, 'store'])->name('profile.structure.store');
         Route::put('/profil/struktur/{organizationMember}', [OrganizationMemberController::class, 'update'])->name('profile.structure.update');
         Route::delete('/profil/struktur/{organizationMember}', [OrganizationMemberController::class, 'destroy'])->name('profile.structure.destroy');
+    });
+
+    Route::middleware('permission:teachers.view')->group(function () {
+        Route::get('/guru-tendik', [TeacherController::class, 'index'])->name('teachers.index');
+        Route::get('/guru-tendik/tambah', [TeacherController::class, 'create'])->middleware('permission:teachers.create')->name('teachers.create');
+        Route::post('/guru-tendik', [TeacherController::class, 'store'])->middleware('permission:teachers.create')->name('teachers.store');
+        Route::get('/guru-tendik/{teacher}/edit', [TeacherController::class, 'edit'])->middleware('permission:teachers.update')->name('teachers.edit');
+        Route::put('/guru-tendik/{teacher}', [TeacherController::class, 'update'])->middleware('permission:teachers.update')->name('teachers.update');
+        Route::delete('/guru-tendik/{teacher}', [TeacherController::class, 'destroy'])->middleware('permission:teachers.delete')->name('teachers.destroy');
+        Route::post('/guru-tendik/{teacher}/pulihkan', [TeacherController::class, 'restore'])->middleware('permission:teachers.delete')->name('teachers.restore');
     });
 
     Route::get('/pengaturan', [SettingController::class, 'edit'])->middleware('permission:settings.manage')->name('settings.edit');

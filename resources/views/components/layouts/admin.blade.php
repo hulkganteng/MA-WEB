@@ -11,7 +11,10 @@
             ['admin.posts.index','file-text','Artikel','articles.view',['type'=>'artikel']],
             ['admin.pages.index','files','Halaman','pages.view',[]],
         ],
-        'Profil' => [['admin.profile.index','school','Profil Madrasah',['pages.view','structure.manage','settings.manage'],[]]],
+        'Profil' => [
+            ['admin.profile.index','school','Profil Madrasah',['pages.view','structure.manage','settings.manage'],[]],
+            ['admin.teachers.index','users','Guru & Tendik','teachers.view',[]],
+        ],
         'Sistem' => [['admin.settings.edit','settings','Pengaturan website','settings.manage',[]]],
     ];
 @endphp
