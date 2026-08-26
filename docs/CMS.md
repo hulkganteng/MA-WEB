@@ -23,6 +23,17 @@ Menu **Berita** dan **Artikel** menyediakan alur publikasi lengkap.
 
 CMS membersihkan HTML sebelum menyimpannya. Upload cover menerima JPG, PNG, atau WebP hingga 3 MB.
 
+## Ketentuan upload gambar
+
+Upload gambar CMS menggunakan public storage Laravel. Jalankan `php artisan storage:link` satu kali setelah instalasi atau deployment agar gambar dapat diakses dari website.
+
+- Format gambar: JPG, PNG, atau WebP.
+- Cover, foto profil, dan foto personel: maksimal 3 MB.
+- Logo: maksimal 2 MB.
+- Favicon: maksimal 512 KB.
+
+Pastikan folder `storage/app/public` dapat ditulis oleh proses PHP pada server production.
+
 ## Mengelola profil madrasah
 
 Menu **Profil Madrasah** menyediakan akses langsung ke:

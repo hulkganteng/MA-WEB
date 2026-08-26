@@ -40,7 +40,7 @@ class PostController extends Controller
         $this->authorizeType($request, $data['type'], 'create');
         $tags = $data['tags'] ?? '';
         unset($data['tags']);
-        $data['slug'] = $this->uniqueSlug($data['slug'] ?: $data['title']);
+        $data['slug'] = $this->uniqueSlug(($data['slug'] ?? '') ?: $data['title']);
         $data['author_id'] = $request->user()->id;
         $data['body'] = clean($data['body']);
         $data['cover'] = $request->file('cover')?->store('posts', 'public');
@@ -55,6 +55,7 @@ class PostController extends Controller
     public function edit(Request $request, Post $post)
     {
         $this->authorizeType($request, $post->type, 'update');
+
         return view('admin.posts.form', ['post' => $post->load('tags'), 'type' => $post->type, 'categories' => PostCategory::where('is_active', true)->orderBy('name')->get()]);
     }
 
@@ -65,13 +66,17 @@ class PostController extends Controller
         abort_unless($data['type'] === $post->type, 422);
         $tags = $data['tags'] ?? '';
         unset($data['tags']);
-        $data['slug'] = $this->uniqueSlug($data['slug'] ?: $data['title'], $post);
+        $data['slug'] = $this->uniqueSlug(($data['slug'] ?? '') ?: $data['title'], $post);
         $data['body'] = clean($data['body']);
         foreach (['cover', 'og_image'] as $field) {
             if ($request->hasFile($field)) {
-                if ($post->{$field}) Storage::disk('public')->delete($post->{$field});
+                if ($post->{$field}) {
+                    Storage::disk('public')->delete($post->{$field});
+                }
                 $data[$field] = $request->file($field)->store($field === 'cover' ? 'posts' : 'posts/og', 'public');
-            } else unset($data[$field]);
+            } else {
+                unset($data[$field]);
+            }
         }
         $post->update($data);
         $this->syncTags($post, $tags);
@@ -85,20 +90,21 @@ class PostController extends Controller
         $this->authorizeType($request, $post->type, 'delete');
         activity_log('delete', $post, ['title' => $post->title]);
         $post->delete();
+
         return back()->with('flash', ['type' => 'success', 'message' => ucfirst($post->type).' dipindahkan ke sampah']);
     }
 
     private function validated(Request $request, ?Post $post = null): array
     {
         return $request->validate([
-            'type' => ['required', Rule::in(Post::TYPES)], 'title' => ['required','string','max:255'],
-            'slug' => ['nullable','string','max:255'], 'post_category_id' => ['nullable','exists:post_categories,id'],
-            'excerpt' => ['nullable','string','max:500'], 'body' => ['required','string'],
-            'status' => ['required', Rule::in(Post::STATUSES)], 'is_featured' => ['nullable','boolean'],
-            'published_at' => ['nullable','date'], 'tags' => ['nullable','string','max:500'],
-            'cover' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:3072'],
-            'og_image' => ['nullable','image','mimes:jpg,jpeg,png,webp','max:3072'],
-            'seo_title' => ['nullable','string','max:255'], 'seo_description' => ['nullable','string','max:320'], 'seo_keywords' => ['nullable','string','max:500'],
+            'type' => ['required', Rule::in(Post::TYPES)], 'title' => ['required', 'string', 'max:255'],
+            'slug' => ['nullable', 'string', 'max:255'], 'post_category_id' => ['nullable', 'exists:post_categories,id'],
+            'excerpt' => ['nullable', 'string', 'max:500'], 'body' => ['required', 'string'],
+            'status' => ['required', Rule::in(Post::STATUSES)], 'is_featured' => ['nullable', 'boolean'],
+            'published_at' => ['nullable', 'date'], 'tags' => ['nullable', 'string', 'max:500'],
+            'cover' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3072'],
+            'og_image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3072'],
+            'seo_title' => ['nullable', 'string', 'max:255'], 'seo_description' => ['nullable', 'string', 'max:320'], 'seo_keywords' => ['nullable', 'string', 'max:500'],
         ]) + ['is_featured' => false];
     }
 
@@ -109,8 +115,13 @@ class PostController extends Controller
 
     private function uniqueSlug(string $value, ?Post $ignore = null): string
     {
-        $base = Str::slug($value) ?: Str::random(8); $slug = $base; $i = 2;
-        while (Post::withTrashed()->where('slug', $slug)->when($ignore, fn ($q) => $q->whereKeyNot($ignore->id))->exists()) $slug = $base.'-'.$i++;
+        $base = Str::slug($value) ?: Str::random(8);
+        $slug = $base;
+        $i = 2;
+        while (Post::withTrashed()->where('slug', $slug)->when($ignore, fn ($q) => $q->whereKeyNot($ignore->id))->exists()) {
+            $slug = $base.'-'.$i++;
+        }
+
         return $slug;
     }
 
