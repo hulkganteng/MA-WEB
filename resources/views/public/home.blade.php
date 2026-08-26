@@ -782,7 +782,7 @@
                     <x-section-header eyebrow="Pengembangan Minat & Bakat"
                                       title="Ekstrakurikuler & Organisasi Santri"
                                       description="Wadah aktualisasi diri, kepemimpinan, olahraga, seni Islami, dan penguasaan teknologi." />
-                    <a href="{{ route('extracurricular.index') }}" class="btn-outline shrink-0 font-semibold">
+                    <a href="{{ route('extracurricular') }}" class="btn-outline shrink-0 font-semibold">
                         <span>Semua Ekstrakurikuler</span>
                         <x-icon name="arrow-right" class="size-4" />
                     </a>
