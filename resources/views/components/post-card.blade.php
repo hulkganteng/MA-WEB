@@ -1,30 +1,74 @@
 @props(['post'])
 
-<article class="group flex h-full flex-col overflow-hidden rounded-xl bg-white border border-slate-200 shadow-sm hover:border-primary-500 hover:shadow-md transition-all duration-200">
-    <a href="{{ route($post->type === 'artikel' ? 'artikel.show' : 'berita.show', $post) }}" class="relative aspect-[16/10] overflow-hidden bg-primary-950">
+<article class="interactive-card group flex h-full flex-col">
+    <a href="{{ route($post->type === 'artikel' ? 'artikel.show' : 'berita.show', $post) }}"
+       class="relative aspect-[16/10] overflow-hidden bg-slate-900">
         @if ($post->cover)
-            <img src="{{ asset('storage/'.$post->cover) }}" alt="{{ $post->title }}" class="size-full object-cover transition duration-300 group-hover:scale-105">
+            <img src="{{ asset('storage/'.$post->cover) }}" alt="{{ $post->title }}"
+                 class="size-full object-cover transition-transform duration-500 group-hover:scale-105">
         @else
-            <div class="flex size-full items-center justify-center bg-primary-950 p-6">
-                <x-icon name="newspaper" class="size-8 text-primary-400" />
+            <div class="flex size-full flex-col justify-between bg-gradient-to-br from-primary-900 via-primary-950 to-slate-950 p-6">
+                <div class="flex items-center justify-between">
+                    <span class="inline-flex size-10 items-center justify-center rounded-xl bg-gold-400/20 text-gold-300">
+                        <x-icon name="{{ $post->type === 'artikel' ? 'file-text' : 'newspaper' }}" class="size-5" />
+                    </span>
+                    <span class="font-arabic text-xl text-white/20 select-none">العلم نور</span>
+                </div>
+                <div class="space-y-1">
+                    <span class="text-xs font-semibold uppercase tracking-wider text-gold-300">MA Assa'adah Bungah</span>
+                    <p class="text-xs text-primary-200 line-clamp-1">{{ $post->title }}</p>
+                </div>
             </div>
         @endif
-    </a>
-    <div class="flex flex-1 flex-col gap-2.5 p-5">
-        <div class="flex items-center gap-2 text-xs text-slate-500">
+
+        {{-- Type / Category Floating Badge --}}
+        <div class="absolute top-3 left-3 flex items-center gap-1.5">
             @if ($post->category)
-                <span class="font-semibold text-primary-700">{{ $post->category->name }}</span>
-                <span aria-hidden="true">·</span>
+                <span class="rounded-full bg-primary-950/80 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur border border-white/10">
+                    {{ $post->category->name }}
+                </span>
             @endif
-            <time datetime="{{ optional($post->published_at)->toDateString() }}">{{ optional($post->published_at)->translatedFormat('d M Y') }}</time>
+            <span class="rounded-full {{ $post->type === 'artikel' ? 'bg-gold-500 text-gold-950' : 'bg-emerald-600 text-white' }} px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
+                {{ $post->type }}
+            </span>
         </div>
-        <h2 class="text-base sm:text-lg font-bold tracking-tight text-slate-900 group-hover:text-primary-700 transition-colors line-clamp-2">
-            <a href="{{ route($post->type === 'artikel' ? 'artikel.show' : 'berita.show', $post) }}">{{ $post->title }}</a>
-        </h2>
-        <p class="line-clamp-2 text-xs sm:text-sm text-slate-600 leading-relaxed">{{ $post->excerpt }}</p>
-        <div class="mt-auto pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-primary-700">
-            <span>Baca selengkapnya</span>
-            <x-icon name="arrow-right" class="size-3.5 transform transition group-hover:translate-x-1" />
+    </a>
+
+    <div class="flex flex-1 flex-col justify-between p-6">
+        <div class="space-y-3">
+            <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+                <x-icon name="calendar" class="size-3.5 text-primary-600" />
+                <time datetime="{{ optional($post->published_at)->toDateString() }}">
+                    {{ optional($post->published_at)->translatedFormat('d F Y') }}
+                </time>
+                <span>·</span>
+                <span class="flex items-center gap-1">
+                    <x-icon name="clock" class="size-3.5 text-slate-400" />
+                    <span>{{ max(1, ceil(str_word_count(strip_tags($post->content ?? $post->excerpt ?? '')) / 200)) }} mnt baca</span>
+                </span>
+            </div>
+
+            <h2 class="text-lg font-bold tracking-tight text-slate-950 group-hover:text-primary-700 transition line-clamp-2">
+                <a href="{{ route($post->type === 'artikel' ? 'artikel.show' : 'berita.show', $post) }}">
+                    {{ $post->title }}
+                </a>
+            </h2>
+
+            <p class="line-clamp-3 text-sm leading-relaxed text-slate-600">
+                {{ $post->excerpt }}
+            </p>
+        </div>
+
+        <div class="mt-5 pt-4 border-t border-slate-100 flex items-center justify-between">
+            <a href="{{ route($post->type === 'artikel' ? 'artikel.show' : 'berita.show', $post) }}"
+               class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-700 transition group-hover:text-primary-800">
+                <span>Baca Lengkap</span>
+                <x-icon name="arrow-right" class="size-3.5 transition group-hover:translate-x-1" />
+            </a>
+            <span class="text-[11px] font-medium text-slate-400">
+                {{ optional($post->author)->name ?? 'Humas MA Assa\'adah' }}
+            </span>
         </div>
     </div>
 </article>
+

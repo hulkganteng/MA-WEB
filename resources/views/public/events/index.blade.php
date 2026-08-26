@@ -1,16 +1,54 @@
-<x-layouts.app title="Agenda" description="Jadwal kegiatan akademik dan kesiswaan madrasah.">
-    <x-page-header title="Agenda madrasah" description="Jadwal kegiatan akademik, keagamaan, dan kesiswaan." />
-    <section class="py-14 sm:py-20"><div class="container-app max-w-5xl">
-        <div class="flex flex-col gap-4">
-            @forelse ($events as $event)
-                <article class="flex flex-col gap-5 rounded-2xl bg-white p-6 ring-1 ring-slate-900/10 sm:flex-row sm:items-center">
-                    <time class="flex size-16 shrink-0 flex-col items-center justify-center rounded-xl bg-primary-950 text-center text-white" datetime="{{ $event->start_date->toDateString() }}"><span class="text-2xl font-semibold tabular-nums">{{ $event->start_date->format('d') }}</span><span class="text-sm text-primary-200">{{ $event->start_date->translatedFormat('M') }}</span></time>
-                    <div class="min-w-0 flex-1"><p class="font-medium text-primary-700">{{ ucfirst($event->category) }}</p><h2 class="mt-1 text-xl font-semibold tracking-tight text-slate-950"><a href="{{ route('agenda.show', $event) }}" class="hover:text-primary-700">{{ $event->title }}</a></h2><p class="mt-2 flex items-center gap-2 text-base text-slate-500"><x-icon name="map-pin" class="size-4 shrink-0" />{{ $event->location ?: 'MA Ma’arif NU Assa’adah' }}</p></div>
-                    <a href="{{ route('agenda.show', $event) }}" class="inline-flex items-center gap-2 font-medium text-primary-700">Lihat detail <x-icon name="arrow-right" class="size-4" /></a>
-                </article>
-            @empty
-                <x-empty-state icon="calendar-days" title="Belum ada agenda" description="Agenda kegiatan akan tampil di halaman ini." />
-            @endforelse
-        </div><div class="mt-10">{{ $events->links() }}</div>
-    </div></section>
+<x-layouts.app title="Agenda & Kegiatan Madrasah" description="Jadwal kegiatan akademik, keagamaan, lomba, dan peringatan hari besar Islam di MA Ma'arif NU Assa'adah Bungah Gresik.">
+    <x-page-header eyebrow="Kalender Kegiatan"
+                   title="Agenda & Jadwal Kegiatan"
+                   description="Informasi waktu pelaksanaan agenda madrasah, peringatan hari besar Islam, seminar, dan perlombaan." />
+
+    <section class="bg-slate-50/60 py-14 sm:py-20">
+        <div class="container-app max-w-4xl space-y-6">
+            <div class="space-y-4">
+                @forelse ($events as $event)
+                    <article class="interactive-card group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 p-6">
+                        <div class="flex items-start gap-4 min-w-0">
+                            {{-- Date Block --}}
+                            <time class="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-800 to-primary-950 p-1.5 text-center text-white shadow-soft"
+                                  datetime="{{ $event->start_date->toDateString() }}">
+                                <span class="font-mono text-xl font-bold leading-none text-gold-300">{{ $event->start_date->format('d') }}</span>
+                                <span class="text-[10px] uppercase font-bold text-primary-200 mt-0.5">{{ $event->start_date->translatedFormat('M') }}</span>
+                            </time>
+
+                            <div class="space-y-1 min-w-0">
+                                <div class="flex items-center gap-2">
+                                    <span class="rounded-full bg-primary-100 px-2.5 py-0.5 text-[10px] font-bold text-primary-800 uppercase tracking-wider">
+                                        {{ ucfirst($event->category) }}
+                                    </span>
+                                </div>
+
+                                <h2 class="text-base font-bold tracking-tight text-slate-950 group-hover:text-primary-800 transition">
+                                    <a href="{{ route('agenda.show', $event) }}">
+                                        {{ $event->title }}
+                                    </a>
+                                </h2>
+
+                                <p class="flex items-center gap-1.5 text-xs text-slate-500">
+                                    <x-icon name="map-pin" class="size-3.5 text-slate-400 shrink-0" />
+                                    <span>{{ $event->location ?: 'Kompleks Pesantren Qomaruddin' }}</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <a href="{{ route('agenda.show', $event) }}"
+                           class="btn-outline shrink-0 !py-2 !px-4 text-xs font-semibold self-end sm:self-center">
+                            <span>Detail Agenda</span>
+                            <x-icon name="arrow-right" class="size-3.5" />
+                        </a>
+                    </article>
+                @empty
+                    <x-empty-state icon="calendar-days" title="Belum ada agenda" description="Agenda kegiatan madrasah akan tampil di halaman ini." />
+                @endforelse
+            </div>
+
+            <div class="mt-8">{{ $events->links() }}</div>
+        </div>
+    </section>
 </x-layouts.app>
+
