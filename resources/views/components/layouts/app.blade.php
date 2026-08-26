@@ -431,6 +431,8 @@
                 </span>
                 <x-icon name="plus" class="size-6 transition-transform duration-300" x-show="expanded" />
                 <x-icon name="sparkles" class="size-6 transition-transform duration-300" x-show="!expanded" />
+            </button>
+        </div>
     </aside>
 
     {{-- Docked Islamic Audio Player (Bottom Left) --}}
