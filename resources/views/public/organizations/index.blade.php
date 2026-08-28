@@ -22,7 +22,7 @@
                                         @endif
                                     </div>
                                     <div>
-                                        <span class="rounded-full bg-emerald-100 px-2.5 py-0.5 text-[10px] font-bold text-emerald-800 uppercase tracking-wider">
+                                        <span class="rounded-full bg-emerald-100 px-2.5 py-0.5 text-xs font-bold text-emerald-800 uppercase tracking-wider">
                                             Organisasi Resmi
                                         </span>
                                         <h2 class="mt-1 text-xl font-bold tracking-tight text-slate-950 group-hover:text-primary-800 transition">

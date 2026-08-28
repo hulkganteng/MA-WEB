@@ -22,12 +22,12 @@
                                     @endif
 
                                     <div class="absolute bottom-3 left-3 right-3 flex items-center justify-between">
-                                        <span class="rounded-full bg-slate-950/80 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur border border-white/10 flex items-center gap-1.5">
+                                        <span class="rounded-full bg-slate-950/80 px-2.5 py-1 text-xs font-bold text-white backdrop-blur border border-white/10 flex items-center gap-1.5">
                                             <x-icon name="camera" class="size-3" />
                                             <span>{{ $album->photos_count }} Foto</span>
                                         </span>
                                         @if($album->album_date)
-                                            <span class="rounded-full bg-slate-950/80 px-2.5 py-1 text-[10px] font-semibold text-slate-300 backdrop-blur border border-white/10">
+                                            <span class="rounded-full bg-slate-950/80 px-2.5 py-1 text-xs font-semibold text-slate-300 backdrop-blur border border-white/10">
                                                 {{ $album->album_date->translatedFormat('d M Y') }}
                                             </span>
                                         @endif

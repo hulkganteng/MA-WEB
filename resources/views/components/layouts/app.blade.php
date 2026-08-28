@@ -139,7 +139,7 @@
                         <span class="text-2xl font-bold tracking-tight text-white" x-text="$store.prayer.nextPrayerName"></span>
                         <span class="font-mono text-3xl font-extrabold text-gold-300" x-text="$store.prayer.countdownText"></span>
                     </div>
-                    <p class="mt-1 text-[11px] text-primary-100">Berdasarkan hisab akurat Kemenag RI untuk wilayah Bungah, Kab. Gresik (+2 menit ihtiyat)</p>
+                    <p class="mt-1 text-xs text-primary-100">Berdasarkan hisab akurat Kemenag RI untuk wilayah Bungah, Kab. Gresik (+2 menit ihtiyat)</p>
                 </div>
 
                 {{-- Prayer Schedule Grid --}}
@@ -307,7 +307,7 @@
                        placeholder="Ketik untuk mencari halaman, program, guru, dokumen..."
                        class="w-full bg-transparent text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none"
                        autocomplete="off">
-                <kbd class="hidden sm:inline-block rounded bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500 border border-slate-200">ESC</kbd>
+                <kbd class="hidden sm:inline-block rounded bg-slate-100 px-2 py-0.5 text-xs font-semibold text-slate-500 border border-slate-200">ESC</kbd>
             </div>
 
             <div class="max-h-80 overflow-y-auto p-2">
@@ -323,7 +323,7 @@
                             </span>
                             <span class="font-medium" x-text="item.title"></span>
                         </div>
-                        <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-500" x-text="item.category"></span>
+                        <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-500" x-text="item.category"></span>
                     </a>
                 </template>
                 <div x-show="$store.cmdPalette.filteredItems.length === 0" class="p-8 text-center text-sm text-slate-500">
@@ -334,7 +334,7 @@
             <div class="flex items-center justify-between border-t border-slate-100 bg-slate-50 px-5 py-3 text-xs text-slate-500">
                 <div class="flex items-center gap-2">
                     <span class="font-medium text-slate-700">Pintasan Cepat:</span>
-                    <span>Tekan <kbd class="rounded bg-white px-1.5 py-0.5 text-[10px] font-mono border">Ctrl</kbd> + <kbd class="rounded bg-white px-1.5 py-0.5 text-[10px] font-mono border">K</kbd></span>
+                    <span>Tekan <kbd class="rounded bg-white px-1.5 py-0.5 text-xs font-mono border">Ctrl</kbd> + <kbd class="rounded bg-white px-1.5 py-0.5 text-xs font-mono border">K</kbd></span>
                 </div>
                 <button type="button" @click="$store.spmbCalc.open(); $store.cmdPalette.close()" class="font-medium text-primary-700 hover:underline">
                     Simulasi Peminatan SPMB &rarr;
@@ -465,7 +465,7 @@
                 </span>
                 <div class="min-w-0">
                     <h4 class="text-xs font-bold text-white leading-none truncate" x-text="$store.audioPlayer.currentTrack.title"></h4>
-                    <p class="text-[10px] text-primary-100 mt-0.5 truncate" x-text="$store.audioPlayer.currentTrack.subtitle"></p>
+                    <p class="text-xs text-primary-100 mt-0.5 truncate" x-text="$store.audioPlayer.currentTrack.subtitle"></p>
                 </div>
             </div>
             <button type="button" @click="$store.audioPlayer.isOpen = false"
@@ -499,7 +499,7 @@
                 </button>
             </div>
 
-            <span class="rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-bold text-white shrink-0"
+            <span class="rounded-full bg-white/20 px-2 py-0.5 text-xs font-bold text-white shrink-0"
                   x-text="$store.audioPlayer.currentTrack.category"></span>
         </div>
     </div>

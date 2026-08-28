@@ -65,7 +65,7 @@
                                     <span>Pelajari Detail Jurusan</span>
                                     <x-icon name="arrow-right" class="size-3.5 transition group-hover:translate-x-1" />
                                 </a>
-                                <span class="text-[11px] font-semibold text-slate-400">Terakreditasi A</span>
+                                <span class="text-xs font-semibold text-slate-400">Terakreditasi A</span>
                             </div>
                         </article>
                     @endforeach

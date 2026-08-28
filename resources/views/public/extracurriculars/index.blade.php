@@ -22,7 +22,7 @@
                                     @endif
 
                                     <div class="absolute top-3 right-3">
-                                        <span class="rounded-full bg-slate-950/80 px-2.5 py-1 text-[10px] font-bold text-white backdrop-blur border border-white/10">
+                                        <span class="rounded-full bg-slate-950/80 px-2.5 py-1 text-xs font-bold text-white backdrop-blur border border-white/10">
                                             Aktif
                                         </span>
                                     </div>
@@ -55,7 +55,7 @@
                                     <x-icon name="arrow-right" class="size-3.5 transition group-hover:translate-x-1" />
                                 </a>
                                 @if($item->mentor)
-                                    <span class="text-[11px] text-slate-400 truncate max-w-[120px]">
+                                    <span class="text-xs text-slate-400 truncate max-w-[120px]">
                                         {{ $item->mentor }}
                                     </span>
                                 @endif

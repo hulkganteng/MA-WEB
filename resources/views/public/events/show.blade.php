@@ -19,7 +19,7 @@
                 {{-- Key Information Grid --}}
                 <div class="grid gap-4 sm:grid-cols-3">
                     <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Tanggal Pelaksanaan</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Tanggal Pelaksanaan</span>
                         <p class="mt-1 font-bold text-slate-900 text-sm flex items-center gap-2">
                             <x-icon name="calendar" class="size-4 text-primary-600" />
                             <span>{{ $event->start_date->translatedFormat('d F Y') }}</span>
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Waktu Acara</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Waktu Acara</span>
                         <p class="mt-1 font-bold text-slate-900 text-sm flex items-center gap-2">
                             <x-icon name="clock" class="size-4 text-gold-600" />
                             <span>{{ $event->start_time ? $event->start_time->format('H:i').' WIB' : 'Menyesuaikan' }}</span>
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="rounded-2xl border border-slate-100 bg-slate-50 p-4">
-                        <span class="text-[11px] font-bold uppercase tracking-wider text-slate-400">Lokasi / Tempat</span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Lokasi / Tempat</span>
                         <p class="mt-1 font-bold text-slate-900 text-sm flex items-center gap-2">
                             <x-icon name="map-pin" class="size-4 text-emerald-600" />
                             <span class="truncate">{{ $event->location ?: 'MA Ma\'arif NU Assa\'adah' }}</span>

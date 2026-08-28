@@ -129,7 +129,7 @@
                                 @default
                                     <x-icon name="{{ $socialIcon }}" class="size-4" />
                             @endswitch
-                            <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-2 max-w-[calc(100vw-2rem)] -translate-x-1/2 whitespace-nowrap rounded-md bg-[#1F1A17] px-2 py-1 text-[10px] font-semibold text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                            <span class="pointer-events-none absolute left-1/2 top-full z-20 mt-2 max-w-[calc(100vw-2rem)] -translate-x-1/2 whitespace-nowrap rounded-md bg-[#1F1A17] px-2 py-1 text-xs font-semibold text-white opacity-0 shadow-lg transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
                                 {{ $socialLabel }}
                             </span>
                         </a>

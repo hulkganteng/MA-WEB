@@ -25,11 +25,11 @@
         {{-- Type / Category Floating Badge --}}
         <div class="absolute top-3 right-3 flex max-w-[calc(100%-1.5rem)] items-center justify-end gap-1.5">
             @if ($post->category)
-                <span class="rounded-full bg-[#006437]/90 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur border border-white/20">
+                <span class="rounded-full bg-[#006437]/90 px-2.5 py-1 text-xs font-bold text-white backdrop-blur border border-white/20">
                     {{ $post->category->name }}
                 </span>
             @endif
-            <span class="rounded-full {{ $post->type === 'artikel' ? 'bg-gold-400 text-[#1F1A17]' : 'bg-primary-600 text-white' }} px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider shadow">
+            <span class="rounded-full {{ $post->type === 'artikel' ? 'bg-gold-400 text-[#1F1A17]' : 'bg-primary-600 text-white' }} px-2.5 py-0.5 text-xs font-bold uppercase tracking-wider shadow">
                 {{ $post->type }}
             </span>
         </div>
@@ -66,7 +66,7 @@
                 <span>Baca Lengkap</span>
                 <x-icon name="arrow-right" class="size-3.5 transition group-hover:translate-x-1" />
             </a>
-            <span class="text-[11px] font-medium text-slate-400">
+            <span class="text-xs font-medium text-slate-400">
                 {{ optional($post->author)->name ?? 'Humas MA Assa\'adah' }}
             </span>
         </div>

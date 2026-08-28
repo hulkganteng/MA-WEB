@@ -74,7 +74,7 @@
                                     @endif
 
                                     <div class="absolute top-3 right-3">
-                                        <span class="rounded-full bg-slate-950/80 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur border border-white/10">
+                                        <span class="rounded-full bg-slate-950/80 px-2.5 py-1 text-xs font-bold text-white backdrop-blur border border-white/10">
                                             Fasilitas
                                         </span>
                                     </div>
@@ -91,7 +91,7 @@
                             </div>
 
                             <div class="px-6 pb-6 pt-2 border-t border-slate-100 flex items-center justify-between">
-                                <span class="text-[11px] font-semibold text-emerald-700 flex items-center gap-1.5">
+                                <span class="text-xs font-semibold text-emerald-700 flex items-center gap-1.5">
                                     <span class="size-2 rounded-full bg-emerald-500 animate-pulse"></span>
                                     <span>Tersedia & Terawat</span>
                                 </span>

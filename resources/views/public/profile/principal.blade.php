@@ -23,7 +23,7 @@
 
                     <h3 class="mt-5 text-lg font-bold text-[#1F1A17]">{{ setting('principal.name', 'Mohammad Isma\'il Cholilur Rohman, M.Pd.') }}</h3>
                     <p class="text-xs font-bold text-primary-700">{{ setting('principal.position', 'Kepala MA Ma\'arif NU Assa\'adah') }}</p>
-                    <p class="mt-1 text-[11px] text-slate-500">Masa Khidmah 2023 - 2027</p>
+                    <p class="mt-1 text-xs text-slate-500">Masa Khidmah 2023 - 2027</p>
 
                     <div class="mt-5 pt-5 border-t border-slate-100 space-y-2 text-left text-xs text-slate-600">
                         <div class="flex items-center gap-2">

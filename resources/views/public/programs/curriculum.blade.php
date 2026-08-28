@@ -20,7 +20,7 @@
                     <div class="flex items-center gap-2 shrink-0">
                         <span class="rounded-2xl border border-white/20 bg-white/10 p-4 text-center">
                             <span class="block font-mono text-2xl font-bold text-gold-300">54</span>
-                            <span class="text-[10px] text-primary-100 uppercase">JP per Pekan</span>
+                            <span class="text-xs text-primary-100 uppercase">JP per Pekan</span>
                         </span>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                                 <span class="rounded-full bg-primary-50 px-3 py-0.5 text-xs font-bold text-primary-800">
                                     Tahun Ajaran {{ $curriculum->academic_year ?: setting('site.academic_year', '2026/2027') }}
                                 </span>
-                                <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-[11px] font-semibold text-slate-600">
+                                <span class="rounded-full bg-slate-100 px-2.5 py-0.5 text-xs font-semibold text-slate-600">
                                     SK Kemenag RI
                                 </span>
                             </div>

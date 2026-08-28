@@ -12,10 +12,11 @@ Website resmi **MA Ma'arif NU Assa'adah (MADAH)** yang modern, interaktif, cepat
 3. [Fitur Editor Teks HTML Admin](#-fitur-editor-teks-html-admin)
 4. [Persyaratan Sistem](#-persyaratan-sistem)
 5. [Panduan Instalasi & Menjalankan](#-panduan-instalasi--menjalankan)
-6. [Akun Administrator Default](#-akun-administrator-default)
-7. [Panduan Penggunaan Panel Admin](#-panduan-penggunaan-panel-admin)
-8. [Perintah Artisan yang Berguna](#-perintah-artisan-yang-berguna)
-9. [Struktur Direktori](#-struktur-direktori)
+6. [Panduan Deploy](#-panduan-deploy)
+7. [Akun Administrator Default](#-akun-administrator-default)
+8. [Panduan Penggunaan Panel Admin](#-panduan-penggunaan-panel-admin)
+9. [Perintah Artisan yang Berguna](#-perintah-artisan-yang-berguna)
+10. [Struktur Direktori](#-struktur-direktori)
 
 ---
 
@@ -199,6 +200,108 @@ Saat siap di-deploy ke server live / hosting:
 ```bash
 npm run build
 ```
+
+---
+
+## 🚢 Panduan Deploy
+
+Berikut langkah-langkah untuk men-deploy website ke server produksi.
+
+### 1. Siapkan Kode di Server
+```bash
+git clone https://github.com/username/MA-Assadah-WEB-New.git
+cd MA-Assadah-WEB-New
+
+# Install dependensi PHP (tanpa package development)
+composer install --no-dev --optimize-autoloader
+
+# Install dependensi frontend lalu build aset
+npm install
+npm run build
+```
+
+### 2. Konfigurasi Environment
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+Sesuaikan `.env` untuk mode produksi:
+```ini
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://domain-anda.com
+
+# Gunakan HTTPS
+APP_URL=https://domain-anda.com
+```
+
+> **PENTING:** Set `APP_DEBUG=false` agar error internal dan detail sensitif tidak bocor ke publik.
+
+### 3. Siapkan Database & Storage
+```bash
+# Atur koneksi database (MySQL/MariaDB) di .env terlebih dahulu
+php artisan migrate --force
+php artisan storage:link
+```
+
+Beri izin tulis pada direktori yang dibutuhkan:
+```bash
+chmod -R 775 storage bootstrap/cache
+```
+
+### 4. Optimasi Produksi
+```bash
+# Cache konfigurasi, route, dan view untuk performa maksimal
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+
+# Bersihkan cache jika ada perubahan nanti
+php artisan optimize:clear
+```
+
+### 5. Konfigurasi Web Server
+
+**Nginx** — arahkan `root` ke folder `public/`:
+```nginx
+server {
+    listen 80;
+    server_name domain-anda.com;
+
+    root /path/ke/MA-Assadah-WEB-New/public;
+    index index.php;
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+}
+```
+
+**Apache** — aktifkan `mod_rewrite`; `.htaccess` bawaan Laravel sudah siap untuk produksi.
+
+### 6. Jalankan Background Queue (Opsional)
+```bash
+php artisan queue:work
+```
+Gunakan **Supervisor** agar worker berjalan otomatis dan restart saat mati.
+
+### 7. HTTPS (SSL)
+Gunakan **Let's Encrypt** untuk HTTPS gratis, atau pasang sertifikat SSL dari penyedia hosting Anda. HTTPS diperlukan agar **HSTS** dan proteksi CSP bekerja optimal.
+
+### 8. Pasca-Deploy
+- Ubah password akun admin default melalui `/admin/akun`.
+- Hapus paket development dari autoload (`composer install --no-dev`) agar tidak terpapar.
+- Pantau `storage/logs/` untuk mendeteksi aktivitas mencurigakan atau upaya injeksi tautan judol.
 
 ---
 

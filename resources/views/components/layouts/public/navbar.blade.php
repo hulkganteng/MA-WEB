@@ -29,7 +29,7 @@
         x-effect="document.body.style.overflow = mobileOpen ? 'hidden' : ''">
 
     {{-- Top Utility Bar: Islamic Date & Live Prayer Times --}}
-    <div class="border-b border-[#00923F]/30 bg-[#006437] text-white text-[11px] py-1 px-4">
+    <div class="border-b border-[#00923F]/30 bg-[#006437] text-white text-xs py-1 px-4">
         <div class="container-app flex flex-wrap items-center justify-between gap-2">
             {{-- Left: Live Hijri Date & Masehi Date --}}
             <div class="flex items-center gap-2">
@@ -45,7 +45,7 @@
             <div class="flex items-center gap-2.5">
                 <button type="button"
                         @click="$store.prayer.openModal()"
-                        class="group flex items-center gap-1.5 rounded-full border border-gold-400/40 bg-gold-400/10 px-2 py-0.5 text-[11px] text-gold-200 transition hover:border-gold-400 hover:bg-gold-400/20 cursor-pointer"
+                        class="group flex items-center gap-1.5 rounded-full border border-gold-400/40 bg-gold-400/10 px-2 py-0.5 text-xs text-gold-200 transition hover:border-gold-400 hover:bg-gold-400/20 cursor-pointer"
                         title="Lihat Jadwal Sholat Lengkap">
                     <span class="relative flex size-1.5">
                         <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold-400 opacity-75"></span>
@@ -94,7 +94,7 @@
                     <span class="block text-sm sm:text-base font-extrabold tracking-tight text-[#1F1A17] group-hover:text-primary-700 transition leading-tight">
                         {{ $siteName }}
                     </span>
-                    <span class="hidden md:flex items-center gap-1.5 text-[11px] text-slate-500 leading-tight">
+                    <span class="hidden md:flex items-center gap-1.5 text-xs text-slate-500 leading-tight">
                         <span>YPP. Qomaruddin · Bungah</span>
                         <span class="rounded bg-gold-100 px-1 py-0.2 text-[9px] font-bold text-[#1F1A17] ring-1 ring-gold-400/40 uppercase">Akreditasi A</span>
                     </span>
@@ -260,7 +260,7 @@
                                                         <x-icon name="sparkles" class="size-3.5 text-gold-500" />
                                                         <span>{{ $child->name }}</span>
                                                     </span>
-                                                    <span class="rounded bg-gold-100 px-1.5 py-0.5 text-[10px] font-bold text-gold-800">SPMB</span>
+                                                    <span class="rounded bg-gold-100 px-1.5 py-0.5 text-xs font-bold text-gold-800">SPMB</span>
                                                 </button>
                                             @else
                                                 <a href="{{ $childUrl }}"

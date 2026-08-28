@@ -24,7 +24,7 @@
                                         </div>
                                     @endif
                                     <div class="absolute top-3 left-3">
-                                        <span class="rounded-full bg-gold-400 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-[#1F1A17] shadow">
+                                        <span class="rounded-full bg-gold-400 px-3 py-1 text-xs font-bold uppercase tracking-wider text-[#1F1A17] shadow">
                                             Spesialisasi
                                         </span>
                                     </div>
@@ -38,7 +38,7 @@
 
                                         @if($program->highlights)
                                             <div class="mt-4 pt-4 border-t border-slate-100">
-                                                <p class="text-[11px] font-bold uppercase tracking-wider text-primary-700 mb-2">Keunggulan Utama:</p>
+                                                <p class="text-xs font-bold uppercase tracking-wider text-primary-700 mb-2">Keunggulan Utama:</p>
                                                 <ul class="space-y-1.5 text-xs text-[#1F1A17]">
                                                     @foreach(preg_split('/\r\n|\r|\n/', $program->highlights) as $highlight)
                                                         @if(trim($highlight))

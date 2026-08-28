@@ -22,7 +22,7 @@
                                         </time>
                                     </span>
                                     @if ($announcement->is_important)
-                                        <span class="rounded-full bg-gold-100 px-2 py-0.5 text-[10px] font-bold text-gold-900 ring-1 ring-gold-500/30">
+                                        <span class="rounded-full bg-gold-100 px-2 py-0.5 text-xs font-bold text-gold-900 ring-1 ring-gold-500/30">
                                             Penting & Wajib
                                         </span>
                                     @endif

@@ -49,13 +49,13 @@
                         {{-- Date Badge Block --}}
                         <div class="flex size-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] p-2 text-center text-white shadow-soft">
                             <span class="font-mono text-xl font-extrabold leading-none text-gold-300">{{ $event->start_date->format('d') }}</span>
-                            <span class="text-[10px] uppercase font-bold text-primary-100 mt-0.5">{{ $event->start_date->translatedFormat('M Y') }}</span>
+                            <span class="text-xs uppercase font-bold text-primary-100 mt-0.5">{{ $event->start_date->translatedFormat('M Y') }}</span>
                         </div>
 
                         {{-- Event Info --}}
                         <div class="min-w-0 flex-1 space-y-1.5">
                             <div class="flex items-center gap-2">
-                                <span class="rounded-full bg-primary-50 px-2.5 py-0.5 text-[10px] font-bold text-primary-800 uppercase tracking-wider">
+                                <span class="rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-bold text-primary-800 uppercase tracking-wider">
                                     {{ ucfirst($event->category) }}
                                 </span>
                                 @if($event->end_date && !$event->end_date->equalTo($event->start_date))

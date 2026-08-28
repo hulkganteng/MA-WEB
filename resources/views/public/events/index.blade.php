@@ -13,12 +13,12 @@
                             <time class="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] p-1.5 text-center text-white shadow-soft"
                                   datetime="{{ $event->start_date->toDateString() }}">
                                 <span class="font-mono text-xl font-bold leading-none text-gold-300">{{ $event->start_date->format('d') }}</span>
-                                <span class="text-[10px] uppercase font-bold text-primary-100 mt-0.5">{{ $event->start_date->translatedFormat('M') }}</span>
+                                <span class="text-xs uppercase font-bold text-primary-100 mt-0.5">{{ $event->start_date->translatedFormat('M') }}</span>
                             </time>
 
                             <div class="space-y-1 min-w-0">
                                 <div class="flex items-center gap-2">
-                                    <span class="rounded-full bg-primary-50 px-2.5 py-0.5 text-[10px] font-bold text-primary-800 uppercase tracking-wider">
+                                    <span class="rounded-full bg-primary-50 px-2.5 py-0.5 text-xs font-bold text-primary-800 uppercase tracking-wider">
                                         {{ ucfirst($event->category) }}
                                     </span>
                                 </div>

@@ -72,11 +72,11 @@
                                         @else
                                             <div class="flex size-full flex-col items-center justify-center bg-gradient-to-br from-primary-900 to-slate-950 text-gold-300">
                                                 <x-icon name="user" class="size-12" />
-                                                <span class="mt-2 text-[10px] uppercase font-bold text-primary-200">{{ $type }}</span>
+                                                <span class="mt-2 text-xs uppercase font-bold text-primary-200">{{ $type }}</span>
                                             </div>
                                         @endif
                                         @if($teacher->subject)
-                                            <span class="absolute bottom-2 left-2 right-2 rounded-lg bg-slate-950/80 px-2 py-1 text-center text-[10px] font-bold text-white backdrop-blur truncate">
+                                            <span class="absolute bottom-2 left-2 right-2 rounded-lg bg-slate-950/80 px-2 py-1 text-center text-xs font-bold text-white backdrop-blur truncate">
                                                 {{ $teacher->subject }}
                                             </span>
                                         @endif
@@ -89,7 +89,7 @@
                                 </div>
 
                                 @if($teacher->education)
-                                    <div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-[11px] text-slate-400">
+                                    <div class="mt-3 pt-3 border-t border-slate-100 flex items-center gap-1.5 text-xs text-slate-400">
                                         <x-icon name="award" class="size-3 text-gold-500 shrink-0" />
                                         <span class="truncate">{{ $teacher->education }}</span>
                                     </div>

@@ -43,7 +43,7 @@
                                 </span>
                                 <div>
                                     <h4 class="text-xs font-bold text-slate-900">Lampiran Dokumen Resmi (PDF)</h4>
-                                    <p class="text-[11px] text-slate-500">Surat edaran asli bernomor & bertanda tangan pimpinan</p>
+                                    <p class="text-xs text-slate-500">Surat edaran asli bernomor & bertanda tangan pimpinan</p>
                                 </div>
                             </div>
                             <a href="{{ asset('storage/'.$announcement->attachment) }}" download

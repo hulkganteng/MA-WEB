@@ -394,3 +394,45 @@
         transition: none !important;
     }
 }
+
+/* === Organizational Chart (Bagan Struktur) === */
+.org-chart {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2.5rem 3rem;
+}
+.org-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 1.25rem 1.5rem;
+    background: #fff;
+    border: 1px solid rgba(2, 132, 199, 0.18);
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 30px -12px rgba(0, 100, 55, 0.25);
+    min-width: 150px;
+}
+.org-children {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2.5rem 3rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    position: relative;
+}
+.org-children::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 1rem;
+    background: #cbd5e1;
+    transform: translateX(-50%);
+}
+.org-children .org-node {
+    background: #f8fafc;
+}

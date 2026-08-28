@@ -33,7 +33,7 @@
                             <div class="space-y-1 min-w-0">
                                 <div class="flex flex-wrap items-center gap-2 text-xs text-slate-500">
                                     @if($download->category)
-                                        <span class="rounded-full bg-slate-100 px-2 py-0.5 text-[10px] font-bold text-slate-700 uppercase">
+                                        <span class="rounded-full bg-slate-100 px-2 py-0.5 text-xs font-bold text-slate-700 uppercase">
                                             {{ $download->category->name }}
                                         </span>
                                     @endif
@@ -53,7 +53,7 @@
                                     </p>
                                 @endif
 
-                                <div class="flex items-center gap-3 text-[11px] text-slate-400 pt-1">
+                                <div class="flex items-center gap-3 text-xs text-slate-400 pt-1">
                                     <span>Ukuran: {{ format_bytes($download->file_size) }}</span>
                                     <span>·</span>
                                     <span>Diunduh: {{ number_format($download->downloads) }} kali</span>
