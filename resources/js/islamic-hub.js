@@ -153,8 +153,19 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
         init() {
             this.updateSchedule();
             this.loadRemoteSchedule();
-            setInterval(() => this.updateSchedule(), 1000);
-            setInterval(() => this.loadRemoteSchedule(), 30 * 60 * 1000);
+            this._timer = setInterval(() => this.updateSchedule(), 1000);
+            this._remoteTimer = setInterval(() => this.loadRemoteSchedule(), 30 * 60 * 1000);
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    clearInterval(this._timer);
+                    clearInterval(this._remoteTimer);
+                } else if (!this._timer) {
+                    this._timer = setInterval(() => this.updateSchedule(), 1000);
+                    this._remoteTimer = setInterval(() => this.loadRemoteSchedule(), 30 * 60 * 1000);
+                    this.updateSchedule();
+                    this.loadRemoteSchedule();
+                }
+            });
         },
 
         async loadRemoteSchedule() {
@@ -508,22 +519,38 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
 
     // Overpowered Interaction 1: Dynamic Spotlight Border Cursor Tracker (Linear/Vercel Style)
     if (typeof window !== 'undefined' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        document.addEventListener('mousemove', (e) => {
+        let rafPending = false;
+        let lastX = -999;
+        let lastY = -999;
+        let curX = -999;
+        let curY = -999;
+        const applySpotlight = () => {
+            rafPending = false;
             const cards = document.querySelectorAll('.spotlight-card, .interactive-card');
-            cards.forEach((card) => {
+            for (let i = 0; i < cards.length; i++) {
+                const card = cards[i];
                 const rect = card.getBoundingClientRect();
                 if (
-                    e.clientX >= rect.left - 40 &&
-                    e.clientX <= rect.right + 40 &&
-                    e.clientY >= rect.top - 40 &&
-                    e.clientY <= rect.bottom + 40
+                    curX >= rect.left - 40 &&
+                    curX <= rect.right + 40 &&
+                    curY >= rect.top - 40 &&
+                    curY <= rect.bottom + 40
                 ) {
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
+                    const x = curX - rect.left;
+                    const y = curY - rect.top;
                     card.style.setProperty('--mouse-x', `${x}px`);
                     card.style.setProperty('--mouse-y', `${y}px`);
                 }
-            });
+            }
+        };
+        document.addEventListener('mousemove', (e) => {
+            if (rafPending || (e.clientX === lastX && e.clientY === lastY)) return;
+            lastX = e.clientX;
+            lastY = e.clientY;
+            curX = e.clientX;
+            curY = e.clientY;
+            rafPending = true;
+            requestAnimationFrame(applySpotlight);
         }, { passive: true });
 
         // Overpowered Interaction 2: Naturalistic 3D Tilt Cards (Tim Quirino Style)

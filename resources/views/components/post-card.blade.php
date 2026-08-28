@@ -5,6 +5,7 @@
        class="relative aspect-[16/10] overflow-hidden bg-slate-900">
         @if ($post->cover)
             <img src="{{ asset('storage/'.$post->cover) }}" alt="{{ $post->title }}"
+                 loading="lazy" decoding="async"
                  class="size-full object-cover transition-transform duration-500 group-hover:scale-105">
         @else
             <div class="flex size-full flex-col justify-between bg-gradient-to-br from-[#006437] via-[#007a34] to-[#00923F] p-6">

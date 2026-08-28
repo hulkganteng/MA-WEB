@@ -14,5 +14,19 @@
       }
     }
   },
-  "model": "nineinference/deepseek-v4-flash-0731`"
+  "model": "nineinference/deepseek-v4-flash-0731",
+  "compaction": {
+    "auto": true,
+    "prune": true
+  },
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "vendor/**",
+      "dist/**",
+      "build/**",
+      ".git/**",
+      "storage/logs/**"
+    ]
+  }
 }

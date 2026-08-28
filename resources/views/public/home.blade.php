@@ -43,6 +43,7 @@
                          class="absolute inset-0 z-0 overflow-hidden">
                         <img :src="slide.imageUrl"
                              :alt="slide.title"
+                             :fetchpriority="index === 0 ? 'high' : 'auto'"
                              class="size-full object-cover object-center">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#003d24] via-[#006437]/95 to-[#006437]/75 lg:bg-gradient-to-r lg:from-[#003d24] lg:via-[#006437]/90 lg:to-[#006437]/35"></div>
                     </div>
@@ -409,6 +410,7 @@
                 <div class="relative overflow-hidden rounded-3xl border border-slate-200 shadow-lift group aspect-[4/3] bg-[#006437]">
                     @if($aboutPage?->cover)
                         <img src="{{ asset('storage/'.$aboutPage->cover) }}" alt="Lingkungan MA Ma’arif NU Assa’adah"
+                             loading="lazy" decoding="async"
                              class="size-full object-cover transition-transform duration-700 group-hover:scale-105">
                     @else
                         <div class="flex size-full flex-col items-center justify-center bg-gradient-to-br from-[#006437] via-[#007a34] to-[#006437] p-8 text-center text-white">
@@ -489,6 +491,7 @@
                     @if(setting('principal.photo'))
                         <img src="{{ asset('storage/'.setting('principal.photo')) }}"
                              alt="{{ setting('principal.name') }}"
+                             loading="lazy" decoding="async"
                              class="aspect-[4/5] w-full rounded-2xl object-cover">
                     @else
                         <div class="flex aspect-[4/5] w-full flex-col items-center justify-center rounded-2xl bg-[#006437] text-gold-300">
@@ -818,6 +821,7 @@
                             <div class="relative aspect-square overflow-hidden rounded-2xl bg-[#004d2a]">
                                 @if($album->cover)
                                     <img src="{{ asset('storage/'.$album->cover) }}" alt="{{ $album->name }}"
+                                         loading="lazy" decoding="async"
                                          loading="lazy" class="size-full object-cover transition duration-500 group-hover:scale-105">
                                 @else
                                     <div class="flex size-full items-center justify-center bg-gradient-to-br from-[#006437] to-[#004d2a] text-gold-300">
