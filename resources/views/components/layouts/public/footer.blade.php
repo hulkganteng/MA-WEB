@@ -9,16 +9,16 @@
     $year = date('Y');
 @endphp
 
-<footer class="relative overflow-hidden bg-[#006437] text-white">
+<footer class="relative overflow-hidden bg-primary-800 text-white">
     {{-- Islamic Decorative Background Accents --}}
     <div class="pointer-events-none absolute inset-0 bg-islamic-stars opacity-30"></div>
     <div class="pointer-events-none absolute -top-40 -right-40 size-96 rounded-full bg-gold-400/10 blur-3xl"></div>
     <div class="pointer-events-none absolute -bottom-40 -left-40 size-96 rounded-full bg-primary-400/10 blur-3xl"></div>
 
     {{-- Top Bento Newsletter & SPMB Banner --}}
-    <div class="relative border-b border-white/15 bg-[#004d2a]/70 backdrop-blur-md">
+    <div class="relative border-b border-white/15 bg-primary-900/70 backdrop-blur-md">
         <div class="container-app py-10">
-            <div class="grid gap-6 rounded-3xl border border-white/20 bg-gradient-to-r from-[#006437] to-[#004d2a] p-6 sm:p-8 lg:grid-cols-12 lg:items-center shadow-lift">
+            <div class="grid gap-6 rounded-3xl border border-white/20 bg-gradient-to-r from-primary-800 to-primary-900 p-6 sm:p-8 lg:grid-cols-12 lg:items-center shadow-lift">
                 <div class="lg:col-span-7">
                     <div class="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-xs font-semibold text-gold-300">
                         <x-icon name="sparkles" class="size-3.5" />
@@ -35,7 +35,7 @@
                     <a href="https://lynk.id/spmb-madah"
                        target="_blank"
                        rel="noopener noreferrer"
-                       class="btn-primary !bg-[#00923F] hover:!bg-[#007a34] font-bold shadow-soft flex items-center gap-2">
+                       class="btn-primary !bg-primary-600 hover:!bg-primary-700 font-bold shadow-soft flex items-center gap-2">
                         <x-icon name="sparkles" class="size-4 text-gold-300" />
                         <span>Daftar SPMB Online</span>
                         <x-icon name="external-link" class="size-4 opacity-80" />
@@ -112,7 +112,7 @@
                             };
                         @endphp
                         <a href="{{ $link->url }}" target="_blank" rel="noopener" aria-label="{{ $socialLabel }}"
-                           class="group relative flex size-9 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition hover:scale-105 hover:border-gold-400 hover:bg-gold-400 hover:text-[#1F1A17] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#006437]">
+                           class="group relative flex size-9 items-center justify-center rounded-xl border border-white/20 bg-white/10 text-white transition hover:scale-105 hover:border-gold-400 hover:bg-gold-400 hover:text-[#1F1A17] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-primary-800">
                             @switch($platform)
                                 @case('youtube')
                                     <svg viewBox="0 0 24 24" aria-hidden="true" class="size-4 fill-current"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.376.505A3.016 3.016 0 0 0 .502 6.186C0 8.064 0 12 0 12s0 3.936.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.376-.505a3.016 3.016 0 0 0 2.122-2.136C24 15.936 24 12 24 12s0-3.936-.502-5.814ZM9.545 15.568V8.432L15.818 12l-6.273 3.568Z" /></svg>
@@ -202,7 +202,7 @@
     </div>
 
     {{-- Bottom Bar: Copyright & Pesantren Heritage Acknowledgement --}}
-    <div class="relative border-t border-white/15 bg-[#004d2a]">
+    <div class="relative border-t border-white/15 bg-primary-900">
         <div class="container-app flex flex-col items-center justify-between gap-3 py-6 text-center text-xs text-primary-100 md:flex-row md:text-left">
             <p class="max-w-full">&copy; {{ $year }} <strong>{{ $siteName }}</strong>. Terdaftar di Kemenag RI & LP Ma'arif NU. Hak cipta dilindungi.</p>
             <div class="flex w-full items-center justify-center gap-4 text-primary-100 md:w-auto">
@@ -214,4 +214,3 @@
         </div>
     </div>
 </footer>
-

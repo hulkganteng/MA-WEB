@@ -6,7 +6,7 @@
     <section class="bg-slate-50/60 py-14 sm:py-20">
         <div class="container-app max-w-5xl space-y-8">
             {{-- Curriculum Philosophy Banner --}}
-            <div class="rounded-3xl border border-white/20 bg-[#006437] p-6 sm:p-8 text-white shadow-lift">
+            <div class="rounded-3xl border border-white/20 bg-primary-800 p-6 sm:p-8 text-white shadow-lift">
                 <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
                     <div class="space-y-2">
                         <span class="rounded-full bg-gold-400 px-3 py-1 text-xs font-bold text-[#1F1A17]">

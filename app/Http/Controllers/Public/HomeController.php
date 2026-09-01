@@ -38,6 +38,8 @@ class HomeController extends Controller
             'alumni' => Alumni::public()->orderBy('order')->limit(3)->get(),
             'aboutPage' => Page::where('slug', 'tentang-madrasah')->where('status', 'published')->first(),
             'teacherCount' => Teacher::public()->where('type', 'guru')->count(),
+            'alumniCount' => Alumni::public()->count(),
+            'achievementCount' => Achievement::published()->count(),
         ]);
     }
 }

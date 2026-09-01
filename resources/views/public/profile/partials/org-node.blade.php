@@ -2,11 +2,11 @@
 
 <div class="flex flex-col items-center">
     <div class="org-node">
-        <div class="relative mx-auto size-16 overflow-hidden rounded-full border-2 border-gold-400/40 bg-[#006437] shadow-soft">
+        <div class="relative mx-auto size-16 overflow-hidden rounded-full border-2 border-gold-400/40 bg-primary-800 shadow-soft">
             @if($member->photo)
                 <img src="{{ asset('storage/'.$member->photo) }}" alt="{{ $member->name }}" class="size-full rounded-full object-cover">
             @else
-                <div class="flex size-full items-center justify-center rounded-full bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] text-gold-300 font-bold text-xl">
+                <div class="flex size-full items-center justify-center rounded-full bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-gold-300 font-bold text-xl">
                     {{ substr($member->name, 0, 1) }}
                 </div>
             @endif

@@ -54,7 +54,7 @@
                     {{-- Direct SPMB Online Registration Button --}}
                     <a href="https://lynk.id/spmb-madah"
                        target="_blank" rel="noopener noreferrer"
-                       class="flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-primary-600 via-primary-700 to-[#006437] px-5 py-3.5 text-xs font-bold text-white shadow-soft transition hover:scale-[1.02]">
+                       class="flex items-center justify-center gap-2.5 rounded-2xl bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 px-5 py-3.5 text-xs font-bold text-white shadow-soft transition hover:scale-[1.02]">
                         <x-icon name="sparkles" class="size-4 text-gold-300" />
                         <span>Pendaftaran SPMB Online (Lynk.id)</span>
                         <x-icon name="external-link" class="size-4 opacity-80" />
@@ -72,7 +72,7 @@
                 </div>
 
                 {{-- Foundation Legacy Badge --}}
-                <div class="rounded-3xl border border-primary-600/30 bg-[#006437] p-6 text-white text-xs space-y-2">
+                <div class="rounded-3xl border border-primary-600/30 bg-primary-800 p-6 text-white text-xs space-y-2">
                     <div class="flex items-center gap-2 text-gold-300 font-bold">
                         <x-icon name="landmark" class="size-4" />
                         <span>Kompleks Pondok Pesantren Qomaruddin</span>

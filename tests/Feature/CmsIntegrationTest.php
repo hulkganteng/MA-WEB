@@ -168,10 +168,23 @@ class CmsIntegrationTest extends TestCase
             'hero_title' => 'Judul dari pengaturan CMS', 'hero_subtitle' => 'Subjudul dari pengaturan CMS.',
             'principal_name' => 'Kepala Madrasah', 'principal_position' => 'Kepala', 'principal_speech' => 'Sambutan.',
             'seo_title' => 'SEO Madrasah', 'seo_description' => 'Deskripsi SEO madrasah untuk pengujian.', 'whatsapp_message' => 'Halo.',
+            'primary_color' => '#123456', 'accent_color' => '#FEDCBA', 'secondary_color' => '#336699',
         ]);
 
         $response->assertRedirect();
-        $this->get(route('home'))->assertOk()->assertSee('Judul dari pengaturan CMS');
+        $this->assertDatabaseHas('settings', ['key' => 'theme.primary', 'value' => '#123456']);
+        $this->get(route('home'))
+            ->assertOk()
+            ->assertSee('Judul dari pengaturan CMS')
+            ->assertSee('--color-primary-600: 18 52 86', false);
+    }
+
+    public function test_non_admin_cannot_manage_website_colors(): void
+    {
+        $editor = User::factory()->create();
+        $editor->assignRole('Humas / Editor');
+
+        $this->actingAs($editor)->get(route('admin.settings.edit'))->assertForbidden();
     }
 
     public function test_admin_can_change_own_password(): void

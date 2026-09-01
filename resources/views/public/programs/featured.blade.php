@@ -11,12 +11,12 @@
                         <article class="overflow-hidden rounded-3xl border border-slate-200/90 bg-white text-[#1F1A17] shadow-soft flex flex-col justify-between transition hover:border-primary-600">
                             <div class="grid sm:grid-cols-12">
                                 {{-- Visual Area (Span 5) --}}
-                                <div class="sm:col-span-5 relative min-h-56 overflow-hidden bg-[#006437]">
+                                <div class="sm:col-span-5 relative min-h-56 overflow-hidden bg-primary-800">
                                     @if($program->cover)
                                         <img src="{{ asset('storage/'.$program->cover) }}" alt="{{ $program->name }}"
                                              loading="lazy" class="size-full object-cover">
                                     @else
-                                        <div class="flex size-full flex-col items-center justify-center bg-gradient-to-br from-[#006437] via-[#007a34] to-[#00923F] p-6 text-center text-white">
+                                        <div class="flex size-full flex-col items-center justify-center bg-gradient-to-br from-primary-800 via-primary-700 to-primary-600 p-6 text-center text-white">
                                             <div class="flex size-14 items-center justify-center rounded-2xl bg-gold-400 text-[#1F1A17] font-bold">
                                                 <x-icon name="sparkles" class="size-7" />
                                             </div>

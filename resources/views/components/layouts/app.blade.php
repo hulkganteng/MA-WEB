@@ -55,7 +55,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <style>[x-cloak] { display: none !important; }</style>
+    <style>:root { {!! theme_palette_css() !!} } [x-cloak] { display: none !important; }</style>
 
     @php
         $orgSchema = json_encode([
@@ -109,7 +109,7 @@
          class="fixed inset-0 z-50 flex w-full items-start justify-center overflow-x-hidden overflow-y-auto overscroll-contain p-4 sm:items-center bg-slate-950/70 backdrop-blur-md"
          @keydown.escape.window="$store.prayer.closeModal()"
          x-cloak>
-        <div class="relative my-auto box-border max-h-[calc(100dvh-2rem)] w-full max-w-[min(32rem,calc(100vw-2rem))] overflow-x-hidden overflow-y-auto overscroll-contain rounded-3xl border border-white/20 bg-[#006437] text-white shadow-2xl"
+        <div class="relative my-auto box-border max-h-[calc(100dvh-2rem)] w-full max-w-[min(32rem,calc(100vw-2rem))] overflow-x-hidden overflow-y-auto overscroll-contain rounded-3xl border border-white/20 bg-primary-800 text-white shadow-2xl"
              @click.away="$store.prayer.closeModal()">
             <div class="absolute -right-16 -top-16 size-48 rounded-full bg-gold-400/20 blur-3xl"></div>
             <div class="absolute -left-16 -bottom-16 size-48 rounded-full bg-primary-500/20 blur-3xl"></div>
@@ -181,7 +181,7 @@
          x-cloak>
         <div class="relative my-auto max-h-[calc(100dvh-2rem)] w-full max-w-2xl overflow-y-auto overscroll-contain rounded-3xl border border-slate-200 bg-white text-[#1F1A17] shadow-2xl"
              @click.away="$store.spmbCalc.close()">
-            <div class="bg-[#006437] p-6 text-white sm:p-7">
+            <div class="bg-primary-800 p-6 text-white sm:p-7">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-3">
                         <div class="flex size-10 items-center justify-center rounded-xl bg-gold-400 text-[#1F1A17] font-bold">
@@ -247,7 +247,7 @@
                             <span class="rounded-full bg-gold-400 px-3 py-1 text-xs font-bold text-[#1F1A17]"
                                   x-text="$store.spmbCalc.result?.badge"></span>
                         </div>
-                        <h4 class="mt-3 text-2xl font-extrabold text-[#006437]" x-text="$store.spmbCalc.result?.title"></h4>
+                        <h4 class="mt-3 text-2xl font-extrabold text-primary-800" x-text="$store.spmbCalc.result?.title"></h4>
                         <p class="mt-2 text-sm leading-relaxed text-[#1F1A17]" x-text="$store.spmbCalc.result?.description"></p>
 
                         <div class="mt-5 border-t border-primary-200 pt-4">
@@ -361,7 +361,7 @@
                target="_blank"
                rel="noopener noreferrer"
                @click="expanded = false"
-               class="group flex items-center gap-2 rounded-full border border-gold-400/40 bg-gradient-to-r from-primary-600 via-primary-700 to-[#006437] px-3.5 py-2 text-xs font-bold text-white shadow-lift transition hover:scale-105">
+               class="group flex items-center gap-2 rounded-full border border-gold-400/40 bg-gradient-to-r from-primary-600 via-primary-700 to-primary-800 px-3.5 py-2 text-xs font-bold text-white shadow-lift transition hover:scale-105">
                 <span class="text-gold-300">Daftar SPMB Online</span>
                 <span class="flex size-6 sm:size-7 items-center justify-center rounded-full bg-gold-400 text-[#1F1A17] font-bold">
                     <x-icon name="external-link" class="size-3 sm:size-3.5" />
@@ -456,7 +456,7 @@
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100 translate-y-0 sm:translate-x-0 scale-100"
          x-transition:leave-end="opacity-0 -translate-y-4 sm:-translate-x-6 scale-95"
-         class="fixed bottom-20 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-auto z-40 w-auto sm:w-96 max-w-[calc(100vw-1.5rem)] rounded-3xl border border-primary-600/40 bg-[#006437] p-3.5 sm:p-4 text-white shadow-2xl backdrop-blur-xl"
+         class="fixed bottom-20 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-auto z-40 w-auto sm:w-96 max-w-[calc(100vw-1.5rem)] rounded-3xl border border-primary-600/40 bg-primary-800 p-3.5 sm:p-4 text-white shadow-2xl backdrop-blur-xl"
          x-cloak>
         <div class="flex items-center justify-between border-b border-white/15 pb-3">
             <div class="flex items-center gap-2.5">
@@ -511,4 +511,3 @@
     @stack('scripts')
 </body>
 </html>
-

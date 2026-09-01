@@ -10,7 +10,7 @@
                     <article class="interactive-card group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5 p-6 bg-white border border-slate-200/90">
                         <div class="flex items-start gap-4 min-w-0">
                             {{-- Date Block --}}
-                            <time class="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] p-1.5 text-center text-white shadow-soft"
+                            <time class="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-1.5 text-center text-white shadow-soft"
                                   datetime="{{ $event->start_date->toDateString() }}">
                                 <span class="font-mono text-xl font-bold leading-none text-gold-300">{{ $event->start_date->format('d') }}</span>
                                 <span class="text-xs uppercase font-bold text-primary-100 mt-0.5">{{ $event->start_date->translatedFormat('M') }}</span>
@@ -51,4 +51,3 @@
         </div>
     </section>
 </x-layouts.app>
-

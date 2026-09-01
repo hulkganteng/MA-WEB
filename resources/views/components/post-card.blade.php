@@ -8,7 +8,7 @@
                  loading="lazy" decoding="async"
                  class="size-full object-cover transition-transform duration-500 group-hover:scale-105">
         @else
-            <div class="flex size-full flex-col justify-between bg-gradient-to-br from-[#006437] via-[#007a34] to-[#00923F] p-6">
+            <div class="flex size-full flex-col justify-between bg-gradient-to-br from-primary-800 via-primary-700 to-primary-600 p-6">
                 <div class="flex items-center justify-between">
                     <span class="inline-flex size-10 items-center justify-center rounded-xl bg-gold-400 text-[#1F1A17] font-bold">
                         <x-icon name="{{ $post->type === 'artikel' ? 'file-text' : 'newspaper' }}" class="size-5" />
@@ -25,7 +25,7 @@
         {{-- Type / Category Floating Badge --}}
         <div class="absolute top-3 right-3 flex max-w-[calc(100%-1.5rem)] items-center justify-end gap-1.5">
             @if ($post->category)
-                <span class="rounded-full bg-[#006437]/90 px-2.5 py-1 text-xs font-bold text-white backdrop-blur border border-white/20">
+                <span class="rounded-full bg-primary-800/90 px-2.5 py-1 text-xs font-bold text-white backdrop-blur border border-white/20">
                     {{ $post->category->name }}
                 </span>
             @endif
@@ -72,4 +72,3 @@
         </div>
     </div>
 </article>
-

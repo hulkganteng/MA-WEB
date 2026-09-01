@@ -6,7 +6,7 @@
     <section class="bg-slate-50/60 py-14 sm:py-20">
         <div class="container-app space-y-12">
             {{-- IKBAL MADAH Network Banner --}}
-            <div class="rounded-3xl border border-white/20 bg-gradient-to-r from-[#006437] via-[#007a34] to-[#006437] p-6 sm:p-8 text-white shadow-lift flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="rounded-3xl border border-white/20 bg-gradient-to-r from-primary-800 via-primary-700 to-primary-800 p-6 sm:p-8 text-white shadow-lift flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div class="space-y-2">
                     <div class="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-xs font-bold text-gold-300">
                         <x-icon name="users" class="size-3.5" />

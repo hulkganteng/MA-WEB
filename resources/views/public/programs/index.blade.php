@@ -6,7 +6,7 @@
     <section class="bg-slate-50/60 py-14 sm:py-20">
         <div class="container-app space-y-12">
             {{-- Interactive SPMB Simulator Banner --}}
-            <div class="rounded-3xl border border-white/20 bg-gradient-to-r from-[#006437] via-[#007a34] to-[#006437] p-6 sm:p-8 text-white shadow-lift flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="rounded-3xl border border-white/20 bg-gradient-to-r from-primary-800 via-primary-700 to-primary-800 p-6 sm:p-8 text-white shadow-lift flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div class="space-y-2">
                     <div class="inline-flex items-center gap-2 rounded-full border border-gold-400/40 bg-gold-400/15 px-3 py-1 text-xs font-bold text-gold-300">
                         <x-icon name="sparkles" class="size-3.5" />
@@ -21,7 +21,7 @@
                     <a href="https://lynk.id/spmb-madah"
                        target="_blank"
                        rel="noopener noreferrer"
-                       class="btn-primary !bg-[#00923F] hover:!bg-[#007a34] font-bold shadow-soft flex items-center gap-2">
+                       class="btn-primary !bg-primary-600 hover:!bg-primary-700 font-bold shadow-soft flex items-center gap-2">
                         <x-icon name="sparkles" class="size-4 text-gold-300" />
                         <span>Daftar SPMB Online</span>
                         <x-icon name="external-link" class="size-4 opacity-80" />

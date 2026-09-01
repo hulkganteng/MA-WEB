@@ -9,6 +9,39 @@
 @layer base {
     :root {
         color-scheme: light;
+        --color-primary-50: 239 252 243;
+        --color-primary-100: 220 252 231;
+        --color-primary-200: 187 247 208;
+        --color-primary-300: 134 239 172;
+        --color-primary-400: 52 199 107;
+        --color-primary-500: 0 166 71;
+        --color-primary-600: 0 146 63;
+        --color-primary-700: 0 122 52;
+        --color-primary-800: 0 100 55;
+        --color-primary-900: 0 77 42;
+        --color-primary-950: 0 46 26;
+        --color-gold-50: 255 255 234;
+        --color-gold-100: 255 255 197;
+        --color-gold-200: 255 255 133;
+        --color-gold-300: 255 251 70;
+        --color-gold-400: 255 245 0;
+        --color-gold-500: 220 210 0;
+        --color-gold-600: 175 166 0;
+        --color-gold-700: 131 123 0;
+        --color-gold-800: 94 88 4;
+        --color-gold-900: 66 61 8;
+        --color-gold-950: 37 34 2;
+        --color-secondary-50: 240 249 255;
+        --color-secondary-100: 224 242 254;
+        --color-secondary-200: 186 230 253;
+        --color-secondary-300: 117 197 240;
+        --color-secondary-400: 56 189 248;
+        --color-secondary-500: 14 165 233;
+        --color-secondary-600: 2 132 199;
+        --color-secondary-700: 3 105 161;
+        --color-secondary-800: 7 89 133;
+        --color-secondary-900: 12 74 110;
+        --color-secondary-950: 8 47 73;
     }
 
     html {
@@ -295,7 +328,7 @@
     }
 
     .bg-islamic-stars {
-        background-color: #006437;
+        background-color: rgb(var(--color-primary-800));
         background-image: radial-gradient(circle at 50% 0%, rgba(255, 245, 0, 0.15) 0%, transparent 60%),
                           radial-gradient(circle at 100% 100%, rgba(0, 146, 63, 0.25) 0%, transparent 50%),
                           radial-gradient(rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
@@ -303,19 +336,19 @@
     }
 
     .text-gradient-gold {
-        background: linear-gradient(135deg, #FFF500 0%, #facc15 50%, #ca8a04 100%);
+        background: linear-gradient(135deg, rgb(var(--color-gold-400)) 0%, rgb(var(--color-gold-500)) 50%, rgb(var(--color-gold-700)) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .text-gradient-emerald {
-        background: linear-gradient(135deg, #86efac 0%, #00923F 50%, #006437 100%);
+        background: linear-gradient(135deg, rgb(var(--color-primary-300)) 0%, rgb(var(--color-primary-600)) 50%, rgb(var(--color-primary-800)) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
     .text-gradient-primary {
-        background: linear-gradient(135deg, #006437 0%, #00923F 60%, #34c76b 100%);
+        background: linear-gradient(135deg, rgb(var(--color-primary-800)) 0%, rgb(var(--color-primary-600)) 60%, rgb(var(--color-primary-400)) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }

@@ -5,57 +5,6 @@
 
     <section class="bg-slate-50/60 py-14 sm:py-20" x-data="{ previewModal: false, previewImg: '', previewTitle: '' }">
         <div class="container-app space-y-12">
-            {{-- Campus Highlights Banner --}}
-            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-soft">
-                    <div class="flex items-center gap-3">
-                        <span class="flex size-10 items-center justify-center rounded-xl bg-emerald-100 text-emerald-800">
-                            <x-icon name="wifi" class="size-5" />
-                        </span>
-                        <div>
-                            <h4 class="text-sm font-bold text-slate-900">Fiber Optic Gigabit</h4>
-                            <p class="text-xs text-slate-500">Koneksi internet cepat terpadu</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-soft">
-                    <div class="flex items-center gap-3">
-                        <span class="flex size-10 items-center justify-center rounded-xl bg-gold-100 text-gold-800">
-                            <x-icon name="server" class="size-5" />
-                        </span>
-                        <div>
-                            <h4 class="text-sm font-bold text-slate-900">Dedicated CBT Server</h4>
-                            <p class="text-xs text-slate-500">Ujian mandiri berbasis komputer</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-soft">
-                    <div class="flex items-center gap-3">
-                        <span class="flex size-10 items-center justify-center rounded-xl bg-blue-100 text-blue-800">
-                            <x-icon name="book-marked" class="size-5" />
-                        </span>
-                        <div>
-                            <h4 class="text-sm font-bold text-slate-900">Perpustakaan Turats</h4>
-                            <p class="text-xs text-slate-500">Ribuan kitab kuning & buku sains</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-soft">
-                    <div class="flex items-center gap-3">
-                        <span class="flex size-10 items-center justify-center rounded-xl bg-purple-100 text-purple-800">
-                            <x-icon name="home" class="size-5" />
-                        </span>
-                        <div>
-                            <h4 class="text-sm font-bold text-slate-900">Asrama Santri YPPQ</h4>
-                            <p class="text-xs text-slate-500">Pesantren putra & putri terpisah</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             {{-- Facilities Grid --}}
             @if($facilities->isNotEmpty())
                 <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

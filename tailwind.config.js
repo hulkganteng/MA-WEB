@@ -1,5 +1,10 @@
 import defaultTheme from 'tailwindcss/defaultTheme';
 
+const themeScale = (name) => Object.fromEntries(
+    [50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 950]
+        .map((shade) => [shade, `rgb(var(--color-${name}-${shade}) / <alpha-value>)`]),
+);
+
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
@@ -18,45 +23,9 @@ export default {
                 arabic: ['Amiri', 'Traditional Arabic', 'serif'],
             },
             colors: {
-                primary: {
-                    50: '#effcf3',
-                    100: '#dcfce7',
-                    200: '#bbf7d0',
-                    300: '#86efac',
-                    400: '#34c76b',
-                    500: '#00a647',
-                    600: '#00923F', // Brand Official Primary (#00923F)
-                    700: '#007a34',
-                    800: '#006437', // Brand Primary Dark (#006437)
-                    900: '#004d2a',
-                    950: '#002e1a',
-                },
-                gold: {
-                    50: '#ffffea',
-                    100: '#ffffc5',
-                    200: '#ffff85',
-                    300: '#fffb46',
-                    400: '#FFF500', // Brand Accent (#FFF500)
-                    500: '#dcd200',
-                    600: '#afa600',
-                    700: '#837b00',
-                    800: '#5e5804',
-                    900: '#423d08',
-                    950: '#252202',
-                },
-                secondary: {
-                    50: '#f0f9ff',
-                    100: '#e0f2fe',
-                    200: '#bae6fd',
-                    300: '#75C5F0', // Brand Info/Secondary (#75C5F0)
-                    400: '#38bdf8',
-                    500: '#0ea5e9',
-                    600: '#0284c7',
-                    700: '#0369a1',
-                    800: '#075985',
-                    900: '#0c4a6e',
-                    950: '#082f49',
-                },
+                primary: themeScale('primary'),
+                gold: themeScale('gold'),
+                secondary: themeScale('secondary'),
                 brandText: '#1F1A17',
                 brandBg: '#FFFFFF',
             },

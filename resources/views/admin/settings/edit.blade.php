@@ -1,13 +1,61 @@
 <x-layouts.admin title="Pengaturan website">
-    <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data" x-data="{ saving: false }" @submit="saving = true">
+    <form method="POST" action="{{ route('admin.settings.update') }}" enctype="multipart/form-data"
+          x-data="{ saving: false, primary: @js(old('primary_color', $settings['theme.primary'] ?? '#00923F')), accent: @js(old('accent_color', $settings['theme.accent'] ?? '#FFF500')), secondary: @js(old('secondary_color', $settings['theme.secondary'] ?? '#75C5F0')) }"
+          @submit="saving = true">
         @csrf @method('PUT')
         <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div><h2 class="text-2xl font-semibold tracking-tight text-slate-950">Pengaturan website</h2><p class="mt-2 text-base text-slate-600">Perubahan tersimpan langsung digunakan oleh website publik.</p></div>
-            <button type="submit" class="btn-primary !py-2" :disabled="saving" x-text="saving ? 'Menyimpan…' : 'Simpan pengaturan'">Simpan pengaturan</button>
+            <button type="submit" class="btn-primary !py-2" :disabled="saving" :aria-busy="saving">Simpan pengaturan</button>
         </div>
         @if($errors->any())<div class="mt-6 rounded-xl bg-rose-50 p-4 text-sm text-rose-800">Pengaturan belum dapat disimpan. Periksa field yang ditandai.</div>@endif
 
         <div class="mt-7 grid gap-7 xl:grid-cols-2">
+            <section class="rounded-2xl bg-white p-6 ring-1 ring-slate-900/10 xl:col-span-2">
+                <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                        <h3 class="font-semibold text-slate-950">Warna website</h3>
+                        <p class="mt-1 text-base text-slate-600 sm:text-sm">Palet ini diterapkan ke seluruh halaman publik setelah pengaturan disimpan.</p>
+                    </div>
+                    <button type="button" class="btn-outline !px-3 !py-1.5"
+                            @click="primary = '#00923F'; accent = '#FFF500'; secondary = '#75C5F0'">
+                        Gunakan warna bawaan
+                    </button>
+                </div>
+
+                <div class="mt-5 grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(18rem,1fr)]">
+                    <div class="grid gap-4 sm:grid-cols-3">
+                        @foreach([
+                            ['primary_color', 'Warna utama', 'primary'],
+                            ['accent_color', 'Warna aksen', 'accent'],
+                            ['secondary_color', 'Warna sekunder', 'secondary'],
+                        ] as [$name, $label, $model])
+                            <div>
+                                <label for="{{ $name }}" class="label">{{ $label }}</label>
+                                <div class="flex items-center gap-3">
+                                    <input id="{{ $name }}" name="{{ $name }}" type="color" x-model="{{ $model }}"
+                                           class="size-11 shrink-0 cursor-pointer rounded-xl border border-slate-300 bg-white p-1"
+                                           required>
+                                    <output class="min-w-0 font-mono text-base font-semibold uppercase text-slate-700 sm:text-sm" x-text="{{ $model }}"></output>
+                                </div>
+                                @error($name)<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <div class="overflow-hidden rounded-2xl border border-slate-900/10" :style="`background-color: ${primary}`">
+                        <div class="p-5 text-white">
+                            <p class="text-base font-bold sm:text-sm">Pratinjau warna</p>
+                            <p class="mt-1 text-base text-white/80 sm:text-sm">Tampilan ringkas kombinasi palet website.</p>
+                            <div class="mt-4 flex flex-wrap items-center gap-3">
+                                <span class="rounded-xl px-3 py-2 text-sm font-bold text-slate-950" :style="`background-color: ${accent}`">Aksi utama</span>
+                                <span class="rounded-xl px-3 py-2 text-sm font-semibold text-slate-950" :style="`background-color: ${secondary}`">Informasi</span>
+                                <span class="rounded-xl border border-white/40 px-3 py-2 text-sm font-semibold">Tombol sekunder</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <section class="rounded-2xl bg-white p-6 ring-1 ring-slate-900/10">
                 <h3 class="font-semibold text-slate-950">Identitas madrasah</h3>
                 <div class="mt-5 grid gap-5 sm:grid-cols-2">
@@ -47,6 +95,16 @@
                     <div><label for="seo_title" class="label">Default SEO title</label><input id="seo_title" name="seo_title" type="text" value="{{ old('seo_title', $settings['seo.default_title'] ?? '') }}" class="input" required></div>
                     <div><label for="seo_description" class="label">Default meta description</label><textarea id="seo_description" name="seo_description" rows="4" class="input" required>{{ old('seo_description', $settings['seo.default_description'] ?? '') }}</textarea></div>
                     <div><label for="whatsapp_message" class="label">Pesan WhatsApp default</label><textarea id="whatsapp_message" name="whatsapp_message" rows="4" class="input">{{ old('whatsapp_message', $settings['whatsapp.message'] ?? '') }}</textarea></div>
+                </div>
+            </section>
+
+            <section class="rounded-2xl bg-white p-6 ring-1 ring-slate-900/10">
+                <h3 class="font-semibold text-slate-950">Statistik Madrasah (Homepage)</h3>
+                <p class="mt-1 text-sm text-slate-600">Hanya Peserta Didik yang dapat diatur di sini. Alumni, Guru & Tendik, dan Prestasi Juara akan otomatis mengambil data dari database.</p>
+                <div class="mt-5">
+                    <label for="stats_students" class="label">Peserta Didik</label>
+                    <input id="stats_students" name="stats_students" type="number" min="0" max="9999" value="{{ old('stats_students', $settings['stats.students'] ?? 850) }}" class="input">
+                    @error('stats_students')<p class="mt-1 text-sm text-rose-700">{{ $message }}</p>@enderror
                 </div>
             </section>
         </div>

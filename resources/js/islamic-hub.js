@@ -380,7 +380,13 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
                     particleCount: 90,
                     spread: 75,
                     origin: { y: 0.6 },
-                    colors: ['#00923F', '#006437', '#FFF500', '#75C5F0', '#ffffff']
+                    colors: [
+                        `rgb(${getComputedStyle(document.documentElement).getPropertyValue('--color-primary-600')})`,
+                        `rgb(${getComputedStyle(document.documentElement).getPropertyValue('--color-primary-800')})`,
+                        `rgb(${getComputedStyle(document.documentElement).getPropertyValue('--color-gold-400')})`,
+                        `rgb(${getComputedStyle(document.documentElement).getPropertyValue('--color-secondary-300')})`,
+                        '#ffffff'
+                    ]
                 });
             }
         },

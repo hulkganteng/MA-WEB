@@ -15,6 +15,8 @@ class SettingController extends Controller
         'contact.address', 'contact.email', 'contact.phone', 'contact.whatsapp', 'contact.maps_url', 'contact.hours',
         'hero.title', 'hero.subtitle', 'principal.name', 'principal.position', 'principal.speech',
         'seo.default_title', 'seo.default_description', 'whatsapp.number', 'whatsapp.message',
+        'theme.primary', 'theme.accent', 'theme.secondary',
+        'stats.students',
     ];
 
     public function edit()
@@ -45,13 +47,24 @@ class SettingController extends Controller
             'seo_title' => ['required', 'string', 'max:255'],
             'seo_description' => ['required', 'string', 'max:320'],
             'whatsapp_message' => ['nullable', 'string', 'max:500'],
+            'primary_color' => ['sometimes', 'required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'accent_color' => ['sometimes', 'required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
+            'secondary_color' => ['sometimes', 'required', 'regex:/^#[0-9A-Fa-f]{6}$/'],
             'logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'favicon' => ['nullable', 'image', 'mimes:png,jpg,jpeg,webp', 'max:512'],
             'principal_photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3072'],
+            'stats_students' => ['nullable', 'integer', 'min:0', 'max:9999'],
         ]);
-        $map = ['site.name' => 'site_name', 'site.tagline' => 'site_tagline', 'site.academic_year' => 'academic_year', 'site.copyright' => 'copyright', 'contact.address' => 'address', 'contact.email' => 'email', 'contact.phone' => 'phone', 'contact.whatsapp' => 'whatsapp', 'contact.maps_url' => 'maps_url', 'contact.hours' => 'hours', 'hero.title' => 'hero_title', 'hero.subtitle' => 'hero_subtitle', 'principal.name' => 'principal_name', 'principal.position' => 'principal_position', 'principal.speech' => 'principal_speech', 'seo.default_title' => 'seo_title', 'seo.default_description' => 'seo_description', 'whatsapp.number' => 'whatsapp', 'whatsapp.message' => 'whatsapp_message'];
+        $map = ['site.name' => 'site_name', 'site.tagline' => 'site_tagline', 'site.academic_year' => 'academic_year', 'site.copyright' => 'copyright', 'contact.address' => 'address', 'contact.email' => 'email', 'contact.phone' => 'phone', 'contact.whatsapp' => 'whatsapp', 'contact.maps_url' => 'maps_url', 'contact.hours' => 'hours', 'hero.title' => 'hero_title', 'hero.subtitle' => 'hero_subtitle', 'principal.name' => 'principal_name', 'principal.position' => 'principal_position', 'principal.speech' => 'principal_speech', 'seo.default_title' => 'seo_title', 'seo.default_description' => 'seo_description', 'whatsapp.number' => 'whatsapp', 'whatsapp.message' => 'whatsapp_message', 'stats.students' => 'stats_students'];
         foreach ($map as $key => $field) {
-            Setting::set($key, $data[$field] ?? null, str($key)->before('.')->toString());
+            $value = $data[$field] ?? null;
+            $type = str($key)->startsWith('stats.') ? 'integer' : 'string';
+            Setting::set($key, $value, str($key)->before('.')->toString(), $type);
+        }
+        foreach (['theme.primary' => 'primary_color', 'theme.accent' => 'accent_color', 'theme.secondary' => 'secondary_color'] as $key => $field) {
+            if (isset($data[$field])) {
+                Setting::set($key, strtoupper($data[$field]), 'theme');
+            }
         }
         foreach (['logo' => 'site.logo', 'favicon' => 'site.favicon', 'principal_photo' => 'principal.photo'] as $field => $key) {
             if ($request->hasFile($field)) {
@@ -61,7 +74,7 @@ class SettingController extends Controller
                 } Setting::set($key, $request->file($field)->store('settings', 'public'), str($key)->before('.')->toString());
             }
         }
-        activity_log('settings.update', null, ['keys' => array_keys($map)]);
+        activity_log('settings.update', null, ['keys' => [...array_keys($map), 'theme.primary', 'theme.accent', 'theme.secondary']]);
 
         return back()->with('flash', ['type' => 'success', 'message' => 'Pengaturan website diperbarui']);
     }

@@ -47,7 +47,7 @@
                     <article class="interactive-card flex flex-col sm:flex-row items-start sm:items-center gap-6 p-6"
                              x-show="matchItem('{{ $event->category }}')">
                         {{-- Date Badge Block --}}
-                        <div class="flex size-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] p-2 text-center text-white shadow-soft">
+                        <div class="flex size-16 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 p-2 text-center text-white shadow-soft">
                             <span class="font-mono text-xl font-extrabold leading-none text-gold-300">{{ $event->start_date->format('d') }}</span>
                             <span class="text-xs uppercase font-bold text-primary-100 mt-0.5">{{ $event->start_date->translatedFormat('M Y') }}</span>
                         </div>

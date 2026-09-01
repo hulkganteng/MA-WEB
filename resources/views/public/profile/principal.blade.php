@@ -8,13 +8,13 @@
             {{-- Executive Profile Card --}}
             <div class="lg:col-span-4 space-y-6">
                 <div class="overflow-hidden rounded-3xl border border-slate-200/80 bg-white p-6 shadow-soft text-center">
-                    <div class="relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-2xl border border-slate-100 bg-[#006437]">
+                    <div class="relative mx-auto aspect-[4/5] w-full max-w-[280px] overflow-hidden rounded-2xl border border-slate-100 bg-primary-800">
                         @if(setting('principal.photo'))
                             <img src="{{ asset('storage/'.setting('principal.photo')) }}"
                                  alt="{{ setting('principal.name') }}"
                                  class="size-full object-cover">
                         @else
-                            <div class="flex size-full flex-col items-center justify-center bg-gradient-to-br from-primary-700 to-[#006437] text-gold-300">
+                            <div class="flex size-full flex-col items-center justify-center bg-gradient-to-br from-primary-700 to-primary-800 text-gold-300">
                                 <x-icon name="user-round" class="size-16" />
                                 <span class="mt-3 text-xs font-semibold text-primary-100">Kepala Madrasah</span>
                             </div>
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <div class="rounded-3xl border border-primary-600/30 bg-[#006437] p-6 text-white text-xs space-y-3">
+                <div class="rounded-3xl border border-primary-600/30 bg-primary-800 p-6 text-white text-xs space-y-3">
                     <p class="font-bold text-gold-300 uppercase tracking-wider">Komitmen Kepemimpinan</p>
                     <p class="text-primary-100 leading-relaxed">
                         Menjaga marwah intelektual santri, mengawal akselerasi prestasi nasional, dan mempererat ukhuwah wali santri dan masyayikh.

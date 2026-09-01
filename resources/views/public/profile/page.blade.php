@@ -23,7 +23,7 @@
                 </div>
 
                 {{-- Interactive Accreditation Seal --}}
-                <div class="rounded-3xl border border-white/20 bg-[#006437] p-6 text-white shadow-lift flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="rounded-3xl border border-white/20 bg-primary-800 p-6 text-white shadow-lift flex flex-col sm:flex-row items-center justify-between gap-4">
                     <div class="flex items-center gap-4">
                         <div class="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-gold-400 text-[#1F1A17] font-bold">
                             <x-icon name="shield-check" class="size-6" />
@@ -86,4 +86,3 @@
         </div>
     </section>
 </x-layouts.app>
-

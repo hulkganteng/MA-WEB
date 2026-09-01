@@ -28,7 +28,7 @@
         x-effect="document.body.style.overflow = mobileOpen ? 'hidden' : ''">
 
     {{-- Top Utility Bar: Islamic Date & Live Prayer Times --}}
-    <div class="border-b border-[#00923F]/30 bg-[#006437] text-white text-xs py-1 px-4">
+    <div class="border-b border-primary-600/30 bg-primary-800 text-white text-xs py-1 px-4">
         <div class="container-app flex flex-wrap items-center justify-between gap-2">
             {{-- Left: Live Hijri Date & Masehi Date --}}
             <div class="flex items-center gap-2">

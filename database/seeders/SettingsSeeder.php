@@ -25,6 +25,10 @@ class SettingsSeeder extends Seeder
             ['group' => 'site', 'key' => 'site.copyright', 'value' => 'Yayasan Pondok Pesantren Qomaruddin', 'type' => 'string'],
             ['group' => 'site', 'key' => 'site.academic_year', 'value' => '2026/2027', 'type' => 'string'],
 
+            ['group' => 'theme', 'key' => 'theme.primary', 'value' => '#00923F', 'type' => 'string'],
+            ['group' => 'theme', 'key' => 'theme.accent', 'value' => '#FFF500', 'type' => 'string'],
+            ['group' => 'theme', 'key' => 'theme.secondary', 'value' => '#75C5F0', 'type' => 'string'],
+
             ['group' => 'contact', 'key' => 'contact.address', 'value' => 'Jl. Raya Bungah No. 01, Sampurnan, Bungah, Gresik, Jawa Timur 61152', 'type' => 'string'],
             ['group' => 'contact', 'key' => 'contact.email', 'value' => 'mamnu.assaadah@gmail.com', 'type' => 'string'],
             ['group' => 'contact', 'key' => 'contact.phone', 'value' => '031 3949501', 'type' => 'string'],

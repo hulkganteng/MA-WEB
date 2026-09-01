@@ -3,7 +3,7 @@
     {{-- 1. HERO SECTION (DYNAMIC CMS SLIDER & ISLAMIC HUB BENTO)          --}}
     {{-- ================================================================= --}}
     @if($heroSlides->isNotEmpty())
-        <section class="relative bg-[#006437] text-white overflow-hidden"
+        <section class="relative bg-primary-800 text-white overflow-hidden"
                  x-data="heroSlider(@js($heroSlides->map(fn($s) => [
                      'id' => $s->id,
                      'title' => $s->title,
@@ -45,7 +45,7 @@
                              :alt="slide.title"
                              :fetchpriority="index === 0 ? 'high' : 'auto'"
                              class="size-full object-cover object-center">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#003d24] via-[#006437]/95 to-[#006437]/75 lg:bg-gradient-to-r lg:from-[#003d24] lg:via-[#006437]/90 lg:to-[#006437]/35"></div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary-950 via-primary-800/95 to-primary-800/75 lg:bg-gradient-to-r lg:from-primary-950 lg:via-primary-800/90 lg:to-primary-800/35"></div>
                     </div>
                 </template>
 
@@ -91,7 +91,7 @@
                                         <a href="https://lynk.id/spmb-madah"
                                            target="_blank"
                                            rel="noopener noreferrer"
-                                           class="btn-primary !bg-[#00923F] hover:!bg-[#007a34] font-bold !px-5 !py-3 text-sm shadow-soft flex items-center gap-2">
+                                           class="btn-primary !bg-primary-600 hover:!bg-primary-700 font-bold !px-5 !py-3 text-sm shadow-soft flex items-center gap-2">
                                             <x-icon name="sparkles" class="size-4 text-gold-300" />
                                             <span>Daftar SPMB Online</span>
                                             <x-icon name="external-link" class="size-3.5 opacity-80" />
@@ -148,7 +148,7 @@
                         <!-- Right Column: Live Prayer Card & Stats Bento -->
                         <div class="lg:col-span-5 space-y-4">
                             <!-- Live Prayer Card in Hero -->
-                            <div class="overflow-hidden rounded-3xl border border-white/20 bg-[#004d2a]/80 p-6 shadow-lift backdrop-blur-xl text-white">
+                            <div class="overflow-hidden rounded-3xl border border-white/20 bg-primary-900/80 p-6 shadow-lift backdrop-blur-xl text-white">
                                 <div class="flex items-center justify-between border-b border-white/15 pb-4">
                                     <div class="flex items-center gap-3">
                                         <div class="flex size-10 items-center justify-center rounded-xl bg-gold-400 text-[#1F1A17] font-bold">
@@ -181,7 +181,7 @@
                             </div>
 
                             <!-- Interactive Stats Bento Grid -->
-                            <div class="rounded-3xl border border-white/25 bg-[#004d2a]/80 p-6 shadow-lift backdrop-blur-xl">
+                            <div class="rounded-3xl border border-white/25 bg-primary-900/80 p-6 shadow-lift backdrop-blur-xl">
                                 <div class="flex items-center justify-between pb-3 border-b border-white/15">
                                     <span class="text-xs font-bold uppercase tracking-wider text-gold-300">Pendidikan Terpadu & Berkelanjutan</span>
                                     <x-icon name="award" class="size-4 text-gold-300" />
@@ -195,17 +195,17 @@
                                     </div>
                                     <div class="rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
                                         <dt class="text-xs font-semibold text-white/90">Guru & Tendik</dt>
-                                        <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $teacherCount ?: setting('stats.teachers', 45) }}</dd>
+                                        <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $teacherCount }}</dd>
                                         <span class="text-xs text-secondary-300">Pendidik Berlisensi</span>
                                     </div>
                                     <div class="rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
                                         <dt class="text-xs font-semibold text-white/90">Alumni IKBAL</dt>
-                                        <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ setting('stats.alumni', 4200) }}+</dd>
+                                        <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $alumniCount }}+</dd>
                                         <span class="text-xs text-gold-300">Kiprah Nusantara</span>
                                     </div>
                                     <div class="rounded-2xl border border-white/15 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
                                         <dt class="text-xs font-semibold text-white/90">Prestasi Juara</dt>
-                                        <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ setting('stats.achievements', 120) }}+</dd>
+                                        <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $achievementCount }}+</dd>
                                         <span class="text-xs text-secondary-300">Kab., Prov., & Nas.</span>
                                     </div>
                                 </dl>
@@ -218,7 +218,7 @@
         </section>
     @else
         <!-- Fallback Default Hero Section when no slides exist -->
-        <section class="relative overflow-hidden bg-gradient-to-r from-[#006437] via-[#007a34] to-[#006437] text-white py-16 sm:py-24 lg:py-28">
+        <section class="relative overflow-hidden bg-gradient-to-r from-primary-800 via-primary-700 to-primary-800 text-white py-16 sm:py-24 lg:py-28">
             <div class="pointer-events-none absolute inset-0 bg-islamic-stars opacity-35"></div>
             <div class="container-app relative grid items-center gap-12 lg:grid-cols-12">
                 <div class="lg:col-span-7 space-y-6">
@@ -241,7 +241,7 @@
                         <a href="https://lynk.id/spmb-madah"
                            target="_blank"
                            rel="noopener noreferrer"
-                           class="btn-primary !bg-[#00923F] hover:!bg-[#007a34] font-bold shadow-soft !px-6 !py-3.5 text-sm flex items-center gap-2">
+                           class="btn-primary !bg-primary-600 hover:!bg-primary-700 font-bold shadow-soft !px-6 !py-3.5 text-sm flex items-center gap-2">
                             <x-icon name="sparkles" class="size-4 text-gold-300" />
                             <span>Pendaftaran SPMB Online</span>
                             <x-icon name="external-link" class="size-4 opacity-80" />
@@ -276,7 +276,7 @@
                 </div>
 
                 <div class="lg:col-span-5 space-y-4">
-                    <div class="overflow-hidden rounded-3xl border border-white/20 bg-[#004d2a]/80 p-6 shadow-lift backdrop-blur-xl text-white">
+                    <div class="overflow-hidden rounded-3xl border border-white/20 bg-primary-900/80 p-6 shadow-lift backdrop-blur-xl text-white">
                         <div class="flex items-center justify-between border-b border-white/15 pb-4">
                             <div class="flex items-center gap-3">
                                 <div class="flex size-10 items-center justify-center rounded-xl bg-gold-400 text-[#1F1A17] font-bold">
@@ -322,17 +322,17 @@
                             </div>
                             <div class="rounded-2xl border border-white/10 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
                                 <dt class="text-xs text-primary-100">Guru & Tendik</dt>
-                                <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $teacherCount ?: setting('stats.teachers', 45) }}</dd>
+                                <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $teacherCount }}</dd>
                                 <span class="text-xs text-secondary-300">Pendidik Berlisensi</span>
                             </div>
                             <div class="rounded-2xl border border-white/10 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
                                 <dt class="text-xs text-primary-100">Alumni IKBAL</dt>
-                                <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ setting('stats.alumni', 4200) }}+</dd>
+                                <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $alumniCount }}+</dd>
                                 <span class="text-xs text-gold-300">Kiprah Nusantara</span>
                             </div>
                             <div class="rounded-2xl border border-white/10 bg-white/10 p-3.5 transition hover:border-gold-400/40 hover:bg-white/15">
                                 <dt class="text-xs text-primary-100">Prestasi Juara</dt>
-                                <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ setting('stats.achievements', 120) }}+</dd>
+                                <dd class="mt-1 text-2xl font-extrabold tracking-tight text-white tabular-nums">{{ $achievementCount }}+</dd>
                                 <span class="text-xs text-secondary-300">Kab., Prov., & Nas.</span>
                             </div>
                         </dl>
@@ -345,7 +345,7 @@
     {{-- ================================================================= --}}
     {{-- 2. RUNNING INSTITUTIONAL MARQUEE TICKER                           --}}
     {{-- ================================================================= --}}
-    <div class="border-y border-[#006437] bg-[#004d2a] text-white overflow-hidden py-3">
+    <div class="border-y border-primary-800 bg-primary-900 text-white overflow-hidden py-3">
         <div class="flex items-center gap-8 whitespace-nowrap animate-marquee">
             <span class="flex items-center gap-2 text-xs font-semibold tracking-wide text-gold-300">
                 <x-icon name="sparkles" class="size-3.5 text-gold-400" />
@@ -407,13 +407,13 @@
     <section class="py-20 sm:py-24 bg-white relative">
         <div class="container-app grid items-center gap-12 lg:grid-cols-12">
             <div class="lg:col-span-5 space-y-4">
-                <div class="relative overflow-hidden rounded-3xl border border-slate-200 shadow-lift group aspect-[4/3] bg-[#006437]">
+                <div class="relative overflow-hidden rounded-3xl border border-slate-200 shadow-lift group aspect-[4/3] bg-primary-800">
                     @if($aboutPage?->cover)
                         <img src="{{ asset('storage/'.$aboutPage->cover) }}" alt="Lingkungan MA Ma’arif NU Assa’adah"
                              loading="lazy" decoding="async"
                              class="size-full object-cover transition-transform duration-700 group-hover:scale-105">
                     @else
-                        <div class="flex size-full flex-col items-center justify-center bg-gradient-to-br from-[#006437] via-[#007a34] to-[#006437] p-8 text-center text-white">
+                        <div class="flex size-full flex-col items-center justify-center bg-gradient-to-br from-primary-800 via-primary-700 to-primary-800 p-8 text-center text-white">
                             <div class="flex size-16 items-center justify-center rounded-2xl bg-gold-400/20 text-gold-300">
                                 <x-icon name="school" class="size-8" />
                             </div>
@@ -421,7 +421,7 @@
                             <p class="mt-1 text-xs text-primary-100">Sampurnan, Bungah, Gresik · Didirikan 1972</p>
                         </div>
                     @endif
-                    <div class="absolute bottom-4 left-4 right-4 rounded-2xl bg-[#004d2a]/90 p-4 text-white backdrop-blur-md border border-white/15">
+                    <div class="absolute bottom-4 left-4 right-4 rounded-2xl bg-primary-900/90 p-4 text-white backdrop-blur-md border border-white/15">
                         <p class="text-xs font-bold text-gold-300 uppercase tracking-wider">Filosofi Pendidikan Pesantren</p>
                         <p class="text-xs text-primary-50 mt-0.5">Mempertahankan tradisi salaf yang luhur dan mengambil kemajuan baru yang lebih maslahat.</p>
                     </div>
@@ -483,18 +483,18 @@
     {{-- ================================================================= --}}
     {{-- 5. SAMBUTAN KEPALA MADRASAH                                       --}}
     {{-- ================================================================= --}}
-    <section class="py-20 bg-[#006437] text-white relative overflow-hidden">
+    <section class="py-20 bg-primary-800 text-white relative overflow-hidden">
         <div class="pointer-events-none absolute inset-0 bg-islamic-stars opacity-35"></div>
         <div class="container-app relative grid items-center gap-10 lg:grid-cols-12">
             <div class="lg:col-span-4">
-                <div class="relative mx-auto max-w-sm overflow-hidden rounded-3xl border border-gold-400/40 bg-[#004d2a] shadow-lift p-2">
+                <div class="relative mx-auto max-w-sm overflow-hidden rounded-3xl border border-gold-400/40 bg-primary-900 shadow-lift p-2">
                     @if(setting('principal.photo'))
                         <img src="{{ asset('storage/'.setting('principal.photo')) }}"
                              alt="{{ setting('principal.name') }}"
                              loading="lazy" decoding="async"
                              class="aspect-[4/5] w-full rounded-2xl object-cover">
                     @else
-                        <div class="flex aspect-[4/5] w-full flex-col items-center justify-center rounded-2xl bg-[#006437] text-gold-300">
+                        <div class="flex aspect-[4/5] w-full flex-col items-center justify-center rounded-2xl bg-primary-800 text-gold-300">
                             <x-icon name="user-round" class="size-16" />
                             <span class="mt-3 text-xs font-semibold text-primary-100">Kepala Madrasah</span>
                         </div>
@@ -683,7 +683,7 @@
                            class="interactive-card group flex flex-col justify-between p-6 bg-white border border-slate-200/90">
                             <div>
                                 <div class="flex items-center gap-3">
-                                    <div class="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-[#006437] text-white shadow-soft">
+                                    <div class="flex size-14 shrink-0 flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-primary-600 via-primary-700 to-primary-800 text-white shadow-soft">
                                         <span class="text-lg font-black leading-none">{{ optional($ev->start_date)->format('d') }}</span>
                                         <span class="text-xs font-bold uppercase tracking-wider text-gold-300">{{ optional($ev->start_date)->translatedFormat('M') }}</span>
                                     </div>
@@ -801,7 +801,7 @@
     {{-- 12. GALERI KEGIATAN & DOKUMENTASI                                 --}}
     {{-- ================================================================= --}}
     @if($albums->isNotEmpty())
-        <section class="py-20 sm:py-24 bg-[#006437] text-white relative overflow-hidden">
+        <section class="py-20 sm:py-24 bg-primary-800 text-white relative overflow-hidden">
             <div class="pointer-events-none absolute inset-0 bg-islamic-stars opacity-35"></div>
             <div class="container-app relative space-y-10">
                 <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
@@ -818,17 +818,17 @@
                 <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
                     @foreach($albums->take(4) as $album)
                         <a href="{{ route('gallery.album', $album) }}" class="group block overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-3 backdrop-blur transition hover:border-gold-400/40 hover:bg-white/15">
-                            <div class="relative aspect-square overflow-hidden rounded-2xl bg-[#004d2a]">
+                            <div class="relative aspect-square overflow-hidden rounded-2xl bg-primary-900">
                                 @if($album->cover)
                                     <img src="{{ asset('storage/'.$album->cover) }}" alt="{{ $album->name }}"
                                          loading="lazy" decoding="async"
                                          loading="lazy" class="size-full object-cover transition duration-500 group-hover:scale-105">
                                 @else
-                                    <div class="flex size-full items-center justify-center bg-gradient-to-br from-[#006437] to-[#004d2a] text-gold-300">
+                                    <div class="flex size-full items-center justify-center bg-gradient-to-br from-primary-800 to-primary-900 text-gold-300">
                                         <x-icon name="images" class="size-10" />
                                     </div>
                                 @endif
-                                <span class="absolute bottom-2.5 right-2.5 rounded-full bg-[#004d2a]/90 px-2.5 py-0.5 text-xs font-bold text-gold-300 backdrop-blur border border-white/10">
+                                <span class="absolute bottom-2.5 right-2.5 rounded-full bg-primary-900/90 px-2.5 py-0.5 text-xs font-bold text-gold-300 backdrop-blur border border-white/10">
                                     {{ $album->photos_count ?? 4 }} Foto
                                 </span>
                             </div>
@@ -885,7 +885,7 @@
     {{-- ================================================================= --}}
     {{-- 14. INTERACTIVE BOTTOM SPMB BANNER & CTA                          --}}
     {{-- ================================================================= --}}
-    <section class="relative overflow-hidden bg-gradient-to-r from-[#006437] via-[#007a34] to-[#006437] py-16 text-white">
+    <section class="relative overflow-hidden bg-gradient-to-r from-primary-800 via-primary-700 to-primary-800 py-16 text-white">
         <div class="pointer-events-none absolute inset-0 bg-islamic-stars opacity-35"></div>
         <div class="container-app relative flex flex-col items-center justify-between gap-8 text-center lg:flex-row lg:text-left">
             <div class="space-y-2 max-w-2xl">
@@ -905,7 +905,7 @@
                 <a href="https://lynk.id/spmb-madah"
                    target="_blank"
                    rel="noopener noreferrer"
-                   class="btn-primary !bg-[#00923F] hover:!bg-[#007a34] font-bold shadow-soft !px-6 !py-3 text-sm flex items-center gap-2">
+                   class="btn-primary !bg-primary-600 hover:!bg-primary-700 font-bold shadow-soft !px-6 !py-3 text-sm flex items-center gap-2">
                     <x-icon name="sparkles" class="size-4 text-gold-300" />
                     <span>Pendaftaran SPMB Online</span>
                     <x-icon name="external-link" class="size-4 opacity-80" />

@@ -21,7 +21,7 @@
 
                     @if($program->highlights)
                         <div class="mt-8 rounded-2xl border border-primary-200 bg-primary-50/70 p-6">
-                            <h3 class="text-base font-bold text-[#006437] flex items-center gap-2">
+                            <h3 class="text-base font-bold text-primary-800 flex items-center gap-2">
                                 <x-icon name="sparkles" class="size-5 text-gold-600" />
                                 <span>Fokus & Keunggulan Pembelajaran:</span>
                             </h3>

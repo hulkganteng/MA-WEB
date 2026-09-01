@@ -1,6 +1,6 @@
 @props(['eyebrow' => null, 'title', 'description' => null, 'breadcrumbs' => null])
 
-<section class="relative overflow-hidden bg-gradient-to-r from-[#006437] via-[#007a34] to-[#006437] py-14 text-white sm:py-20 border-b border-[#00923F]/40 shadow-sm">
+<section class="relative overflow-hidden bg-gradient-to-r from-primary-800 via-primary-700 to-primary-800 py-14 text-white sm:py-20 border-b border-primary-600/40 shadow-sm">
     {{-- Islamic Decorative Background --}}
     <div class="pointer-events-none absolute inset-0 bg-islamic-stars opacity-35"></div>
     <div class="pointer-events-none absolute -right-20 -top-20 size-80 rounded-full bg-gold-400/10 blur-3xl"></div>
@@ -43,4 +43,3 @@
         @endif
     </div>
 </section>
-
