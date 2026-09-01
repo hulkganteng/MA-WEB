@@ -41,7 +41,7 @@ class SecurityHeaders
 
         // Content-Security-Policy (CSP) — lapisan pertahanan utama
         // Menentukan sumber konten yang diperbolehkan di browser
-        $csp = $this->buildCSP($request);
+        $csp = $this->buildCSP();
         $response->headers->set('Content-Security-Policy', $csp);
 
         // HSTS: Paksa HTTPS selama 1 tahun (hanya di production)
@@ -58,17 +58,17 @@ class SecurityHeaders
      * Kebijakan ini memblokir pemuatan resource dari domain lain yang tidak diizinkan,
      * termasuk link/script judol dan konten berbahaya dari luar.
      */
-    private function buildCSP(Request $request): string
+    private function buildCSP(): string
     {
-        $self   = "'self'";
-        $none   = "'none'";
+        $self = "'self'";
+        $none = "'none'";
         $unsafe = "'unsafe-inline'"; // Diperlukan untuk Tailwind inline style & editor
 
         // Daftar domain eksternal yang DIIZINKAN secara eksplisit
-        $allowedFonts   = 'fonts.gstatic.com fonts.googleapis.com';
-        $allowedStyles  = 'fonts.googleapis.com cdn.jsdelivr.net cdn.quilljs.com';
-        $allowedImages  = 'i.ytimg.com *.ytimg.com data: blob:';
-        $allowedFrames  = 'www.youtube.com www.youtube-nocookie.com player.vimeo.com';
+        $allowedFonts = 'fonts.gstatic.com fonts.googleapis.com';
+        $allowedStyles = 'fonts.googleapis.com cdn.jsdelivr.net cdn.quilljs.com';
+        $allowedImages = 'i.ytimg.com *.ytimg.com data: blob:';
+        $allowedFrames = 'www.youtube.com www.youtube-nocookie.com player.vimeo.com';
         $allowedScripts = 'cdn.jsdelivr.net cdn.quilljs.com'; // Diizinkan untuk library rich text editor
 
         // Nonce untuk inline script (jika dibutuhkan)

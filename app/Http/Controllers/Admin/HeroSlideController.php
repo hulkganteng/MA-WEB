@@ -73,7 +73,7 @@ class HeroSlideController extends Controller
 
         if ($request->hasFile('image')) {
             $rawImage = $heroSlide->getRawOriginal('image');
-            if ($rawImage && !str_starts_with($rawImage, 'http') && Storage::disk('public')->exists($rawImage)) {
+            if ($rawImage && ! str_starts_with($rawImage, 'http') && Storage::disk('public')->exists($rawImage)) {
                 Storage::disk('public')->delete($rawImage);
             }
             $data['image'] = $request->file('image')->store('hero-slides', 'public');
@@ -104,16 +104,16 @@ class HeroSlideController extends Controller
         $imageRules = $slide ? ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'] : ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:5120'];
 
         return $request->validate([
-            'title'                  => ['required', 'string', 'max:255'],
-            'subtitle'               => ['nullable', 'string', 'max:500'],
-            'tagline'                => ['nullable', 'string', 'max:100'],
-            'image'                  => $imageRules,
-            'button_text'            => ['nullable', 'string', 'max:50'],
-            'button_url'             => ['nullable', 'string', 'max:255', new SafeButtonUrl()],
-            'secondary_button_text'  => ['nullable', 'string', 'max:50'],
-            'secondary_button_url'   => ['nullable', 'string', 'max:255', new SafeButtonUrl()],
-            'order'                  => ['nullable', 'integer', 'min:0'],
-            'status'                 => ['required', Rule::in(HeroSlide::STATUSES)],
+            'title' => ['required', 'string', 'max:255'],
+            'subtitle' => ['nullable', 'string', 'max:500'],
+            'tagline' => ['nullable', 'string', 'max:100'],
+            'image' => $imageRules,
+            'button_text' => ['nullable', 'string', 'max:50'],
+            'button_url' => ['nullable', 'string', 'max:255', new SafeButtonUrl],
+            'secondary_button_text' => ['nullable', 'string', 'max:50'],
+            'secondary_button_url' => ['nullable', 'string', 'max:255', new SafeButtonUrl],
+            'order' => ['nullable', 'integer', 'min:0'],
+            'status' => ['required', Rule::in(HeroSlide::STATUSES)],
         ]);
     }
 }

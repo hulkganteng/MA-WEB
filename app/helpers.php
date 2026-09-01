@@ -10,13 +10,6 @@ if (! function_exists('setting')) {
     }
 }
 
-if (! function_exists('site_setting')) {
-    function site_setting(string $key, mixed $default = null): mixed
-    {
-        return Setting::get($key, $default);
-    }
-}
-
 if (! function_exists('activity_log')) {
     function activity_log(string $action, mixed $subject = null, array $properties = []): void
     {
@@ -37,6 +30,7 @@ if (! function_exists('format_bytes')) {
     {
         $units = ['B', 'KB', 'MB', 'GB', 'TB'];
         $pow = $bytes > 0 ? floor(log($bytes, 1024)) : 0;
+
         return round($bytes / (1024 ** $pow), $precision).' '.$units[$pow];
     }
 }

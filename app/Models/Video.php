@@ -30,8 +30,10 @@ class Video extends Model
     {
         if ($this->provider === 'youtube') {
             $id = $this->extractYouTubeId();
+
             return $id ? 'https://www.youtube.com/embed/'.$id : null;
         }
+
         return $this->url;
     }
 
@@ -40,6 +42,7 @@ class Video extends Model
         if (preg_match('/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/', $this->url, $m)) {
             return $m[1];
         }
+
         return null;
     }
 
@@ -52,9 +55,10 @@ class Video extends Model
         }
         if ($this->provider === 'youtube') {
             $id = $this->extractYouTubeId();
+
             return $id ? 'https://i.ytimg.com/vi/'.$id.'/hqdefault.jpg' : null;
         }
+
         return null;
     }
 }
-

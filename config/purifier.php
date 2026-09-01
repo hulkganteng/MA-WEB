@@ -13,12 +13,12 @@
  */
 
 return [
-    'encoding'         => 'UTF-8',
-    'finalize'         => true,
+    'encoding' => 'UTF-8',
+    'finalize' => true,
     'ignoreNonStrings' => false,
-    'cachePath'        => storage_path('app/purifier'),
-    'cacheFileMode'    => 0755,
-    'settings'         => [
+    'cachePath' => storage_path('app/purifier'),
+    'cacheFileMode' => 0755,
+    'settings' => [
 
         /*
         |--------------------------------------------------------------------------
@@ -26,19 +26,19 @@ return [
         |--------------------------------------------------------------------------
         */
         'default' => [
-            'HTML.Doctype'             => 'HTML 4.01 Transitional',
-            'HTML.Allowed'             => 'h1,h2,h3,h4,h5,h6,div,p[style],b,strong,i,em,u,s,del,ins,sub,sup,mark,a[href|title|target|rel],ul,ol,li,br,span[style],img[width|height|alt|src],table,thead,tbody,tr,th[colspan|rowspan|style],td[colspan|rowspan|style],blockquote,code,pre,hr,figure,figcaption,section,article,aside,header,footer',
-            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align,width,height,margin,margin-left,margin-right',
+            'HTML.Doctype' => 'HTML 4.01 Transitional',
+            'HTML.Allowed' => 'h1,h2,h3,h4,h5,h6,div,p[style],b,strong,i,em,u,s,del,ins,sub,sup,mark,a[href|title|target|rel],ul,ol,li,br,span[style],img[width|height|alt|src],table,thead,tbody,tr,th[colspan|rowspan|style],td[colspan|rowspan|style],blockquote,code,pre,hr,figure,figcaption,section,article,aside,header,footer',
+            'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align,width,height,margin,margin-left,margin-right',
             'AutoFormat.AutoParagraph' => false,
-            'AutoFormat.RemoveEmpty'   => true,
+            'AutoFormat.RemoveEmpty' => true,
             // Batasi scheme URI yang diizinkan — TIDAK ada javascript:, data:, vbscript:
-            'URI.AllowedSchemes'       => ['http' => true, 'https' => true, 'mailto' => true, 'tel' => true],
+            'URI.AllowedSchemes' => ['http' => true, 'https' => true, 'mailto' => true, 'tel' => true],
             // Target link hanya _blank dan _self
             'Attr.AllowedFrameTargets' => ['_blank', '_self'],
             // Paksa rel="noopener noreferrer" pada semua link yang buka tab baru
-            'HTML.TargetBlank'         => true,
-            'HTML.TargetNoopener'      => true,
-            'HTML.TargetNoreferrer'    => true,
+            'HTML.TargetBlank' => true,
+            'HTML.TargetNoopener' => true,
+            'HTML.TargetNoreferrer' => true,
         ],
 
         /*
@@ -47,18 +47,18 @@ return [
         |--------------------------------------------------------------------------
         */
         'youtube' => [
-            'HTML.Doctype'             => 'HTML 4.01 Transitional',
-            'HTML.Allowed'             => 'h1,h2,h3,h4,h5,h6,div,p[style],b,strong,i,em,u,s,del,ins,sub,sup,mark,a[href|title|target|rel],ul,ol,li,br,span[style],img[width|height|alt|src],iframe[src|width|height|allowfullscreen|frameborder],table,thead,tbody,tr,th[colspan|rowspan|style],td[colspan|rowspan|style],blockquote,code,pre,hr,figure,figcaption,section,article,aside,header,footer',
-            'CSS.AllowedProperties'    => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align,width,height,margin,margin-left,margin-right',
-            'AutoFormat.RemoveEmpty'   => true,
-            'URI.AllowedSchemes'       => ['http' => true, 'https' => true, 'mailto' => true],
-            'HTML.SafeIframe'          => true,
+            'HTML.Doctype' => 'HTML 4.01 Transitional',
+            'HTML.Allowed' => 'h1,h2,h3,h4,h5,h6,div,p[style],b,strong,i,em,u,s,del,ins,sub,sup,mark,a[href|title|target|rel],ul,ol,li,br,span[style],img[width|height|alt|src],iframe[src|width|height|allowfullscreen|frameborder],table,thead,tbody,tr,th[colspan|rowspan|style],td[colspan|rowspan|style],blockquote,code,pre,hr,figure,figcaption,section,article,aside,header,footer',
+            'CSS.AllowedProperties' => 'font,font-size,font-weight,font-style,font-family,text-decoration,padding-left,color,background-color,text-align,width,height,margin,margin-left,margin-right',
+            'AutoFormat.RemoveEmpty' => true,
+            'URI.AllowedSchemes' => ['http' => true, 'https' => true, 'mailto' => true],
+            'HTML.SafeIframe' => true,
             // Hanya izinkan embed dari YouTube dan Vimeo — TIDAK dari domain lain
-            'URI.SafeIframeRegexp'     => '%^https://(www\.youtube\.com/embed/|www\.youtube-nocookie\.com/embed/|player\.vimeo\.com/video/)[\w\-?=&]+$%',
+            'URI.SafeIframeRegexp' => '%^https://(www\.youtube\.com/embed/|www\.youtube-nocookie\.com/embed/|player\.vimeo\.com/video/)[\w\-?=&]+$%',
             'Attr.AllowedFrameTargets' => ['_blank', '_self'],
-            'HTML.TargetBlank'         => true,
-            'HTML.TargetNoopener'      => true,
-            'HTML.TargetNoreferrer'    => true,
+            'HTML.TargetBlank' => true,
+            'HTML.TargetNoopener' => true,
+            'HTML.TargetNoreferrer' => true,
         ],
 
         /*
@@ -67,8 +67,8 @@ return [
         |--------------------------------------------------------------------------
         */
         'custom_definition' => [
-            'id'    => 'html5-definitions',
-            'rev'   => 3,
+            'id' => 'html5-definitions',
+            'rev' => 3,
             'debug' => false,
             'elements' => [
                 // Semantik dokumen HTML5

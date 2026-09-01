@@ -61,7 +61,7 @@ class AlbumController extends Controller
 
             $album = Album::create($data);
 
-            if (!empty($photos)) {
+            if (! empty($photos)) {
                 $firstPhotoPath = null;
                 foreach ($photos as $index => $photoFile) {
                     if ($photoFile && $photoFile->isValid()) {
@@ -104,14 +104,13 @@ class AlbumController extends Controller
 
     public function update(Request $request, Album $album)
     {
-        $data = $this->validateAlbum($request, $album);
+        $data = $this->validateAlbum($request);
         $data['slug'] = $this->uniqueSlug(($data['slug'] ?? '') ?: $data['name'], $album);
 
+        $oldCover = null;
         if ($request->hasFile('cover')) {
-            if ($album->cover && Storage::disk('public')->exists($album->cover)) {
-                Storage::disk('public')->delete($album->cover);
-            }
             $data['cover'] = $request->file('cover')->store('gallery/albums', 'public');
+            $oldCover = $album->cover;
         }
 
         DB::transaction(function () use ($request, $data, $album) {
@@ -119,13 +118,13 @@ class AlbumController extends Controller
 
             // Handle deleted photos
             $deletedPhotoIds = $request->input('delete_photos', []);
-            if (!empty($deletedPhotoIds)) {
+            if (! empty($deletedPhotoIds)) {
                 $photosToDelete = Photo::where('album_id', $album->id)
                     ->whereIn('id', $deletedPhotoIds)
                     ->get();
 
                 foreach ($photosToDelete as $photo) {
-                    if ($photo->image && Storage::disk('public')->exists($photo->image)) {
+                    if ($photo->image) {
                         Storage::disk('public')->delete($photo->image);
                     }
                     $photo->delete();
@@ -147,7 +146,7 @@ class AlbumController extends Controller
                 if (isset($existingOrders[$photo->id])) {
                     $updates['order'] = (int) $existingOrders[$photo->id];
                 }
-                if (!empty($updates)) {
+                if (! empty($updates)) {
                     $photo->update($updates);
                 }
             }
@@ -157,7 +156,7 @@ class AlbumController extends Controller
             $newCaptions = $request->input('new_captions', []);
             $currentMaxOrder = (int) $album->photos()->max('order');
 
-            if (!empty($newPhotos)) {
+            if (! empty($newPhotos)) {
                 foreach ($newPhotos as $index => $photoFile) {
                     if ($photoFile && $photoFile->isValid()) {
                         $path = $photoFile->store('gallery/photos', 'public');
@@ -182,6 +181,10 @@ class AlbumController extends Controller
             }
         });
 
+        if ($oldCover) {
+            Storage::disk('public')->delete($oldCover);
+        }
+
         activity_log('gallery.album.update', $album, ['name' => $album->name]);
 
         return redirect()->route('admin.gallery.albums.index')->with('flash', [
@@ -204,7 +207,7 @@ class AlbumController extends Controller
     public function destroyPhoto(Photo $photo)
     {
         $album = $photo->album;
-        if ($photo->image && Storage::disk('public')->exists($photo->image)) {
+        if ($photo->image) {
             Storage::disk('public')->delete($photo->image);
         }
         $photo->delete();
@@ -223,7 +226,7 @@ class AlbumController extends Controller
         ]);
     }
 
-    private function validateAlbum(Request $request, ?Album $album = null): array
+    private function validateAlbum(Request $request): array
     {
         return $request->validate([
             'name' => ['required', 'string', 'max:255'],

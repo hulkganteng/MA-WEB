@@ -14,8 +14,8 @@ use App\Http\Controllers\Public\GuruController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\PageController;
 use App\Http\Controllers\Public\PrestasiController;
-use App\Http\Controllers\Public\ProgramController;
 use App\Http\Controllers\Public\ProfileController;
+use App\Http\Controllers\Public\ProgramController;
 use App\Http\Controllers\Public\SearchController;
 use App\Http\Controllers\SitemapController;
 use Illuminate\Support\Facades\Http;
@@ -63,28 +63,28 @@ Route::get('/cari', [SearchController::class, 'index'])->name('search');
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
 
 Route::get('/api/prayer-times', function () {
-	$date = request('date');
-	if (! is_string($date) || ! preg_match('/^\d{2}-\d{2}-\d{4}$/', $date)) {
-		abort(422, 'Format tanggal tidak valid.');
-	}
+    $date = request('date');
+    if (! is_string($date) || ! preg_match('/^\d{2}-\d{2}-\d{4}$/', $date)) {
+        abort(422, 'Format tanggal tidak valid.');
+    }
 
-	$response = Http::acceptJson()
-		->timeout(3)
-		->get("https://api.aladhan.com/v1/timings/{$date}", [
-			'latitude' => -7.0583,
-			'longitude' => 112.5694,
-			'method' => 20,
-			'school' => 0,
-		]);
+    $response = Http::acceptJson()
+        ->timeout(3)
+        ->get("https://api.aladhan.com/v1/timings/{$date}", [
+            'latitude' => -7.0583,
+            'longitude' => 112.5694,
+            'method' => 20,
+            'school' => 0,
+        ]);
 
-	if ($response->failed() || ! is_array($response->json('data.timings'))) {
-		abort(503, 'Jadwal sholat sementara tidak tersedia.');
-	}
+    if ($response->failed() || ! is_array($response->json('data.timings'))) {
+        abort(503, 'Jadwal sholat sementara tidak tersedia.');
+    }
 
-	return response()->json([
-		'timings' => $response->json('data.timings'),
-		'source' => 'Aladhan / Kementerian Agama Republik Indonesia',
-	])->header('Cache-Control', 'public, max-age=1800');
+    return response()->json([
+        'timings' => $response->json('data.timings'),
+        'source' => 'Aladhan / Kementerian Agama Republik Indonesia',
+    ])->header('Cache-Control', 'public, max-age=1800');
 })->middleware('throttle:60,1')->name('api.prayer-times');
 
 Route::get('/profil', [ProfileController::class, 'about'])->name('about');

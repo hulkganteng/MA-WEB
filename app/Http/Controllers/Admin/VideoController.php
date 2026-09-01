@@ -74,7 +74,7 @@ class VideoController extends Controller
 
         if ($request->hasFile('thumbnail')) {
             $rawThumbnail = $video->getRawOriginal('thumbnail');
-            if ($rawThumbnail && !str_starts_with($rawThumbnail, 'http') && Storage::disk('public')->exists($rawThumbnail)) {
+            if ($rawThumbnail && ! str_starts_with($rawThumbnail, 'http') && Storage::disk('public')->exists($rawThumbnail)) {
                 Storage::disk('public')->delete($rawThumbnail);
             }
             $data['thumbnail'] = $request->file('thumbnail')->store('gallery/videos/thumbnails', 'public');
@@ -103,15 +103,15 @@ class VideoController extends Controller
     private function validateVideo(Request $request, ?Video $video = null): array
     {
         return $request->validate([
-            'title'      => ['required', 'string', 'max:255'],
-            'slug'       => ['nullable', 'string', 'max:255'],
-            'url'        => ['required', 'string', 'max:500', 'url', new SafeVideoUrl()],
-            'provider'   => ['nullable', 'string', 'max:30'],
-            'category'   => ['nullable', 'string', 'max:50'],
-            'description'=> ['nullable', 'string', 'max:5000'],
+            'title' => ['required', 'string', 'max:255'],
+            'slug' => ['nullable', 'string', 'max:255'],
+            'url' => ['required', 'string', 'max:500', 'url', new SafeVideoUrl],
+            'provider' => ['nullable', 'string', 'max:30'],
+            'category' => ['nullable', 'string', 'max:50'],
+            'description' => ['nullable', 'string', 'max:5000'],
             'video_date' => ['nullable', 'date'],
-            'status'     => ['required', Rule::in(Video::STATUSES)],
-            'thumbnail'  => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3072'],
+            'status' => ['required', Rule::in(Video::STATUSES)],
+            'thumbnail' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:3072'],
         ]);
     }
 

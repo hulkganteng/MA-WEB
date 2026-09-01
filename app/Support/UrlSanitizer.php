@@ -61,9 +61,6 @@ class UrlSanitizer
      * - data: URI
      * - URL dengan scheme tidak dikenal
      * - URL tanpa host yang valid
-     *
-     * @param string|null $url
-     * @return bool
      */
     public static function isValidButtonUrl(?string $url): bool
     {
@@ -92,9 +89,6 @@ class UrlSanitizer
 
     /**
      * Validasi URL video — harus dari YouTube atau Vimeo.
-     *
-     * @param string|null $url
-     * @return bool
      */
     public static function isValidVideoUrl(?string $url): bool
     {
@@ -114,9 +108,6 @@ class UrlSanitizer
 
     /**
      * Validasi URL Google Maps.
-     *
-     * @param string|null $url
-     * @return bool
      */
     public static function isValidMapsUrl(?string $url): bool
     {
@@ -137,9 +128,6 @@ class UrlSanitizer
     /**
      * Validasi URL untuk redirect destination.
      * Hanya izinkan path relatif atau URL ke domain aplikasi sendiri.
-     *
-     * @param string|null $url
-     * @return bool
      */
     public static function isValidRedirectDestination(?string $url): bool
     {

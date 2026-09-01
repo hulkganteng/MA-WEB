@@ -15,6 +15,7 @@ class AgendaController extends Controller
     public function show(Event $event)
     {
         abort_unless($event->status === 'published', 404);
+
         return view('public.events.show', compact('event'));
     }
 }

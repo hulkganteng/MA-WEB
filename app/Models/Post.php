@@ -12,6 +12,7 @@ class Post extends Model
     use SoftDeletes;
 
     public const TYPES = ['berita', 'artikel'];
+
     public const STATUSES = ['draft', 'published', 'scheduled', 'archived'];
 
     protected $fillable = [

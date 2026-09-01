@@ -42,4 +42,3 @@ class Album extends Model
             : asset('storage/'.$this->cover);
     }
 }
-

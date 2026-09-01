@@ -24,7 +24,6 @@ use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\Admin\VideoController;
 use Illuminate\Support\Facades\Route;
 
-
 Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', DashboardController::class)->name('dashboard');
     Route::get('/akun', [AccountController::class, 'edit'])->name('account.edit');
@@ -38,7 +37,6 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
         Route::put('/hero-slider/{heroSlide}', [HeroSlideController::class, 'update'])->name('hero-slides.update');
         Route::delete('/hero-slider/{heroSlide}', [HeroSlideController::class, 'destroy'])->name('hero-slides.destroy');
     });
-
 
     Route::middleware('permission:posts.view|articles.view')->group(function () {
         Route::get('/konten', [PostController::class, 'index'])->name('posts.index');
@@ -125,7 +123,6 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
         Route::put('/galeri/video/{video}', [VideoController::class, 'update'])->middleware('permission:videos.update')->name('gallery.videos.update');
         Route::delete('/galeri/video/{video}', [VideoController::class, 'destroy'])->middleware('permission:videos.delete')->name('gallery.videos.destroy');
     });
-
 
     Route::middleware('permission:programs.view')->group(function () {
         Route::get('/program', [EducationProgramController::class, 'index'])->name('programs.index');

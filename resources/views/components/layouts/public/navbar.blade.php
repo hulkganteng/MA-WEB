@@ -4,7 +4,6 @@
     $logo = setting('site.logo');
     $phone = setting('contact.phone');
     $email = setting('contact.email');
-    $social = \App\Models\SocialLink::where('is_active', true)->get();
     $menus = \App\Models\Menu::where('location', 'main')
         ->where('is_active', true)
         ->whereNull('parent_id')

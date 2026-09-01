@@ -29,8 +29,6 @@ use App\Models\Video;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 
-
-
 class DemoSeeder extends Seeder
 {
     public function run(): void
@@ -70,9 +68,9 @@ class DemoSeeder extends Seeder
                 'category' => $catKeagamaan,
                 'excerpt' => 'Keluarga besar MA Ma\'arif NU Assa\'adah Bungah Gresik menggelar apel akbar dan serangkaian perlombaan dalam memperingati Hari Santri Nasional bersama Pondok Pesantren Qomaruddin.',
                 'body' => '<p><strong>Gresik, MA Assa\'adah</strong> — Ribuan santri dan peserta didik dari seluruh penjuru Pondok Pesantren Qomaruddin dan MA Ma\'arif NU Assa\'adah Bungah memadati halaman madrasah untuk mengikuti Apel Akbar Hari Santri Nasional. Mengusung semangat jihad santri untuk kemajuan negeri, acara ini menjadi momentum refleksi atas kontribusi besar ulama dan santri dalam menjaga kemerdekaan Negara Kesatuan Republik Indonesia.</p>'
-                    . '<p>Kepala Madrasah, <strong>Mohammad Isma\'il Cholilur Rohman, M.Pd.</strong>, dalam amanatnya menegaskan bahwa santri MA Ma\'arif NU Assa\'adah harus menjadi pelopor generasi cendekia yang berkarakter kuat, berwawasan global, namun tetap berpegang teguh pada amaliyah Ahlussunnah wal Jama\'ah An-Nahdliyyah.</p>'
-                    . '<blockquote>"Santri masa kini bukan hanya mengaji kitab kuning di bilik pesantren, tapi juga mampu meretas batas teknologi, sains, dan diplomasi internasional tanpa kehilangan adab dan akhlakul karimah," tutur beliau disambut gema takbir para santri.</blockquote>'
-                    . '<p>Rangkaian peringatan dilanjutkan dengan musabaqah qira\'atul kutub, festival hadrah Al-Banjari, parade busana santri nusantara, dan pameran inovasi karya riset madrasah santri MA Ma\'arif NU Assa\'adah.</p>',
+                    .'<p>Kepala Madrasah, <strong>Mohammad Isma\'il Cholilur Rohman, M.Pd.</strong>, dalam amanatnya menegaskan bahwa santri MA Ma\'arif NU Assa\'adah harus menjadi pelopor generasi cendekia yang berkarakter kuat, berwawasan global, namun tetap berpegang teguh pada amaliyah Ahlussunnah wal Jama\'ah An-Nahdliyyah.</p>'
+                    .'<blockquote>"Santri masa kini bukan hanya mengaji kitab kuning di bilik pesantren, tapi juga mampu meretas batas teknologi, sains, dan diplomasi internasional tanpa kehilangan adab dan akhlakul karimah," tutur beliau disambut gema takbir para santri.</blockquote>'
+                    .'<p>Rangkaian peringatan dilanjutkan dengan musabaqah qira\'atul kutub, festival hadrah Al-Banjari, parade busana santri nusantara, dan pameran inovasi karya riset madrasah santri MA Ma\'arif NU Assa\'adah.</p>',
                 'is_featured' => true,
                 'published_at' => now()->subDays(2),
                 'views' => 482,
@@ -83,8 +81,8 @@ class DemoSeeder extends Seeder
                 'category' => $catPrestasi,
                 'excerpt' => 'Prestasi membanggakan kembali diukir oleh kontingen MA Ma\'arif NU Assa\'adah pada KSM Matematika dan Biologi Terintegrasi se-Jawa Timur.',
                 'body' => '<p><strong>Surabaya</strong> — Prestasi gemilang kembali dipersembahkan oleh duta sains MA Ma\'arif NU Assa\'adah Bungah Gresik. Dalam ajang bergengsi Kompetisi Sains Madrasah (KSM) tingkat Provinsi Jawa Timur yang diselenggarakan oleh Kanwil Kemenag Jawa Timur, siswa MA Assa\'adah berhasil memboyong medali emas untuk cabang Matematika Terintegrasi dan medali perak untuk Biologi Terintegrasi.</p>'
-                    . '<p>Keberhasilan ini merupakan buah dari program bimbingan intensif <em>Madrasah Riset & Sains Olympiad Club</em> yang secara konsisten membekali santri dengan penguasaan konsep sains mutakhir yang dipadukan dengan pemahaman ayat-ayat kauniyah dan khazanah Islam klasik.</p>'
-                    . '<p>Koordinator Tim Riset Madrasah, <strong>Dewi Lestari, S.Kom., M.T.</strong>, menyampaikan rasa syukur dan kebanggaannya: "Kami melatih mereka tidak hanya memecahkan soal analitis tingkat tinggi, namun juga membangun mentalitas juara santri yang tawadhu\' dan pantang menyerah. Target kami berikutnya adalah melaju ke ajang KSM Nasional."',
+                    .'<p>Keberhasilan ini merupakan buah dari program bimbingan intensif <em>Madrasah Riset & Sains Olympiad Club</em> yang secara konsisten membekali santri dengan penguasaan konsep sains mutakhir yang dipadukan dengan pemahaman ayat-ayat kauniyah dan khazanah Islam klasik.</p>'
+                    .'<p>Koordinator Tim Riset Madrasah, <strong>Dewi Lestari, S.Kom., M.T.</strong>, menyampaikan rasa syukur dan kebanggaannya: "Kami melatih mereka tidak hanya memecahkan soal analitis tingkat tinggi, namun juga membangun mentalitas juara santri yang tawadhu\' dan pantang menyerah. Target kami berikutnya adalah melaju ke ajang KSM Nasional."',
                 'is_featured' => false,
                 'published_at' => now()->subDays(5),
                 'views' => 365,
@@ -95,8 +93,8 @@ class DemoSeeder extends Seeder
                 'category' => $catAkademik,
                 'excerpt' => 'MA Ma\'arif NU Assa\'adah mengintensifkan program pembiasaan bahasa asing (Arabic & English Club) dengan mendatangkan native speaker dan menggelar English Camp.',
                 'body' => '<p><strong>Bungah, Gresik</strong> — Sebagai madrasah unggulan yang bertekad mengantarkan alumninya menembus universitas terkemuka dunia seperti Universitas Al-Azhar Kairo, Timur Tengah, dan kampus ternama dalam maupun luar negeri, MA Ma\'arif NU Assa\'adah menggelar agenda tahunan <em>Language Immersion Week</em>.</p>'
-                    . '<p>Program ini mengharuskan seluruh santri berkomunikasi dalam bahasa Arab dan Inggris di lingkungan asrama dan kelas selama 24 jam penuh. Kegiatan diisi dengan debat ilmiah berbahasa Arab (munadzarah), khitobah 3 bahasa, story telling, hingga workshop penulisan esai akademik.</p>'
-                    . '<p>Wakil Kepala Bidang Kurikulum, <strong>Drs. H. Ahmad Fauzi, M.Pd.</strong>, menyatakan bahwa penguasaan bahasa internasional adalah kunci utama agar santri dapat menyebarkan risalah Islam rahmatan lil \'alamin ke kancah global secara bermartabat.</p>',
+                    .'<p>Program ini mengharuskan seluruh santri berkomunikasi dalam bahasa Arab dan Inggris di lingkungan asrama dan kelas selama 24 jam penuh. Kegiatan diisi dengan debat ilmiah berbahasa Arab (munadzarah), khitobah 3 bahasa, story telling, hingga workshop penulisan esai akademik.</p>'
+                    .'<p>Wakil Kepala Bidang Kurikulum, <strong>Drs. H. Ahmad Fauzi, M.Pd.</strong>, menyatakan bahwa penguasaan bahasa internasional adalah kunci utama agar santri dapat menyebarkan risalah Islam rahmatan lil \'alamin ke kancah global secara bermartabat.</p>',
                 'is_featured' => false,
                 'published_at' => now()->subDays(8),
                 'views' => 290,
@@ -107,8 +105,8 @@ class DemoSeeder extends Seeder
                 'category' => $catKeagamaan,
                 'excerpt' => 'Suasana haru dan khidmat menyelimuti prosesi Wisuda Tahfidzul Qur\'an MA Ma\'arif NU Assa\'adah yang bersinergi dengan Pondok Pesantren Qomaruddin.',
                 'body' => '<p><strong>Gresik</strong> — Sebanyak 25 santri MA Ma\'arif NU Assa\'adah secara resmi diwisuda setelah menuntaskan setoran hafalan Al-Qur\'an, mulai dari program juz 30 hingga kategori 30 juz bil ghoib bersanad. Prosesi wisuda disaksikan oleh para Masyayikh Pondok Pesantren Qomaruddin, dewan asatidz, dan wali santri.</p>'
-                    . '<p>Dalam kesempatan tersebut, para wisudawan diuji secara acak oleh para ulama penguji (imtihan khash) melalui sambung ayat dan pertanyaan hukum tajwid. Seluruh santri mampu menjawab dengan tartil, fasih, dan mutqin.</p>'
-                    . '<p>Madrasah memberikan apresiasi berupa beasiswa penuh pendidikan lanjutan serta piagam penghargaan syahadah tahfidz kepada para wisudawan terbaik.</p>',
+                    .'<p>Dalam kesempatan tersebut, para wisudawan diuji secara acak oleh para ulama penguji (imtihan khash) melalui sambung ayat dan pertanyaan hukum tajwid. Seluruh santri mampu menjawab dengan tartil, fasih, dan mutqin.</p>'
+                    .'<p>Madrasah memberikan apresiasi berupa beasiswa penuh pendidikan lanjutan serta piagam penghargaan syahadah tahfidz kepada para wisudawan terbaik.</p>',
                 'is_featured' => false,
                 'published_at' => now()->subDays(14),
                 'views' => 415,
@@ -119,8 +117,8 @@ class DemoSeeder extends Seeder
                 'category' => $catAkademik,
                 'excerpt' => 'Opini dan telaah ilmiah mengenai bagaimana santri MA Ma\'arif NU Assa\'adah merespons kemajuan teknologi AI dengan pondasi etika kitab kuning.',
                 'body' => '<p>Perkembangan pesat teknologi digital dan kecerdasan buatan (Artificial Intelligence) kerap dipandang sebagai pisau bermata dua di dunia pendidikan. Namun di MA Ma\'arif NU Assa\'adah, transformasi digital bukan untuk dihindari, melainkan diserap dan diarahkan oleh nilai-nilai luhur turats pesantren.</p>'
-                    . '<p>Dalam kitab <em>Ta\'limul Muta\'allim</em> karya Syekh Az-Zarnuji, ditekankan bahwa kemuliaan ilmu terletak pada niat yang suci untuk menghidupkan agama dan menolak kebodohan. Ketika santri dibekali kemampuan coding, literasi data, dan AI prompting, adab dan etika santri menjadi filter moral yang memastikan teknologi dimanfaatkan untuk kemaslahatan umat manusia (mashlahah \'ammah).</p>'
-                    . '<p>Integrasi kurikulum inilah yang melahirkan profil lulusan MA Ma\'arif NU Assa\'adah yang berakhlak mulia, cakap berinovasi, dan cendekia dalam berpikir.</p>',
+                    .'<p>Dalam kitab <em>Ta\'limul Muta\'allim</em> karya Syekh Az-Zarnuji, ditekankan bahwa kemuliaan ilmu terletak pada niat yang suci untuk menghidupkan agama dan menolak kebodohan. Ketika santri dibekali kemampuan coding, literasi data, dan AI prompting, adab dan etika santri menjadi filter moral yang memastikan teknologi dimanfaatkan untuk kemaslahatan umat manusia (mashlahah \'ammah).</p>'
+                    .'<p>Integrasi kurikulum inilah yang melahirkan profil lulusan MA Ma\'arif NU Assa\'adah yang berakhlak mulia, cakap berinovasi, dan cendekia dalam berpikir.</p>',
                 'is_featured' => false,
                 'published_at' => now()->subDays(10),
                 'views' => 230,
@@ -131,7 +129,7 @@ class DemoSeeder extends Seeder
                 'category' => $catKeagamaan,
                 'excerpt' => 'Mengenal esensi sanad keilmuan para masyayikh Sampurnan Bungah yang menjadi ruh utama pembelajaran di MA Ma\'arif NU Assa\'adah.',
                 'body' => '<p>Sanad keilmuan adalah identitas tak terpisahkan dari tradisi pesantren Nahdlatul Ulama. Di MA Ma\'arif NU Assa\'adah, setiap kitab turats yang dipelajari memiliki silsilah guru yang bersambung langsung hingga pengarang kitab dan bermuara kepada Baginda Rasulullah SAW.</p>'
-                    . '<p>K.H. Qomaruddin, ulama kharismatik yang mendirikan pesantren pada abad ke-18 di Sampurnan Bungah, mewariskan keteladanan cinta ilmu dan keteguhan ibadah. Menghormati guru (ta\'dzim lil ustadz), istiqomah dalam mudzakarah, serta mengamalkan ilmu dalam kesederhanaan adalah pondasi yang terus ditanamkan kepada setiap peserta didik madrasah.</p>',
+                    .'<p>K.H. Qomaruddin, ulama kharismatik yang mendirikan pesantren pada abad ke-18 di Sampurnan Bungah, mewariskan keteladanan cinta ilmu dan keteguhan ibadah. Menghormati guru (ta\'dzim lil ustadz), istiqomah dalam mudzakarah, serta mengamalkan ilmu dalam kesederhanaan adalah pondasi yang terus ditanamkan kepada setiap peserta didik madrasah.</p>',
                 'is_featured' => false,
                 'published_at' => now()->subDays(18),
                 'views' => 310,
@@ -152,7 +150,7 @@ class DemoSeeder extends Seeder
                     'is_featured' => $p['is_featured'],
                     'published_at' => $p['published_at'],
                     'views' => $p['views'],
-                    'seo_title' => $p['title'] . ' | MA Ma\'arif NU Assa\'adah',
+                    'seo_title' => $p['title'].' | MA Ma\'arif NU Assa\'adah',
                     'seo_description' => $p['excerpt'],
                 ]
             );
@@ -165,9 +163,9 @@ class DemoSeeder extends Seeder
                 'title' => 'Penerimaan Santri & Peserta Didik Baru (SPMB) Tahun Ajaran 2026/2027 Gelombang 1',
                 'slug' => 'spmb-tahun-ajaran-2026-2027-gelombang-1',
                 'body' => '<p>MA Ma\'arif NU Assa\'adah Bungah Gresik secara resmi membuka Pendaftaran Santri dan Peserta Didik Baru (SPMB) Tahun Ajaran 2026/2027 untuk seluruh program unggulan (MIPA Riset, IPS Entrepreneur, Keagamaan Turats, dan Tahfidzul Qur\'an).</p>'
-                    . '<h3>Jadwal Penting Gelombang 1:</h3>'
-                    . '<ul><li>Pendaftaran Online & Offline: 1 Januari - 31 Maret 2026</li><li>Tes Seleksi & Wawancara Pemetaan: 5 April 2026</li><li>Pengumuman Hasil Seleksi: 10 April 2026</li><li>Daftar Ulang: 11 - 20 April 2026</li></ul>'
-                    . '<p>Tersedia beasiswa santri berprestasi akademik, non-akademik, dan beasiswa tahfidz Al-Qur\'an minimal 3 juz. Pendaftaran dapat dilakukan secara online melalui website ini atau hadir langsung di Sekretariat SPMB Gedung MA Ma\'arif NU Assa\'adah Jl. Raya Bungah No. 01 Gresik.</p>',
+                    .'<h3>Jadwal Penting Gelombang 1:</h3>'
+                    .'<ul><li>Pendaftaran Online & Offline: 1 Januari - 31 Maret 2026</li><li>Tes Seleksi & Wawancara Pemetaan: 5 April 2026</li><li>Pengumuman Hasil Seleksi: 10 April 2026</li><li>Daftar Ulang: 11 - 20 April 2026</li></ul>'
+                    .'<p>Tersedia beasiswa santri berprestasi akademik, non-akademik, dan beasiswa tahfidz Al-Qur\'an minimal 3 juz. Pendaftaran dapat dilakukan secara online melalui website ini atau hadir langsung di Sekretariat SPMB Gedung MA Ma\'arif NU Assa\'adah Jl. Raya Bungah No. 01 Gresik.</p>',
                 'publish_date' => now()->subDays(3),
                 'is_important' => true,
             ],
@@ -254,16 +252,16 @@ class DemoSeeder extends Seeder
             [
                 'title' => 'Tentang MA Ma\'arif NU Assa\'adah',
                 'body' => '<p><strong>MA Ma\'arif NU Assa\'adah (MAMNU Assa\'adah)</strong> adalah madrasah aliyah swasta terakreditasi <strong>A (Unggul)</strong> di bawah naungan <strong>Yayasan Pondok Pesantren Qomaruddin (YPPQ)</strong>, berlokasi di Jl. Raya Bungah No. 01, Bungah, Kabupaten Gresik, Jawa Timur.</p>'
-                    . '<p>Didirikan pada tahun <strong>1972</strong>, madrasah ini telah menapaki perjalanan pengabdian lebih dari 5 dekade (50 tahun lebih) sebagai kawah candradimuka bagi ribuan santri dari berbagai penjuru tanah air. MA Ma\'arif NU Assa\'adah memadukan kurikulum nasional (Kementerian Agama & Kemendikbudristek) dengan kurikulum pesantren salaf-modern khas Pondok Pesantren Qomaruddin yang didirikan sejak tahun 1775 M.</p>'
-                    . '<h2>Nilai Dasar Pendidikan Madrasah</h2>'
-                    . '<ul>'
-                    . '<li><strong>Berkarakter Pesantren:</strong> Menanamkan nilai-nilai Aswaja An-Nahdliyyah, ketawadhu\'an, adab santri, kemandirian, dan cinta tanah air.</li>'
-                    . '<li><strong>Cakap & Terampil:</strong> Membekali santri dengan kecakapan abad ke-21: kemampuan bilingual (Arab-Inggris), sains terapan, robotika, literasi digital, dan life skills.</li>'
-                    . '<li><strong>Cendekia:</strong> Menumbuhkan budaya literasi, riset, logika kritis, serta penguasaan mendalam atas literatur turats (kitab kuning) dan ilmu pengetahuan modern.</li>'
-                    . '<li><strong>Berakhlakul Karimah:</strong> Menjadikan kemuliaan akhlak sebagai muara dari seluruh capaian intelektual dan spiritual.</li>'
-                    . '</ul>'
-                    . '<h2>Peminatan & Jalur Pembelajaran</h2>'
-                    . '<p>Madrasah menyelenggarakan beragam peminatan sesuai dengan bakat dan aspirasi masa depan santri, meliputi Peminatan MIPA (Sains & Riset), Peminatan IPS (Sosial & Kewirausahaan), Program Keagamaan (Kajian Kitab Kuning & Ushuluddin), serta Program Khusus Tahfidzul Qur\'an 30 Juz.</p>',
+                    .'<p>Didirikan pada tahun <strong>1972</strong>, madrasah ini telah menapaki perjalanan pengabdian lebih dari 5 dekade (50 tahun lebih) sebagai kawah candradimuka bagi ribuan santri dari berbagai penjuru tanah air. MA Ma\'arif NU Assa\'adah memadukan kurikulum nasional (Kementerian Agama & Kemendikbudristek) dengan kurikulum pesantren salaf-modern khas Pondok Pesantren Qomaruddin yang didirikan sejak tahun 1775 M.</p>'
+                    .'<h2>Nilai Dasar Pendidikan Madrasah</h2>'
+                    .'<ul>'
+                    .'<li><strong>Berkarakter Pesantren:</strong> Menanamkan nilai-nilai Aswaja An-Nahdliyyah, ketawadhu\'an, adab santri, kemandirian, dan cinta tanah air.</li>'
+                    .'<li><strong>Cakap & Terampil:</strong> Membekali santri dengan kecakapan abad ke-21: kemampuan bilingual (Arab-Inggris), sains terapan, robotika, literasi digital, dan life skills.</li>'
+                    .'<li><strong>Cendekia:</strong> Menumbuhkan budaya literasi, riset, logika kritis, serta penguasaan mendalam atas literatur turats (kitab kuning) dan ilmu pengetahuan modern.</li>'
+                    .'<li><strong>Berakhlakul Karimah:</strong> Menjadikan kemuliaan akhlak sebagai muara dari seluruh capaian intelektual dan spiritual.</li>'
+                    .'</ul>'
+                    .'<h2>Peminatan & Jalur Pembelajaran</h2>'
+                    .'<p>Madrasah menyelenggarakan beragam peminatan sesuai dengan bakat dan aspirasi masa depan santri, meliputi Peminatan MIPA (Sains & Riset), Peminatan IPS (Sosial & Kewirausahaan), Program Keagamaan (Kajian Kitab Kuning & Ushuluddin), serta Program Khusus Tahfidzul Qur\'an 30 Juz.</p>',
                 'status' => 'published',
                 'seo_title' => 'Profil & Identitas | MA Ma\'arif NU Assa\'adah Bungah Gresik',
                 'seo_description' => 'Mengenal profil, sejarah, dan nilai pendidikan MA Ma\'arif NU Assa\'adah Bungah Gresik, madrasah aliyah unggulan berkarakter pesantren.',
@@ -275,17 +273,17 @@ class DemoSeeder extends Seeder
             [
                 'title' => 'Sejarah Perjalanan Madrasah',
                 'body' => '<p>Akar historis <strong>MA Ma\'arif NU Assa\'adah</strong> berpijak kokoh pada sejarah emas <strong>Pondok Pesantren Qomaruddin</strong>, salah satu pesantren tertua dan paling bersejarah di Nusantara yang didirikan oleh <strong>K.H. Qomaruddin</strong> pada tahun <strong>1775 M</strong> di Desa Sampurnan, Kecamatan Bungah, Kabupaten Gresik.</p>'
-                    . '<h2>Kelahiran Lembaga Pendidikan Formal (1972)</h2>'
-                    . '<p>Seiring dinamika peradaban dan kebutuhan umat akan adanya jenjang pendidikan formal setingkat sekolah menengah atas yang berbobot ilmu agama sekaligus mampu bersaing dalam kancah ilmu umum, para Masyayikh dan Pengurus Yayasan Pondok Pesantren Qomaruddin memprakarsai berdirinya <strong>Madrasah Aliyah Ma\'arif NU Assa\'adah pada tahun 1972</strong>.</p>'
-                    . '<p>Nama <em>Assa\'adah</em> (kebahagiaan) disematkan sebagai doa dan harapan agung agar madrasah ini mampu menghantarkan para pencari ilmu menuju kebahagiaan sejati di dunia maupun di akhirat kelak (sa\'adatad-darain).</p>'
-                    . '<h2>Tonggak Perkembangan & Transformasi Modern</h2>'
-                    . '<p>Dalam rentang perjalanan lebih dari setengah abad, MA Ma\'arif NU Assa\'adah terus bertransformasi:</p>'
-                    . '<ul>'
-                    . '<li><strong>Era Perintisan (1972 - 1985):</strong> Pemantapan fondasi kurikulum madrasah terintegrasi dengan pengajian sorogan dan bandongan kitab pesantren.</li>'
-                    . '<li><strong>Era Pengembangan Akademik (1986 - 2005):</strong> Perluasan gedung madrasah, pendirian laboratorium komputer dan IPA, serta diraihnya status Akreditasi A dari Badan Akreditasi Nasional.</li>'
-                    . '<li><strong>Era Penguatan Prestasi & Riset (2006 - 2020):</strong> Lahirnya wadah pembinaan olimpiade sains (KSM), klub debat bahasa Arab dan Inggris, serta penguatan hafalan tahfidz Al-Qur\'an.</li>'
-                    . '<li><strong>Era Digital & Modernisasi (2021 - Sekarang):</strong> Implementasi Kurikulum Merdeka, transformasi smart classroom, madrasah ramah digital, dan sinergi jejaring ribuan alumni melalui wadah <strong>IKBAL MADAH</strong>.</li>'
-                    . '</ul>',
+                    .'<h2>Kelahiran Lembaga Pendidikan Formal (1972)</h2>'
+                    .'<p>Seiring dinamika peradaban dan kebutuhan umat akan adanya jenjang pendidikan formal setingkat sekolah menengah atas yang berbobot ilmu agama sekaligus mampu bersaing dalam kancah ilmu umum, para Masyayikh dan Pengurus Yayasan Pondok Pesantren Qomaruddin memprakarsai berdirinya <strong>Madrasah Aliyah Ma\'arif NU Assa\'adah pada tahun 1972</strong>.</p>'
+                    .'<p>Nama <em>Assa\'adah</em> (kebahagiaan) disematkan sebagai doa dan harapan agung agar madrasah ini mampu menghantarkan para pencari ilmu menuju kebahagiaan sejati di dunia maupun di akhirat kelak (sa\'adatad-darain).</p>'
+                    .'<h2>Tonggak Perkembangan & Transformasi Modern</h2>'
+                    .'<p>Dalam rentang perjalanan lebih dari setengah abad, MA Ma\'arif NU Assa\'adah terus bertransformasi:</p>'
+                    .'<ul>'
+                    .'<li><strong>Era Perintisan (1972 - 1985):</strong> Pemantapan fondasi kurikulum madrasah terintegrasi dengan pengajian sorogan dan bandongan kitab pesantren.</li>'
+                    .'<li><strong>Era Pengembangan Akademik (1986 - 2005):</strong> Perluasan gedung madrasah, pendirian laboratorium komputer dan IPA, serta diraihnya status Akreditasi A dari Badan Akreditasi Nasional.</li>'
+                    .'<li><strong>Era Penguatan Prestasi & Riset (2006 - 2020):</strong> Lahirnya wadah pembinaan olimpiade sains (KSM), klub debat bahasa Arab dan Inggris, serta penguatan hafalan tahfidz Al-Qur\'an.</li>'
+                    .'<li><strong>Era Digital & Modernisasi (2021 - Sekarang):</strong> Implementasi Kurikulum Merdeka, transformasi smart classroom, madrasah ramah digital, dan sinergi jejaring ribuan alumni melalui wadah <strong>IKBAL MADAH</strong>.</li>'
+                    .'</ul>',
                 'status' => 'published',
                 'seo_title' => 'Sejarah MA Ma\'arif NU Assa\'adah Bungah Gresik',
                 'seo_description' => 'Sejarah berdirinya MA Ma\'arif NU Assa\'adah sejak 1972 di bawah naungan Pondok Pesantren Qomaruddin Bungah Gresik.',
@@ -297,23 +295,23 @@ class DemoSeeder extends Seeder
             [
                 'title' => 'Visi, Misi, dan Tujuan Pendidikan',
                 'body' => '<h2>Visi Madrasah</h2>'
-                    . '<blockquote><p><strong>"Berakhlak Mulia, Cakap, Cendekia, dan Berkarakter Pesantren"</strong></p></blockquote>'
-                    . '<p><em>(Secara resmi tertuang dalam slogan madrasah: Berakhlak, Cendekia, dan Cakap).</em></p>'
-                    . '<h2>Indikator Visi</h2>'
-                    . '<ol>'
-                    . '<li><strong>Berkepribadian menarik dan terpuji:</strong> Menampilkan perilaku santun, tawadhu\', jujur, dan berakhlakul karimah dalam kehidupan madrasah, pesantren, maupun bermasyarakat.</li>'
-                    . '<li><strong>Berprestasi secara akademik dan non-akademik:</strong> Mampu bersaing dalam olimpiade sains, kajian keislaman, riset, seni hadrah, maupun olahraga prestasi.</li>'
-                    . '<li><strong>Berjiwa Aswaja An-Nahdliyyah:</strong> Memegang teguh prinsip <em>Tawassuth</em> (moderat), <em>Tawazun</em> (seimbang), <em>I\'tidal</em> (tegak adil), dan <em>Tasamuh</em> (toleran).</li>'
-                    . '<li><strong>Cakap & Melek Teknologi:</strong> Menguasai teknologi informasi serta mampu memanfaatkannya secara kreatif, bijak, dan produktif.</li>'
-                    . '</ol>'
-                    . '<h2>Misi Madrasah</h2>'
-                    . '<ol>'
-                    . '<li>Menyelenggarakan tata kelola pembelajaran terpadu antara kurikulum nasional dan kurikulum pesantren turats salaf.</li>'
-                    . '<li>Membina pembiasaan akhlakul karimah dan ibadah harian berlandaskan syariat Islam Ahlussunnah wal Jama\'ah.</li>'
-                    . '<li>Mengembangkan potensi minat, bakat, dan kreativitas santri melalui kegiatan riset ilmiah, robotika, dan ekstrakurikuler komprehensif.</li>'
-                    . '<li>Mewujudkan lingkungan belajar yang berbasis literasi digital, bilingual, dan ramah santri.</li>'
-                    . '<li>Menyiapkan lulusan berkualitas tinggi yang siap melanjutkan ke perguruan tinggi favorit dalam maupun luar negeri serta berkontribusi nyata di masyarakat.</li>'
-                    . '</ol>',
+                    .'<blockquote><p><strong>"Berakhlak Mulia, Cakap, Cendekia, dan Berkarakter Pesantren"</strong></p></blockquote>'
+                    .'<p><em>(Secara resmi tertuang dalam slogan madrasah: Berakhlak, Cendekia, dan Cakap).</em></p>'
+                    .'<h2>Indikator Visi</h2>'
+                    .'<ol>'
+                    .'<li><strong>Berkepribadian menarik dan terpuji:</strong> Menampilkan perilaku santun, tawadhu\', jujur, dan berakhlakul karimah dalam kehidupan madrasah, pesantren, maupun bermasyarakat.</li>'
+                    .'<li><strong>Berprestasi secara akademik dan non-akademik:</strong> Mampu bersaing dalam olimpiade sains, kajian keislaman, riset, seni hadrah, maupun olahraga prestasi.</li>'
+                    .'<li><strong>Berjiwa Aswaja An-Nahdliyyah:</strong> Memegang teguh prinsip <em>Tawassuth</em> (moderat), <em>Tawazun</em> (seimbang), <em>I\'tidal</em> (tegak adil), dan <em>Tasamuh</em> (toleran).</li>'
+                    .'<li><strong>Cakap & Melek Teknologi:</strong> Menguasai teknologi informasi serta mampu memanfaatkannya secara kreatif, bijak, dan produktif.</li>'
+                    .'</ol>'
+                    .'<h2>Misi Madrasah</h2>'
+                    .'<ol>'
+                    .'<li>Menyelenggarakan tata kelola pembelajaran terpadu antara kurikulum nasional dan kurikulum pesantren turats salaf.</li>'
+                    .'<li>Membina pembiasaan akhlakul karimah dan ibadah harian berlandaskan syariat Islam Ahlussunnah wal Jama\'ah.</li>'
+                    .'<li>Mengembangkan potensi minat, bakat, dan kreativitas santri melalui kegiatan riset ilmiah, robotika, dan ekstrakurikuler komprehensif.</li>'
+                    .'<li>Mewujudkan lingkungan belajar yang berbasis literasi digital, bilingual, dan ramah santri.</li>'
+                    .'<li>Menyiapkan lulusan berkualitas tinggi yang siap melanjutkan ke perguruan tinggi favorit dalam maupun luar negeri serta berkontribusi nyata di masyarakat.</li>'
+                    .'</ol>',
                 'status' => 'published',
                 'seo_title' => 'Visi dan Misi | MA Ma\'arif NU Assa\'adah',
                 'seo_description' => 'Visi, misi, dan nilai-nilai luhur pendidikan di MA Ma\'arif NU Assa\'adah Bungah Gresik.',
@@ -794,8 +792,8 @@ class DemoSeeder extends Seeder
 
             for ($k = 1; $k <= 4; $k++) {
                 Photo::firstOrCreate(
-                    ['album_id' => $alb->id, 'caption' => $ad['name'] . ' - Momen ' . $k],
-                    ['order' => $k, 'image' => 'photos/sample-' . $k . '.jpg']
+                    ['album_id' => $alb->id, 'caption' => $ad['name'].' - Momen '.$k],
+                    ['order' => $k, 'image' => 'photos/sample-'.$k.'.jpg']
                 );
             }
         }
@@ -968,7 +966,7 @@ class DemoSeeder extends Seeder
                 [
                     'name' => $dl['name'],
                     'download_category_id' => $dl['category_id'],
-                    'file' => 'downloads/' . $dl['file_name'],
+                    'file' => 'downloads/'.$dl['file_name'],
                     'file_name' => $dl['file_name'],
                     'file_size' => $dl['file_size'],
                     'description' => $dl['description'],
@@ -1027,5 +1025,3 @@ class DemoSeeder extends Seeder
         }
     }
 }
-
-

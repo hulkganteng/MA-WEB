@@ -11,6 +11,7 @@ class Event extends Model
     use SoftDeletes;
 
     public const STATUSES = ['draft', 'published'];
+
     public const CATEGORIES = ['akademik', 'kegiatan', 'ujian', 'libur', 'rapat', 'lomba'];
 
     protected $fillable = [
@@ -36,10 +37,5 @@ class Event extends Model
     public function scopeUpcoming(Builder $query): Builder
     {
         return $query->where('end_date', '>=', now()->toDateString());
-    }
-
-    public function getIsUpcomingAttribute(): bool
-    {
-        return ($this->end_date ?? $this->start_date) >= now()->toDateString();
     }
 }

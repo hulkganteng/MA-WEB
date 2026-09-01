@@ -34,6 +34,6 @@ class SearchController extends Controller
             ])->filter(fn ($items) => $items->isNotEmpty());
         }
 
-        return view('public.search', compact('results','term'));
+        return view('public.search', compact('results', 'term'));
     }
 }

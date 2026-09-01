@@ -159,6 +159,8 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
                 if (document.hidden) {
                     clearInterval(this._timer);
                     clearInterval(this._remoteTimer);
+                    this._timer = null;
+                    this._remoteTimer = null;
                 } else if (!this._timer) {
                     this._timer = setInterval(() => this.updateSchedule(), 1000);
                     this._remoteTimer = setInterval(() => this.loadRemoteSchedule(), 30 * 60 * 1000);
@@ -595,4 +597,3 @@ export function initIslamicHub(Alpine, createIcons, icons, confetti) {
         }
     }
 }
-
