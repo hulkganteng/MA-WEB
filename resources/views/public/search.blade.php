@@ -1,4 +1,4 @@
-<x-layouts.app title="Pencarian Informasi" description="Pencarian informasi cepat di portal resmi MA Ma'arif NU Assa'adah Bungah Gresik.">
+<x-layouts.app title="Pencarian Informasi" description="Pencarian informasi cepat di portal resmi MA Ma'arif NU Assa'adah Bungah Gresik." robots="noindex, follow">
     <x-page-header eyebrow="Pusat Eksplorasi"
                    title="Pencarian Informasi Madrasah"
                    description="Temukan berita terbaru, pengumuman, agenda, program unggulan, guru, fasilitas, dokumen unduhan, dan ekstrakurikuler." />

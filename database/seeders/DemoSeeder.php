@@ -16,7 +16,6 @@ use App\Models\Extracurricular;
 use App\Models\Facility;
 use App\Models\FeaturedProgram;
 use App\Models\HeroSlide;
-use App\Models\OrganizationMember;
 use App\Models\Page;
 use App\Models\Photo;
 use App\Models\Post;
@@ -350,16 +349,13 @@ class DemoSeeder extends Seeder
             );
         }
 
-        // 8. Organization Members (Hierarchical Structure)
-        $parentLeader = OrganizationMember::updateOrCreate(
-            ['name' => 'Mohammad Isma\'il Cholilur Rohman, M.Pd.'],
-            [
-                'position' => 'Kepala Madrasah',
-                'parent_id' => null,
-                'order' => 1,
-                'is_active' => true,
-            ]
-        );
+        // 8. Organization structure sourced from Teachers and Tendik
+        $parentLeader = Teacher::where('name', 'Mohammad Isma\'il Cholilur Rohman, M.Pd.')->firstOrFail();
+        $parentLeader->update([
+            'is_in_structure' => true,
+            'structure_parent_id' => null,
+            'structure_order' => 1,
+        ]);
 
         $subordinates = [
             ['name' => 'Drs. H. Ahmad Fauzi, M.Pd.', 'position' => 'Wakil Kepala Bidang Kurikulum', 'order' => 1],
@@ -367,19 +363,18 @@ class DemoSeeder extends Seeder
             ['name' => 'H. Abdul Qodir, S.Ag., M.Pd.I.', 'position' => 'Wakil Kepala Bidang Sarana & Prasarana', 'order' => 3],
             ['name' => 'Siti Aminah, S.Pd., M.A.', 'position' => 'Wakil Kepala Bidang Hubungan Masyarakat', 'order' => 4],
             ['name' => 'Sutrisno, S.E.', 'position' => 'Kepala Tata Usaha', 'order' => 5],
-            ['name' => 'Ustadz Muhammad Rofi, S.Pd.I.', 'position' => 'Koordinator Bidang Keagamaan & Tahfidz', 'order' => 6],
+            ['name' => 'Ustadz Muhammad Rofi, S.Pd.I., M.Ag.', 'position' => 'Koordinator Bidang Keagamaan & Tahfidz', 'order' => 6],
             ['name' => 'Dewi Lestari, S.Kom., M.T.', 'position' => 'Koordinator Laboratorium & Riset', 'order' => 7],
             ['name' => 'Nur Laili Rohmatin, S.Psi.', 'position' => 'Koordinator Bimbingan & Konseling', 'order' => 8],
         ];
 
         foreach ($subordinates as $sub) {
-            OrganizationMember::updateOrCreate(
-                ['name' => $sub['name']],
-                array_merge($sub, [
-                    'parent_id' => $parentLeader->id,
-                    'is_active' => true,
-                ])
-            );
+            Teacher::where('name', $sub['name'])->update([
+                'position' => $sub['position'],
+                'is_in_structure' => true,
+                'structure_parent_id' => $parentLeader->id,
+                'structure_order' => $sub['order'],
+            ]);
         }
 
         // 9. Achievements

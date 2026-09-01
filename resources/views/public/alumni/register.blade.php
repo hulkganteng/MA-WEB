@@ -1,4 +1,4 @@
-<x-layouts.app title="Registrasi Data Alumni" description="Pendaftaran data alumni ke dalam basis data resmi IKBAL MADAH MA Ma'arif NU Assa'adah Bungah Gresik.">
+<x-layouts.app title="Registrasi Data Alumni" description="Pendaftaran data alumni ke dalam basis data resmi IKBAL MADAH MA Ma'arif NU Assa'adah Bungah Gresik." robots="noindex, follow">
     <x-page-header eyebrow="IKBAL MADAH Network"
                    title="Registrasi Alumni Madrasah"
                    description="Mari terhubung kembali. Formulir pendataan lulusan untuk memperkuat jejaring karier, profesional, dan pengabdian umat." />

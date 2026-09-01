@@ -11,6 +11,8 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Tests\TestCase;
 
 class CmsContentModulesTest extends TestCase
@@ -48,6 +50,45 @@ class CmsContentModulesTest extends TestCase
         $this->assertSame(2026, $achievement->year);
         Storage::disk('public')->assertExists($achievement->cover);
         $this->get(route('prestasi.index'))->assertOk()->assertSee('Juara Nasional dari CMS');
+    }
+
+    public function test_admin_can_download_template_and_import_achievements_from_excel(): void
+    {
+        $admin = $this->admin();
+
+        $this->actingAs($admin)->get(route('admin.achievements.template'))
+            ->assertOk()
+            ->assertDownload('template-import-prestasi.xlsx');
+
+        $spreadsheet = new Spreadsheet;
+        $spreadsheet->getActiveSheet()->fromArray([
+            ['judul', 'peserta', 'kategori', 'tingkat', 'penyelenggara', 'peringkat', 'tanggal_prestasi', 'deskripsi', 'status'],
+            ['Juara Excel Nasional', 'Tim Sains', 'Akademik', 'nasional', 'Kemenag', 'Juara 1', '2026-08-21', 'Hasil import.', 'published'],
+            ['Juara Excel Kabupaten', null, 'Nonakademik', 'kabupaten', null, 'Juara 2', '2026-08-22', null, 'draft'],
+        ]);
+        $path = tempnam(sys_get_temp_dir(), 'achievement-import-');
+        (new Xlsx($spreadsheet))->save($path);
+        $spreadsheet->disconnectWorksheets();
+
+        try {
+            $file = new UploadedFile($path, 'prestasi.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', null, true);
+            $this->post(route('admin.achievements.import'), ['import_file' => $file])
+                ->assertRedirect(route('admin.achievements.index'))
+                ->assertSessionHasNoErrors();
+        } finally {
+            @unlink($path);
+        }
+
+        $this->assertDatabaseHas('achievements', [
+            'title' => 'Juara Excel Nasional',
+            'year' => 2026,
+            'status' => 'published',
+            'author_id' => $admin->id,
+        ]);
+        $this->assertDatabaseHas('achievements', [
+            'title' => 'Juara Excel Kabupaten',
+            'status' => 'draft',
+        ]);
     }
 
     public function test_admin_can_publish_announcement_and_event(): void

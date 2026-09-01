@@ -38,6 +38,7 @@ Route::get('/agenda/{event:slug}', [AgendaController::class, 'show'])->name('age
 Route::get('/prestasi', [PrestasiController::class, 'index'])->name('prestasi.index');
 
 Route::get('/program/unggulan', [ProgramController::class, 'featured'])->name('programs.featured');
+Route::get('/program/unggulan/{featuredProgram:slug}', [ProgramController::class, 'featuredShow'])->name('programs.featured.show');
 Route::get('/program', [ProgramController::class, 'index'])->name('programs');
 Route::get('/program/{program:slug}', [ProgramController::class, 'show'])->name('programs.show');
 
@@ -61,6 +62,7 @@ Route::post('/kontak', [ContactController::class, 'store'])->middleware('throttl
 
 Route::get('/cari', [SearchController::class, 'index'])->name('search');
 Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [SitemapController::class, 'robots'])->name('robots');
 
 Route::get('/api/prayer-times', function () {
     $date = request('date');

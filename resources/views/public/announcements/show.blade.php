@@ -1,4 +1,20 @@
-<x-layouts.app :title="$announcement->seo_title ?: $announcement->title" :description="$announcement->seo_description">
+@php
+    $schema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Article',
+        '@id' => url()->current().'#article',
+        'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => url()->current()],
+        'headline' => $announcement->title,
+        'description' => strip_tags($announcement->seo_description ?: \Illuminate\Support\Str::limit($announcement->body, 160)),
+        'datePublished' => $announcement->publish_date->toIso8601String(),
+        'dateModified' => $announcement->updated_at->toIso8601String(),
+        'author' => ['@id' => url('/').'#organization'],
+        'publisher' => ['@id' => url('/').'#organization'],
+        'isPartOf' => ['@id' => url('/').'#website'],
+        'inLanguage' => 'id-ID',
+    ];
+@endphp
+<x-layouts.app :title="$announcement->seo_title ?: $announcement->title" :description="$announcement->seo_description ?: \Illuminate\Support\Str::limit(strip_tags($announcement->body), 160)" :schema="$schema" type="article">
     <article class="bg-slate-50/60 py-14 sm:py-20">
         <div class="container-app max-w-4xl space-y-8">
             <a href="{{ route('pengumuman.index') }}" class="inline-flex items-center gap-2 text-xs font-bold text-primary-700 hover:text-primary-800">
@@ -57,4 +73,3 @@
         </div>
     </article>
 </x-layouts.app>
-

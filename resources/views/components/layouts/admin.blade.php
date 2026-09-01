@@ -62,6 +62,7 @@
         ],
         'Sistem' => [
             ['admin.settings.edit', 'settings', 'Pengaturan Website', 'settings.manage', []],
+            ['admin.backups.index', 'database-backup', 'Backup Data', 'settings.manage', [], 'admin.backups.*'],
         ],
     ];
 @endphp

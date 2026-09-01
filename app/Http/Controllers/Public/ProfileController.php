@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
-use App\Models\OrganizationMember;
 use App\Models\Page;
+use App\Models\Teacher;
 
 class ProfileController extends Controller
 {
@@ -35,6 +35,13 @@ class ProfileController extends Controller
 
     public function structure()
     {
-        return view('public.profile.structure', ['members' => OrganizationMember::where('is_active', true)->whereNull('parent_id')->with(['children' => fn ($query) => $query->where('is_active', true)])->orderBy('order')->get()]);
+        $members = Teacher::where('is_in_structure', true)
+            ->where('is_active', true)
+            ->where(fn ($query) => $query->whereNull('structure_parent_id')->orWhereDoesntHave('parent'))
+            ->with(['children' => fn ($query) => $query->where('is_in_structure', true)->where('is_active', true)])
+            ->orderBy('structure_order')
+            ->get();
+
+        return view('public.profile.structure', compact('members'));
     }
 }

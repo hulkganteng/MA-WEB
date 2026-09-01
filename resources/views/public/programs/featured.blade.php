@@ -60,7 +60,7 @@
                                     <x-icon name="award" class="size-4 text-primary-600" />
                                     <span>Sertifikasi & Sanad Resmi</span>
                                 </span>
-                                <a href="{{ route('programs.show', $program) }}"
+                                <a href="{{ route('programs.featured.show', $program) }}"
                                    class="btn-primary !px-4 !py-2 text-xs">
                                     <span>Pelajari Program</span>
                                     <x-icon name="arrow-right" class="size-3.5" />

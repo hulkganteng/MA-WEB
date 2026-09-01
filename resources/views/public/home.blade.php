@@ -1,4 +1,7 @@
-<x-layouts.app>
+<x-layouts.app title="Madrasah Aliyah Unggulan di Gresik"
+               description="Website resmi MA Ma'arif NU Assa'adah Bungah Gresik, madrasah aliyah unggulan berkarakter pesantren dengan program akademik, tahfidz, riset, dan turats."
+               :image="$heroSlides->first()?->image_url ?: $aboutPage?->cover"
+               :preload-image="$heroSlides->first()?->image_url">
     {{-- ================================================================= --}}
     {{-- 1. HERO SECTION (DYNAMIC CMS SLIDER & ISLAMIC HUB BENTO)          --}}
     {{-- ================================================================= --}}
@@ -69,8 +72,8 @@
                                     </template>
 
                                     <!-- Title Heading -->
-                                    <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight text-balance"
-                                        x-text="slide.title"></h1>
+                                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight text-balance"
+                                        x-text="slide.title"></h2>
 
                                     <!-- Subtitle -->
                                     <template x-if="slide.subtitle">
@@ -567,7 +570,7 @@
                                 </p>
                             </div>
                             <div class="mt-6 pt-4 border-t border-slate-100">
-                                <a href="{{ route('programs.show', $prog) }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-700 hover:text-primary-800">
+                                <a href="{{ route('programs.featured.show', $prog) }}" class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-700 hover:text-primary-800">
                                     <span>Detail Kurikulum</span>
                                     <x-icon name="arrow-right" class="size-3.5" />
                                 </a>
@@ -820,9 +823,8 @@
                         <a href="{{ route('gallery.album', $album) }}" class="group block overflow-hidden rounded-3xl border border-white/20 bg-white/10 p-3 backdrop-blur transition hover:border-gold-400/40 hover:bg-white/15">
                             <div class="relative aspect-square overflow-hidden rounded-2xl bg-primary-900">
                                 @if($album->cover)
-                                    <img src="{{ asset('storage/'.$album->cover) }}" alt="{{ $album->name }}"
-                                         loading="lazy" decoding="async"
-                                         loading="lazy" class="size-full object-cover transition duration-500 group-hover:scale-105">
+                                    <img src="{{ asset('storage/'.$album->cover) }}" alt="Dokumentasi {{ $album->name }}"
+                                         loading="lazy" decoding="async" class="size-full object-cover transition duration-500 group-hover:scale-105">
                                 @else
                                     <div class="flex size-full items-center justify-center bg-gradient-to-br from-primary-800 to-primary-900 text-gold-300">
                                         <x-icon name="images" class="size-10" />

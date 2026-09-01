@@ -11,6 +11,16 @@ class PageController extends Controller
     {
         abort_unless($page->status === 'published', 404);
 
+        $canonicalRoutes = [
+            'tentang-madrasah' => 'about',
+            'sejarah' => 'sejarah',
+            'visi-misi' => 'visi-misi',
+        ];
+
+        if (isset($canonicalRoutes[$page->slug])) {
+            return redirect()->route($canonicalRoutes[$page->slug], [], 301);
+        }
+
         return view('public.page', compact('page'));
     }
 }

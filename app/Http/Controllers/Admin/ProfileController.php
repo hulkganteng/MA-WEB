@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\OrganizationMember;
 use App\Models\Page;
 use App\Models\Setting;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
@@ -23,7 +23,7 @@ class ProfileController extends Controller
         $pages = Page::whereIn('slug', array_column(self::SECTIONS, 'slug'))->get()->keyBy('slug');
         $sections = collect(self::SECTIONS)->map(fn ($section, $key) => $section + ['key' => $key, 'page' => $pages->get($section['slug'])]);
         $principalComplete = filled(Setting::get('principal.name')) && filled(Setting::get('principal.speech'));
-        $memberCount = OrganizationMember::count();
+        $memberCount = Teacher::where('is_in_structure', true)->count();
 
         return view('admin.profile.index', compact('sections', 'principalComplete', 'memberCount'));
     }

@@ -1,4 +1,21 @@
-<x-layouts.app :title="$event->title" :description="$event->description">
+@php
+    $schema = [
+        '@context' => 'https://schema.org',
+        '@type' => 'Event',
+        '@id' => url()->current().'#event',
+        'name' => $event->title,
+        'description' => $event->description,
+        'startDate' => $event->start_date->toIso8601String(),
+        'endDate' => ($event->end_date ?: $event->start_date)->toIso8601String(),
+        'eventStatus' => 'https://schema.org/EventScheduled',
+        'eventAttendanceMode' => 'https://schema.org/OfflineEventAttendanceMode',
+        'location' => ['@type' => 'Place', 'name' => $event->location ?: setting('site.name')],
+        'organizer' => ['@id' => url('/').'#organization'],
+        'url' => url()->current(),
+        'inLanguage' => 'id-ID',
+    ];
+@endphp
+<x-layouts.app :title="$event->title" :description="$event->description" :image="$event->cover" :schema="$schema">
     <article class="bg-slate-50/60 py-14 sm:py-20">
         <div class="container-app max-w-4xl space-y-8">
             <a href="{{ route('agenda.index') }}" class="inline-flex items-center gap-2 text-xs font-bold text-primary-700 hover:text-primary-800">
@@ -52,4 +69,3 @@
         </div>
     </article>
 </x-layouts.app>
-

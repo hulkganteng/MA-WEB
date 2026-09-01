@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\OrganizationMember;
 use App\Models\Page;
 use App\Models\Post;
 use App\Models\Setting;
@@ -66,7 +65,7 @@ class CmsImageUploadTest extends TestCase
         Storage::disk('public')->assertExists(Page::where('slug', 'tentang-madrasah')->firstOrFail()->cover);
     }
 
-    public function test_principal_and_organization_photos_are_saved_to_public_storage(): void
+    public function test_principal_and_teacher_photos_are_saved_to_public_storage(): void
     {
         Storage::fake('public');
         $admin = $this->admin();
@@ -79,15 +78,17 @@ class CmsImageUploadTest extends TestCase
         ])->assertSessionHasNoErrors();
         Storage::disk('public')->assertExists(Setting::get('principal.photo'));
 
-        $this->post(route('admin.profile.structure.store'), [
+        $this->post(route('admin.teachers.store'), [
             'name' => 'Pimpinan Struktur',
+            'type' => 'guru',
             'position' => 'Ketua',
             'order' => 1,
             'is_active' => 1,
+            'is_public' => 1,
             'photo' => UploadedFile::fake()->image('struktur.png', 600, 600),
         ])->assertSessionHasNoErrors();
 
-        Storage::disk('public')->assertExists(OrganizationMember::where('name', 'Pimpinan Struktur')->firstOrFail()->photo);
+        Storage::disk('public')->assertExists(Teacher::where('name', 'Pimpinan Struktur')->firstOrFail()->photo);
     }
 
     public function test_website_setting_images_are_saved_to_public_storage(): void

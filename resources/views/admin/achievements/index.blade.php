@@ -1,5 +1,48 @@
 <x-layouts.admin title="Prestasi">
-    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end"><div><h2 class="text-2xl font-semibold tracking-tight text-slate-950">Kelola prestasi</h2><p class="mt-2 text-base text-slate-600">Publikasikan capaian akademik dan nonakademik madrasah.</p></div>@can('achievements.create')<a href="{{ route('admin.achievements.create') }}" class="btn-primary shrink-0 !py-2 !pr-3 !pl-2"><x-icon name="plus" class="size-4" />Tambah prestasi</a>@endcan</div>
-    <form method="GET" class="mt-7 grid gap-3 sm:grid-cols-[minmax(0,1fr)_12rem_auto]"><div><label for="q" class="sr-only">Cari prestasi</label><input id="q" name="q" type="search" value="{{ request('q') }}" class="input !py-2" placeholder="Cari judul atau peserta"></div><div><label for="status" class="sr-only">Status</label><select id="status" name="status" class="input !py-2"><option value="">Semua status</option><option value="draft" @selected(request('status') === 'draft')>Draft</option><option value="published" @selected(request('status') === 'published')>Published</option></select></div><button type="submit" class="btn-outline !py-2">Terapkan</button></form>
-    <div class="mt-7 divide-y divide-slate-900/10 border-y border-slate-900/10">@forelse($achievements as $achievement)<article class="flex flex-col justify-between gap-4 py-5 sm:flex-row sm:items-center"><div class="flex min-w-0 items-center gap-4">@if($achievement->cover)<img src="{{ asset('storage/'.$achievement->cover) }}" alt="" class="size-14 shrink-0 rounded-xl object-cover outline outline-1 -outline-offset-1 outline-black/5">@else<div class="flex size-14 shrink-0 items-center justify-center rounded-xl bg-gold-100"><x-icon name="trophy" class="size-6 text-gold-700" /></div>@endif<div class="min-w-0"><h3 class="truncate font-semibold text-slate-950">{{ $achievement->title }}</h3><p class="mt-1 text-base text-slate-600 sm:text-sm">{{ $achievement->participant ?: 'Tanpa nama peserta' }} · {{ ucfirst($achievement->level) }} · {{ $achievement->year }}</p><p class="mt-1 text-sm text-slate-500">{{ ucfirst($achievement->status) }} · {{ $achievement->category }}</p></div></div><div class="flex shrink-0 gap-2">@can('achievements.update')<a href="{{ route('admin.achievements.edit', $achievement) }}" class="rounded-lg px-2.5 py-1.5 text-sm font-medium text-primary-700 hover:bg-primary-50">Edit</a>@endcan @can('achievements.delete')<form method="POST" action="{{ route('admin.achievements.destroy', $achievement) }}" onsubmit="return confirm(@js('Pindahkan prestasi '.$achievement->title.' ke sampah?'))">@csrf @method('DELETE')<button type="submit" class="rounded-lg px-2.5 py-1.5 text-sm font-medium text-rose-700 hover:bg-rose-50">Hapus</button></form>@endcan</div></article>@empty<div class="py-12 text-center"><x-icon name="trophy" class="mx-auto size-8 text-slate-400" /><p class="mt-3 font-medium text-slate-950">Belum ada prestasi</p><p class="mt-1 text-base text-slate-500 sm:text-sm">Tambahkan prestasi pertama untuk ditampilkan di website.</p></div>@endforelse</div><div class="mt-7">{{ $achievements->links() }}</div>
+    <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+        <div>
+            <h2 class="text-2xl font-semibold tracking-tight text-slate-950">Kelola prestasi</h2>
+            <p class="mt-2 text-base text-slate-600">Publikasikan capaian akademik dan nonakademik madrasah.</p>
+        </div>
+        @can('achievements.create')
+            <div class="flex flex-wrap gap-2">
+                <a href="{{ route('admin.achievements.template') }}" class="btn-outline shrink-0 !py-2">
+                    <x-icon name="download" class="size-4" />
+                    Template Excel
+                </a>
+                <a href="{{ route('admin.achievements.create') }}" class="btn-primary shrink-0 !py-2 !pr-3 !pl-2">
+                    <x-icon name="plus" class="size-4" />
+                    Tambah prestasi
+                </a>
+            </div>
+        @endcan
+    </div>
+
+    @can('achievements.create')
+        <form method="POST" action="{{ route('admin.achievements.import') }}" enctype="multipart/form-data" class="mt-7 rounded-2xl bg-white p-5 ring-1 ring-slate-900/10">
+            @csrf
+            <div class="flex flex-col gap-4 lg:flex-row lg:items-end">
+                <div class="min-w-0 flex-1">
+                    <label for="import_file" class="label">Import data prestasi dari Excel</label>
+                    <input id="import_file" name="import_file" type="file" accept=".xlsx,.xls" class="input" required>
+                    <p class="mt-1 text-sm text-slate-500">Gunakan template yang tersedia. Format file XLSX atau XLS, maksimal 5 MB.</p>
+                    @error('import_file')
+                        <p class="mt-1 text-sm text-rose-700">{{ $message }}</p>
+                    @enderror
+                </div>
+                <button type="submit" class="btn-primary shrink-0 !py-2">
+                    <x-icon name="upload" class="size-4" />
+                    Import Excel
+                </button>
+            </div>
+        </form>
+    @endcan
+
+    <form method="GET" class="mt-7 grid gap-3 sm:grid-cols-[minmax(0,1fr)_12rem_auto]">
+        <div><label for="q" class="sr-only">Cari prestasi</label><input id="q" name="q" type="search" value="{{ request('q') }}" class="input !py-2" placeholder="Cari judul atau peserta"></div>
+        <div><label for="status" class="sr-only">Status</label><select id="status" name="status" class="input !py-2"><option value="">Semua status</option><option value="draft" @selected(request('status') === 'draft')>Draft</option><option value="published" @selected(request('status') === 'published')>Published</option></select></div>
+        <button type="submit" class="btn-outline !py-2">Terapkan</button>
+    </form>
+    <div class="mt-7 divide-y divide-slate-900/10 border-y border-slate-900/10">@forelse($achievements as $achievement)<article class="flex flex-col justify-between gap-4 py-5 sm:flex-row sm:items-center"><div class="flex min-w-0 items-center gap-4">@if($achievement->cover)<img src="{{ asset('storage/'.$achievement->cover) }}" alt="" class="size-14 shrink-0 rounded-xl object-cover outline outline-1 -outline-offset-1 outline-black/5">@else<div class="flex size-14 shrink-0 items-center justify-center rounded-xl bg-gold-100"><x-icon name="trophy" class="size-6 text-gold-700" /></div>@endif<div class="min-w-0"><h3 class="truncate font-semibold text-slate-950">{{ $achievement->title }}</h3><p class="mt-1 text-base text-slate-600 sm:text-sm">{{ $achievement->participant ?: 'Tanpa nama peserta' }} · {{ ucfirst($achievement->level) }} · {{ $achievement->year }}</p><p class="mt-1 text-sm text-slate-500">{{ ucfirst($achievement->status) }} · {{ $achievement->category }}</p></div></div><div class="flex shrink-0 gap-2">@can('achievements.update')<a href="{{ route('admin.achievements.edit', $achievement) }}" class="rounded-lg px-2.5 py-1.5 text-sm font-medium text-primary-700 hover:bg-primary-50">Edit</a>@endcan @can('achievements.delete')<form method="POST" action="{{ route('admin.achievements.destroy', $achievement) }}" onsubmit="return confirm(@js('Pindahkan prestasi '.$achievement->title.' ke sampah?'))">@csrf @method('DELETE')<button type="submit" class="rounded-lg px-2.5 py-1.5 text-sm font-medium text-rose-700 hover:bg-rose-50">Hapus</button></form>@endcan</div></article>@empty<div class="py-12 text-center"><x-icon name="trophy" class="mx-auto size-8 text-slate-400" /><p class="mt-3 font-medium text-slate-950">Belum ada prestasi</p><p class="mt-1 text-base text-slate-500 sm:text-sm">Tambahkan prestasi pertama untuk ditampilkan di website.</p></div>@endforelse</div>
+    <div class="mt-7">{{ $achievements->links() }}</div>
 </x-layouts.admin>

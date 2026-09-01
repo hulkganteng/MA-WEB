@@ -6,17 +6,40 @@
     'robots' => 'index, follow',
     'type' => 'website',
     'schema' => null,
+    'preloadImage' => null,
 ])
 
 @php
     $siteName = setting('site.name', 'MA Ma\'arif NU Assa\'adah');
+    $shortSiteName = 'MA Assa\'adah';
     $siteTagline = setting('site.tagline', 'Berakhlak Mulia, Cakap, Cendekia, dan Berkarakter Pesantren');
     $defaultSeo = setting('seo.default_title', $siteName);
-    $metaTitle = $title ? "{$title} — {$siteName}" : $defaultSeo;
-    $metaDescription = $description ?: setting('seo.default_description', $siteTagline);
-    $ogImage = $image ?: setting('seo.default_image');
+    $titleAlreadyBranded = $title && \Illuminate\Support\Str::contains(\Illuminate\Support\Str::lower($title), ['ma ma\'arif', 'ma assa']);
+    $titleSuffix = " — {$shortSiteName}";
+    $shortenTitle = function (string $value, int $limit): string {
+        if (mb_strlen($value) <= $limit) {
+            return $value;
+        }
+
+        $shortened = mb_substr($value, 0, $limit - 1);
+
+        return preg_replace('/\s+\S*$/u', '', $shortened).'…';
+    };
+    $metaTitle = $title
+        ? ($titleAlreadyBranded
+            ? $shortenTitle($title, 60)
+            : $shortenTitle($title, 60 - mb_strlen($titleSuffix)).$titleSuffix)
+        : $shortenTitle($defaultSeo, 60);
+    $metaDescription = trim(strip_tags($description ?: setting('seo.default_description', $siteTagline)));
+    $rawOgImage = $image ?: setting('seo.default_image');
+    $ogImage = $rawOgImage
+        ? (filter_var($rawOgImage, FILTER_VALIDATE_URL) ? $rawOgImage : asset('storage/'.ltrim($rawOgImage, '/')))
+        : null;
     $canonicalUrl = $canonical ?: url()->current();
-    $favicon = setting('site.favicon') ? asset('storage/'.setting('site.favicon')) : asset('storage/'.(setting('site.logo') ?? ''));
+    $favicon = setting('site.favicon') ? asset('storage/'.setting('site.favicon')) : asset('favicon.ico');
+    $logo = setting('site.logo') ? asset('storage/'.setting('site.logo')) : $favicon;
+    $organizationId = url('/').'#organization';
+    $websiteId = url('/').'#website';
 @endphp
 
 <!DOCTYPE html>
@@ -29,10 +52,12 @@
     <title>{{ $metaTitle }}</title>
     <meta name="description" content="{{ $metaDescription }}">
     <meta name="robots" content="{{ $robots }}">
+    <meta name="theme-color" content="#006437">
     <link rel="canonical" href="{{ $canonicalUrl }}">
 
     <meta property="og:type" content="{{ $type }}">
     <meta property="og:site_name" content="{{ $siteName }}">
+    <meta property="og:locale" content="id_ID">
     <meta property="og:title" content="{{ $metaTitle }}">
     <meta property="og:description" content="{{ $metaDescription }}">
     <meta property="og:url" content="{{ $canonicalUrl }}">
@@ -46,9 +71,13 @@
     <meta name="twitter:description" content="{{ $metaDescription }}">
     @if ($ogImage)
         <meta name="twitter:image" content="{{ $ogImage }}">
+        <meta name="twitter:image:alt" content="{{ $metaTitle }}">
     @endif
 
     <link rel="icon" href="{{ $favicon }}">
+    @if ($preloadImage)
+        <link rel="preload" as="image" href="{{ $preloadImage }}" fetchpriority="high">
+    @endif
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,20 +87,58 @@
     <style>:root { {!! theme_palette_css() !!} } [x-cloak] { display: none !important; }</style>
 
     @php
-        $orgSchema = json_encode([
-            '@context' => 'https://schema.org',
+        $schemaGraph = [[
             '@type' => 'EducationalOrganization',
+            '@id' => $organizationId,
             'name' => $siteName,
             'slogan' => $siteTagline,
             'url' => url('/'),
+            'logo' => $logo,
             'email' => setting('contact.email'),
             'telephone' => setting('contact.phone'),
-            'address' => ['@type' => 'PostalAddress', 'streetAddress' => setting('contact.address')],
-        ]);
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => setting('contact.address'),
+                'addressLocality' => 'Bungah',
+                'addressRegion' => 'Jawa Timur',
+                'postalCode' => '61152',
+                'addressCountry' => 'ID',
+            ],
+        ]];
+
+        if (request()->routeIs('home')) {
+            $schemaGraph[] = [
+                '@type' => 'WebSite',
+                '@id' => $websiteId,
+                'name' => $siteName,
+                'url' => url('/'),
+                'inLanguage' => 'id-ID',
+                'publisher' => ['@id' => $organizationId],
+                'potentialAction' => [
+                    '@type' => 'SearchAction',
+                    'target' => route('search').'?q={search_term_string}',
+                    'query-input' => 'required name=search_term_string',
+                ],
+            ];
+        } elseif ($title) {
+            $schemaGraph[] = [
+                '@type' => 'BreadcrumbList',
+                '@id' => $canonicalUrl.'#breadcrumb',
+                'itemListElement' => [
+                    ['@type' => 'ListItem', 'position' => 1, 'name' => 'Beranda', 'item' => route('home')],
+                    ['@type' => 'ListItem', 'position' => 2, 'name' => $title, 'item' => $canonicalUrl],
+                ],
+            ];
+        }
+
+        $orgSchema = json_encode([
+            '@context' => 'https://schema.org',
+            '@graph' => $schemaGraph,
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
     @endphp
     <script type="application/ld+json">{!! $orgSchema !!}</script>
     @if ($schema)
-        <script type="application/ld+json">{!! is_string($schema) ? $schema : json_encode($schema) !!}</script>
+        <script type="application/ld+json">{!! is_string($schema) ? $schema : json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) !!}</script>
     @endif
 
     @stack('head')
@@ -435,6 +502,7 @@
             {{-- Floating Menu Toggle --}}
             <button type="button"
                     @click="expanded = !expanded"
+                    :aria-expanded="expanded.toString()"
                     class="relative flex size-12 sm:size-14 items-center justify-center rounded-full bg-primary-600 text-white shadow-lift transition duration-300 hover:scale-105 hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-600/30"
                     :class="expanded ? 'rotate-45 !bg-[#1F1A17]' : ''"
                     aria-label="Pusat Aksi Cepat">
@@ -469,6 +537,7 @@
                 </div>
             </div>
             <button type="button" @click="$store.audioPlayer.isOpen = false"
+                    aria-label="Tutup pemutar audio"
                     class="flex size-6 items-center justify-center rounded-full text-white/80 hover:text-white transition">
                 <x-icon name="x" class="size-4" />
             </button>
@@ -485,7 +554,7 @@
 
             {{-- Playback Controls --}}
             <div class="flex items-center gap-2">
-                <button type="button" @click="$store.audioPlayer.prevTrack()" class="p-1 text-white/80 hover:text-white transition" title="Sebelumnya">
+                <button type="button" @click="$store.audioPlayer.prevTrack()" class="p-1 text-white/80 hover:text-white transition" aria-label="Putar audio sebelumnya" title="Sebelumnya">
                     <x-icon name="skip-back" class="size-4" />
                 </button>
                 <button type="button" @click="$store.audioPlayer.togglePlay()"
@@ -494,7 +563,7 @@
                     <x-icon name="pause" class="size-4" x-show="$store.audioPlayer.isPlaying" />
                     <x-icon name="play" class="size-4 ml-0.5" x-show="!$store.audioPlayer.isPlaying" />
                 </button>
-                <button type="button" @click="$store.audioPlayer.nextTrack()" class="p-1 text-white/80 hover:text-white transition" title="Berikutnya">
+                <button type="button" @click="$store.audioPlayer.nextTrack()" class="p-1 text-white/80 hover:text-white transition" aria-label="Putar audio berikutnya" title="Berikutnya">
                     <x-icon name="skip-forward" class="size-4" />
                 </button>
             </div>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AchievementController;
 use App\Http\Controllers\Admin\AlbumController;
 use App\Http\Controllers\Admin\AlumniController;
 use App\Http\Controllers\Admin\AnnouncementController;
+use App\Http\Controllers\Admin\BackupController;
 use App\Http\Controllers\Admin\CurriculumController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\EducationProgramController;
@@ -64,8 +65,8 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
     Route::middleware('permission:structure.manage')->group(function () {
         Route::get('/profil/struktur', [OrganizationMemberController::class, 'index'])->name('profile.structure.index');
         Route::post('/profil/struktur', [OrganizationMemberController::class, 'store'])->name('profile.structure.store');
-        Route::put('/profil/struktur/{organizationMember}', [OrganizationMemberController::class, 'update'])->name('profile.structure.update');
-        Route::delete('/profil/struktur/{organizationMember}', [OrganizationMemberController::class, 'destroy'])->name('profile.structure.destroy');
+        Route::put('/profil/struktur/{teacher}', [OrganizationMemberController::class, 'update'])->name('profile.structure.update');
+        Route::delete('/profil/struktur/{teacher}', [OrganizationMemberController::class, 'destroy'])->name('profile.structure.destroy');
     });
 
     Route::middleware('permission:teachers.view')->group(function () {
@@ -99,6 +100,8 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
     Route::middleware('permission:achievements.view')->group(function () {
         Route::get('/prestasi', [AchievementController::class, 'index'])->name('achievements.index');
         Route::get('/prestasi/tambah', [AchievementController::class, 'create'])->middleware('permission:achievements.create')->name('achievements.create');
+        Route::get('/prestasi/template-import', [AchievementController::class, 'template'])->middleware('permission:achievements.create')->name('achievements.template');
+        Route::post('/prestasi/import', [AchievementController::class, 'import'])->middleware('permission:achievements.create')->name('achievements.import');
         Route::post('/prestasi', [AchievementController::class, 'store'])->middleware('permission:achievements.create')->name('achievements.store');
         Route::get('/prestasi/{achievement}/edit', [AchievementController::class, 'edit'])->middleware('permission:achievements.update')->name('achievements.edit');
         Route::put('/prestasi/{achievement}', [AchievementController::class, 'update'])->middleware('permission:achievements.update')->name('achievements.update');
@@ -191,4 +194,11 @@ Route::middleware(['auth', 'permission:dashboard.view'])->prefix('admin')->name(
 
     Route::get('/pengaturan', [SettingController::class, 'edit'])->middleware('permission:settings.manage')->name('settings.edit');
     Route::put('/pengaturan', [SettingController::class, 'update'])->middleware('permission:settings.manage')->name('settings.update');
+
+    Route::middleware('permission:settings.manage')->group(function () {
+        Route::get('/backup', [BackupController::class, 'index'])->name('backups.index');
+        Route::post('/backup', [BackupController::class, 'store'])->name('backups.store');
+        Route::get('/backup/{filename}', [BackupController::class, 'download'])->name('backups.download');
+        Route::delete('/backup/{filename}', [BackupController::class, 'destroy'])->name('backups.destroy');
+    });
 });

@@ -2,7 +2,6 @@
 
 namespace Tests\Feature;
 
-use App\Models\OrganizationMember;
 use App\Models\Post;
 use App\Models\Teacher;
 use App\Models\User;
@@ -134,23 +133,27 @@ class CmsIntegrationTest extends TestCase
     public function test_admin_can_manage_public_organization_structure(): void
     {
         $admin = User::where('email', 'admin@ma-assaadah.sch.id')->firstOrFail();
+        $parent = Teacher::create([
+            'name' => 'Ketua Struktur', 'slug' => 'ketua-struktur', 'type' => 'guru',
+            'position' => 'Kepala Madrasah', 'is_active' => true, 'is_public' => true,
+        ]);
+        $child = Teacher::create([
+            'name' => 'Anggota Struktur', 'slug' => 'anggota-struktur', 'type' => 'tendik',
+            'position' => 'Staf', 'is_active' => true, 'is_public' => true,
+        ]);
 
         $this->actingAs($admin)->post(route('admin.profile.structure.store'), [
-            'name' => 'Ketua Struktur',
-            'position' => 'Kepala Madrasah',
-            'order' => 1,
-            'is_active' => 1,
+            'teacher_id' => $parent->id,
+            'structure_order' => 1,
         ])->assertRedirect(route('admin.profile.structure.index'));
 
-        $parent = OrganizationMember::where('name', 'Ketua Struktur')->firstOrFail();
         $this->post(route('admin.profile.structure.store'), [
-            'name' => 'Anggota Tersembunyi',
-            'position' => 'Staf',
-            'parent_id' => $parent->id,
-            'order' => 2,
+            'teacher_id' => $child->id,
+            'structure_parent_id' => $parent->id,
+            'structure_order' => 2,
         ])->assertRedirect(route('admin.profile.structure.index'));
 
-        $this->get(route('structure'))->assertOk()->assertSee('Ketua Struktur')->assertDontSee('Anggota Tersembunyi');
+        $this->get(route('structure'))->assertOk()->assertSee('Ketua Struktur')->assertSee('Anggota Struktur');
     }
 
     public function test_unknown_profile_section_returns_not_found(): void

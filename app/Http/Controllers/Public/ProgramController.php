@@ -29,6 +29,13 @@ class ProgramController extends Controller
         return view('public.programs.featured', ['programs' => FeaturedProgram::active()->orderBy('order')->get()]);
     }
 
+    public function featuredShow(FeaturedProgram $featuredProgram)
+    {
+        abort_unless($featuredProgram->status === 'active', 404);
+
+        return view('public.programs.show', ['program' => $featuredProgram]);
+    }
+
     public function curriculum()
     {
         return view('public.programs.curriculum', ['curriculums' => Curriculum::active()->orderBy('order')->get()]);

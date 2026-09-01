@@ -3,9 +3,19 @@
     $schema = [
         '@context' => 'https://schema.org',
         '@type' => $post->type === 'berita' ? 'NewsArticle' : 'Article',
+        '@id' => url()->current().'#article',
+        'mainEntityOfPage' => ['@type' => 'WebPage', '@id' => url()->current()],
         'headline' => $post->title,
+        'description' => strip_tags($post->seo_description ?: $post->excerpt),
+        'image' => $post->og_image || $post->cover
+            ? [filter_var($post->og_image ?: $post->cover, FILTER_VALIDATE_URL) ? ($post->og_image ?: $post->cover) : asset('storage/'.($post->og_image ?: $post->cover))]
+            : [],
         'datePublished' => optional($post->published_at)->toIso8601String(),
         'dateModified' => $post->updated_at->toIso8601String(),
+        'author' => ['@type' => 'Person', 'name' => $post->author?->name ?: setting('site.name')],
+        'publisher' => ['@id' => url('/').'#organization'],
+        'isPartOf' => ['@id' => url('/').'#website'],
+        'inLanguage' => 'id-ID',
     ];
 @endphp
 <x-layouts.app :title="$post->seo_title ?: $post->title" :description="$post->seo_description ?: $post->excerpt" :image="$post->og_image ?: $post->cover" type="article" :schema="$schema">
@@ -63,6 +73,7 @@
                 @if ($post->cover)
                     <div class="relative overflow-hidden rounded-2xl border border-slate-100">
                         <img src="{{ asset('storage/'.$post->cover) }}" alt="{{ $post->title }}"
+                             loading="eager" decoding="async" fetchpriority="high"
                              class="aspect-[16/9] w-full object-cover">
                     </div>
                 @endif
@@ -129,4 +140,3 @@
         </section>
     @endif
 </x-layouts.app>
-

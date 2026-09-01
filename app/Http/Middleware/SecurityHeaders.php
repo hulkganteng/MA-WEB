@@ -39,6 +39,10 @@ class SecurityHeaders
         $response->headers->remove('X-Powered-By');
         $response->headers->remove('Server');
 
+        if ($request->is('admin', 'admin/*', 'api/*', 'cari', 'alumni/registrasi', 'up')) {
+            $response->headers->set('X-Robots-Tag', 'noindex, nofollow');
+        }
+
         // Content-Security-Policy (CSP) — lapisan pertahanan utama
         // Menentukan sumber konten yang diperbolehkan di browser
         $csp = $this->buildCSP();
@@ -46,7 +50,7 @@ class SecurityHeaders
 
         // HSTS: Paksa HTTPS selama 1 tahun (hanya di production)
         if (app()->environment('production')) {
-            $response->headers->set('Strict-Transport-Security', 'max-age=31536000; includeSubDomains; preload');
+            $response->headers->set('Strict-Transport-Security', 'max-age=31536000');
         }
 
         return $response;

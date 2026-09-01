@@ -72,9 +72,6 @@
                             <p class="text-xs text-slate-500">Bungah, Gresik, Jawa Timur</p>
                             <p class="text-sm font-bold text-slate-900">{{ setting('principal.name') }}</p>
                         </div>
-                        <a href="{{ route('contact') }}" class="btn-primary">
-                            <x-icon name="message-square" class="size-4" /> Hubungi Kepala & Pimpinan
-                        </a>
                     </div>
                 </div>
             </article>
